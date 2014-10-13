@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #111;
+  margin: 0;
+  font-family: 'Play', Helvetica, sans-serif;
+}
+.analog-display { /* orientation: portrait */
+  background-color: #ddd;
+  border-radius: 50%;
+  height: calc(100vw - 50px);
+  margin: 25px auto;
+  position: relative;
+  width: calc(100vw - 50px);
+}
+.analog {
+  position: absolute;
+}
+.analog-month {
+  background-color: #333;
+  height: 30%; /* Length */
+  left: 47.5%; /* 50% - Width / 2 */
+  top: 25%; /* Offset */
+  transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+  transform: rotate(0deg);
+  width: 5%;
+}
+.analog-day {
+  background-color: #444;
+  height: 35%; /* Length */
+  left: 48%; /* 50% - Width / 2 */
+  top: 20%; /* Offset */
+  transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+  transform: rotate(0deg);
+  width: 4%;
+}
+.analog-hour {
+  background-color: #555;
+  height: 40%; /* Length */
+  left: 48.5%; /* 50% - Width / 2 */
+  top: 15%; /* Offset */
+  transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+  transform: rotate(0deg);
+  width: 3%;
+}
+.analog-minute {
+  background-color: #666;
+  height: 45%; /* Length */
+  left: 49%; /* 50% - Width / 2 */
+  top: 10%; /* Offset */
+  transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+  transform: rotate(0deg);
+  width: 2%;
+}
+.analog-second {
+  background-color: #777;
+  height: 50%; /* Length */
+  left: 49.5%; /* 50% - Width / 2 */
+  top: 5%; /* Offset */
+  transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+  transform: rotate(0deg);
+  width: 1%;
+}
+.digital-display {
+  color: #eee;
+  font-size: 50px;
+  text-align: center;
+}
+@media screen and (orientation: landscape) {
+  .analog-display {
+    height: calc(100vh - 150px);
+    width: calc(100vh - 150px);
+  }
+}
