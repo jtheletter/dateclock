@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitalSecond = document.getElementById('digital-second');
     els.digitalOffset = document.getElementById('digital-offset');
 
+    function getDaysInMonth(date) {
+        return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    }
     function updateYear () {
         els.digitalYear.textContent = new Date().getFullYear();
     }
@@ -26,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let now = new Date();
         let month = now.getMonth() + 1; // Add one month for natural counting.
         let day = now.getDate();
-        let rotation = (month - 1 + (day - 1) / 31) / 12 * 360; // Subtract one month (and day) for zero indexing.
+        let daysInMonth = getDaysInMonth(now);
+        let rotation = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
         els.analogMonth.style.transform = `rotate(${rotation}deg)`;
         els.digitalMonth.textContent = month < 10 ? `0${month}` : month;
         if (month === 1 && day === 1) { // Update year (which is digital only) on January 1st.
@@ -37,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let now = new Date();
         let day = now.getDate();
         let hour = now.getHours();
-        let rotation = (day - 1 + hour / 24) / 31 * 360; // Subtract one day for zero indexing.
+        let daysInMonth = getDaysInMonth(now);
+        let rotation = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
         els.analogDay.style.transform = `rotate(${rotation}deg)`;
         els.digitalDay.textContent = day < 10 ? `0${day}` : day;
         if (hour === 0) { // Update month once per day.
@@ -98,6 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     updateAll();
-    setInterval(updateSecond, 40);
+    setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
 
 });
