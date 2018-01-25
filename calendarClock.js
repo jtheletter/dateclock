@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function getDaysInMonth(date) {
         return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     }
+    function rotate(el, degs) {
+        el.style.transform = `rotate(${degs}deg)`;
+    }
     function updateYear () {
         els.digitalYear.textContent = new Date().getFullYear();
     }
@@ -31,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let day = now.getDate();
         let daysInMonth = getDaysInMonth(now);
         let rotation = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
-        els.analogMonth.style.transform = `rotate(${rotation}deg)`;
+        rotate(els.analogMonth, rotation);
         els.digitalMonth.textContent = month < 10 ? `0${month}` : month;
         if (month === 1 && day === 1) { // Update year (which is digital only) on January 1st.
             updateYear();
@@ -43,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let hour = now.getHours();
         let daysInMonth = getDaysInMonth(now);
         let rotation = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
-        els.analogDay.style.transform = `rotate(${rotation}deg)`;
+        rotate(els.analogDay, rotation);
         els.digitalDay.textContent = day < 10 ? `0${day}` : day;
         if (hour === 0) { // Update month once per day.
             updateMonth();
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let hour = now.getHours();
         let minute = now.getMinutes();
         let rotation = (hour + minute / 60) / 24 * 360;
-        els.analogHour.style.transform = `rotate(${rotation}deg)`;
+        rotate(els.analogHour, rotation);
         els.digitalHour.textContent = hour < 10 ? `0${hour}` : hour;
         if (minute === 0) { // Update day once per hour.
             updateDay();
@@ -65,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let minute = now.getMinutes();
         let second = now.getSeconds();
         let rotation = (minute + second / 60) / 60 * 360;
-        els.analogMinute.style.transform = `rotate(${rotation}deg)`;
+        rotate(els.analogMinute, rotation);
         els.digitalMinute.textContent = minute < 10 ? `0${minute}` : minute;
         if (second === 0) { // Update hour once per minute.
             updateHour();
@@ -76,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let second = now.getSeconds();
         let millisecond = now.getMilliseconds();
         let rotation = (second + millisecond / 1000) / 60 * 360;
-        els.analogSecond.style.transform = `rotate(${rotation}deg)`;
+        rotate(els.analogSecond, rotation);
         els.digitalSecond.textContent = second < 10 ? `0${second}` : second;
         if (millisecond === 0) { // Update minute once per second.
             updateMinute();
