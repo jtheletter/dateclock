@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'Exo-2 Light';
+    src: url('fonts/exo-2/exo2-light-webfont.woff2') format('woff2'),
+         url('fonts/exo-2/exo2-light-webfont.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}

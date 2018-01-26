@@ -1,5 +1,16 @@
 // Lunisolar Calendar-Clock. Work in progress. (c) JP 2009-2018.
 
+// Ideas:
+// Beautify pips.
+// Scale pips with screen.
+// Hover (and click/tap) on number or hand to highlight hand/number.
+// Cover hands w/ MONTH, DAY, HOUR, MINUTE, SECOND
+// Remove year?
+// Info screen.
+// Add lunar.
+// Buttons: Greg/Lunar, DST/ST, Up/Down, Dark/Light
+// Add to current rotation (read from dom el or stored in app data) w/ transition for less dom paint?
+
 document.addEventListener('DOMContentLoaded', function () {
 
     let els = {};
@@ -155,6 +166,6 @@ document.addEventListener('DOMContentLoaded', function () {
     drawPipHour();
     drawPipMinute();
     updateAll();
-    setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
+    // setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
 
 });
