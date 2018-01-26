@@ -42,16 +42,23 @@
   <body>
 
     <div class="analog-display">
-      <div class="analog analog-month" id="analog-month"></div>
-      <div class="analog analog-day" id="analog-day"></div>
-      <div class="analog analog-hour" id="analog-hour"></div>
-      <div class="analog analog-minute" id="analog-minute"></div>
-      <div class="analog analog-second" id="analog-second"></div>
+
+      <p class="pip pip-month" id="pip-month"></p>
+      <p class="pip pip-day" id="pip-day"></p>
+      <p class="pip pip-hour" id="pip-hour"></p>
+      <p class="pip pip-minute" id="pip-minute"></p>
+
+      <div class="hand hand-month" id="hand-month"></div>
+      <div class="hand hand-day" id="hand-day"></div>
+      <div class="hand hand-hour" id="hand-hour"></div>
+      <div class="hand hand-minute" id="hand-minute"></div>
+      <div class="hand hand-second" id="hand-second"></div>
+
     </div>
 
     <p class="digital-display">
       <span id="digital-year">0000</span>-<span id="digital-month">00</span>-<span id="digital-day">00</span>
-      <span id="digital-hour">00</span>:<span id="digital-minute">00</span>:<span id="digital-second">00</span> (UTC<span id="digital-offset">0</span>)
+      <span id="digital-hour">00</span>:<span id="digital-minute">00</span>:<span id="digital-second">00</span> (UTC<span id="digital-offset">&#xb1;0</span>)
     </p>
 
   </body>

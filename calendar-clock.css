@@ -2,23 +2,58 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #111;
+  background-color: #000;
   margin: 0;
   font-family: 'Play', Helvetica, sans-serif;
 }
 .analog-display { /* orientation: portrait */
-  background-color: #ddd;
+  background-color: #fff;
   border-radius: 50%;
   height: calc(100vw - 50px);
   margin: 25px auto;
   position: relative;
   width: calc(100vw - 50px);
 }
-.analog {
+.pip {
+  color: blue;
+  left: 50%;
   position: absolute;
 }
-.analog-month {
-  background-color: #333;
+.pip-month {
+  height: 35%;
+  top: 15%;
+  width: 35%;
+}
+.pip-day {
+  height: 40%;
+  top: 10%;
+  width: 40%;
+}
+.pip-hour {
+  height: 45%;
+  top: 5%;
+  width: 45%;
+}
+.pip-minute {
+  height: 50%;
+  top: 0;
+  width: 50%;
+}
+.pip > * {
+  height: 100%;
+  position: absolute;
+  text-indent: -1%;
+  transform-origin: 0 100%;
+  width: 100%;
+}
+.pip > strong {
+  font-weight: 900
+}
+.hand {
+  position: absolute;
+}
+.hand-month {
+  background-color: #222;
   height: 30%; /* Length */
   left: 47.5%; /* 50% - Width / 2 */
   top: 25%; /* Offset */
@@ -26,7 +61,7 @@ body {
   transform: rotate(0deg);
   width: 5%;
 }
-.analog-day {
+.hand-day {
   background-color: #444;
   height: 35%; /* Length */
   left: 48%; /* 50% - Width / 2 */
@@ -35,8 +70,8 @@ body {
   transform: rotate(0deg);
   width: 4%;
 }
-.analog-hour {
-  background-color: #555;
+.hand-hour {
+  background-color: #666;
   height: 40%; /* Length */
   left: 48.5%; /* 50% - Width / 2 */
   top: 15%; /* Offset */
@@ -44,8 +79,8 @@ body {
   transform: rotate(0deg);
   width: 3%;
 }
-.analog-minute {
-  background-color: #666;
+.hand-minute {
+  background-color: #888;
   height: 45%; /* Length */
   left: 49%; /* 50% - Width / 2 */
   top: 10%; /* Offset */
@@ -53,8 +88,8 @@ body {
   transform: rotate(0deg);
   width: 2%;
 }
-.analog-second {
-  background-color: #777;
+.hand-second {
+  background-color: #aaa;
   height: 50%; /* Length */
   left: 49.5%; /* 50% - Width / 2 */
   top: 5%; /* Offset */
@@ -63,7 +98,7 @@ body {
   width: 1%;
 }
 .digital-display {
-  color: #eee;
+  color: #fff;
   font-size: 50px;
   text-align: center;
 }
