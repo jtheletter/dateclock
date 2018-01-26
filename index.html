@@ -41,7 +41,7 @@
 
     <body>
 
-        <div class="analog-display">
+        <div class="display-analog">
 
             <p class="pip pip-month" id="pip-month"></p>
             <p class="pip pip-day" id="pip-day"></p>
@@ -54,11 +54,14 @@
             <div class="hand hand-minute" id="hand-minute"></div>
             <div class="hand hand-second" id="hand-second"></div>
 
+            <div class="rule rule-hori"></div>
+            <div class="rule rule-vert"></div>
         </div>
 
-        <p class="digital-display">
-            <span id="digital-year">0000</span>-<span id="digital-month">00</span>-<span id="digital-day">00</span>
-            <span id="digital-hour">00</span>:<span id="digital-minute">00</span>:<span id="digital-second">00</span> (UTC<span id="digital-offset">&#xb1;0</span>)
+        <p class="display-digital">
+            <span id="digital-year">0000</span>-<span class="digital-month" id="digital-month">00</span>-<span class="digital-day" id="digital-day">00</span>
+            <span class="digital-hour" id="digital-hour">00</span>:<span class="digital-minute" id="digital-minute">00</span>:<span class="digital-second" id="digital-second">00</span>
+            (UTC<span id="digital-offset">&#xb1;0.0</span>)
         </p>
 
     </body>

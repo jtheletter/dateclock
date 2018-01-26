@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Rajdhani Light';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-light-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-light-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/rajdhani/rajdhani-light-webfont.woff2') format('woff2'),
@@ -11,10 +11,9 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Regular';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-regular-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-regular-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-regular-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-regular-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-regular-webfont.svg#rajdhaniregular') format('svg');
@@ -23,7 +22,7 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Medium';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-medium-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-medium-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/rajdhani/rajdhani-medium-webfont.woff2') format('woff2'),
@@ -35,7 +34,7 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Semibold';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-semibold-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-semibold-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/rajdhani/rajdhani-semibold-webfont.woff2') format('woff2'),
@@ -47,7 +46,7 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Bold';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-bold-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-bold-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/rajdhani/rajdhani-bold-webfont.woff2') format('woff2'),
@@ -63,10 +62,13 @@
 }
 body {
     background-color: #000;
+    color: #000;
     margin: 0;
-    font-family: 'Rajdhani Regular', Helvetica, sans-serif;
+    font-family: 'Rajdhani', Helvetica, sans-serif;
+    font-weight: 700;
+    text-align: center;
 }
-.analog-display { /* orientation: portrait */
+.display-analog { /* orientation: portrait */
     background-color: #fff;
     border-radius: 50%;
     height: calc(100vw - 50px);
@@ -74,100 +76,149 @@ body {
     position: relative;
     width: calc(100vw - 50px);
 }
+.display-digital { /* orientation: portrait */
+    background-color: #fff;
+    display: inline-block;
+    font-size: 6.9vw;
+    margin: auto;
+    padding: 1% 1.75% 0.75%;
+}
 .pip {
     left: 50%;
     position: absolute;
 }
 .pip-month {
-    height: 35%;
-    top: 15%;
-    width: 35%;
+    font-size: 7vw;
+    height: 31.5%; /* 50% - top */
+    top: 18.5%;
+    width: 31.5%; /* same as height */
 }
 .pip-day {
-    height: 40%;
-    top: 10%;
-    width: 40%;
+    font-size: 4.25vw;
+    height: 39%;
+    top: 11%;
+    width: 39%;
 }
 .pip-hour {
-    height: 45%;
-    top: 5%;
-    width: 45%;
+    font-size: 3vw;
+    height: 44.75%;
+    top: 5.25%;
+    width: 44.75%;
 }
 .pip-minute {
-    height: 50%;
-    top: 0;
-    width: 50%;
+    font-size: 2vw;
+    height: 48.5%;
+    top: 1.5%;
+    width: 48.5%;
 }
 .pip > * {
+    font-weight: 100;
     height: 100%;
+    left: -50%;
     position: absolute;
-    text-indent: -1%;
-    transform-origin: 0 100%;
+    text-indent: 0;
+    transform-origin: 50% 100%;
     width: 100%;
 }
 .pip > strong {
-    font-weight: 900
+    font-weight: 800
 }
 .hand {
-    /*border-radius: 50% 50% 50% 50% / 10% 10% 10% 10%;*/
     position: absolute;
 }
 .hand-month {
     background-color: #222;
-    height: 30%; /* Length */
-    left: 47.5%; /* 50% - Width / 2 */
-    top: 25%; /* Offset */
-    transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+    height: 29%; /* 55% - top */
+    left: 46.75%; /* 50% - width / 2 */
+    top: 26%;
+    transform-origin: 50% 82.5%; /* 50% eyeball% */
     transform: rotate(0deg);
-    width: 5%;
+    width: 6.5%;
 }
 .hand-day {
     background-color: #444;
-    height: 35%; /* Length */
-    left: 48%; /* 50% - Width / 2 */
-    top: 20%; /* Offset */
-    transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+    height: 39.25%;
+    left: 47.75%;
+    top: 15.75%;
+    transform-origin: 50% 87%;
     transform: rotate(0deg);
-    width: 4%;
+    width: 4.5%;
 }
 .hand-hour {
     background-color: #666;
-    height: 40%; /* Length */
-    left: 48.5%; /* 50% - Width / 2 */
-    top: 15%; /* Offset */
-    transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+    height: 46.5%;
+    left: 48.75%;
+    top: 8.5%;
+    transform-origin: 50% 89.125%;
     transform: rotate(0deg);
-    width: 3%;
+    width: 2.5%;
 }
 .hand-minute {
     background-color: #888;
-    height: 45%; /* Length */
-    left: 49%; /* 50% - Width / 2 */
-    top: 10%; /* Offset */
-    transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
-    transform: rotate(0deg);
-    width: 2%;
-}
-.hand-second {
-    background-color: #aaa;
-    height: 50%; /* Length */
-    left: 49.5%; /* 50% - Width / 2 */
-    top: 5%; /* Offset */
-    transform-origin: 50% 90%; /* 50% & (100% - 2 * Offset) */
+    height: 51.45%;
+    left: 49.5%;
+    top: 3.55%;
+    transform-origin: 50% 90.25%;
     transform: rotate(0deg);
     width: 1%;
 }
-.digital-display {
-    color: #fff;
-    font-size: 5vw;
-    text-align: center;
+.hand-second {
+    background-color: #aaa;
+    height: 54.1%;
+    left: 49.875%;
+    top: 0.9%;
+    transform-origin: 50% 90.75%;
+    transform: rotate(0deg);
+    width: 0.5%;
+}
+.rule {
+    background-color: red;
+    display: none;
+    position: absolute;
+}
+.rule-hori {
+    height: .2%;
+    top: 49.9%;
+    width: 100%;
+}
+.rule-vert {
+    height: 100%;
+    left: 49.9%;
+    width: .2%;
+}
+.digital-month {
+    color: #222;
+}
+.digital-day {
+    color: #444;
+}
+.digital-hour {
+    color: #666;
+}
+.digital-minute {
+    color: #888;
+}
+.digital-second {
+    color: #aaa;
 }
 @media screen and (orientation: landscape) {
-    .analog-display {
+    .display-analog {
         height: calc(100vh - 150px);
         width: calc(100vh - 150px);
     }
-    .digital-display {
-        font-size: 5vh;
+    .display-digital {
+        font-size: 6vh;
+    }
+    .pip-month {
+        font-size: 7vh;
+    }
+    .pip-day {
+        font-size: 4.25vh;
+    }
+    .pip-hour {
+        font-size: 3vh;
+    }
+    .pip-minute {
+        font-size: 2vh;
     }
 }

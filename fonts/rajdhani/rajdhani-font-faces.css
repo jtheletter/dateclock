@@ -1,8 +1,7 @@
 @font-face {
-    font-family: 'Rajdhani Light';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-light-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-light-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-light-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-light-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-light-webfont.svg#rajdhaniregular') format('svg');
@@ -11,10 +10,9 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Regular';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-regular-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-regular-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-regular-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-regular-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-regular-webfont.svg#rajdhaniregular') format('svg');
@@ -23,10 +21,9 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Medium';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-medium-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-medium-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-medium-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-medium-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-medium-webfont.svg#rajdhaniregular') format('svg');
@@ -35,10 +32,9 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Semibold';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-semibold-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-semibold-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-semibold-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-semibold-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-semibold-webfont.svg#rajdhaniregular') format('svg');
@@ -47,10 +43,9 @@
     unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani Bold';
+    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-bold-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-bold-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-bold-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-bold-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-bold-webfont.svg#rajdhaniregular') format('svg');

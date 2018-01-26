@@ -1,8 +1,6 @@
 // Lunisolar Calendar-Clock. Work in progress. (c) JP 2009-2018.
 
-// Ideas:
-// Beautify pips.
-// Scale pips with screen.
+// Monospace font?
 // Hover (and click/tap) on number or hand to highlight hand/number.
 // Cover hands w/ MONTH, DAY, HOUR, MINUTE, SECOND
 // Remove year?
@@ -166,6 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
     drawPipHour();
     drawPipMinute();
     updateAll();
-    // setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
+    setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
 
 });
