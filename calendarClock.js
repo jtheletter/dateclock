@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
     els.handSecond = document.getElementById('hand-second');
     els.handOffset = document.getElementById('hand-offset');
 
-    els.digitalYear = document.getElementById('digital-year');
-    els.digitalMonth = document.getElementById('digital-month');
-    els.digitalDay = document.getElementById('digital-day');
-    els.digitalHour = document.getElementById('digital-hour');
-    els.digitalMinute = document.getElementById('digital-minute');
-    els.digitalSecond = document.getElementById('digital-second');
-    els.digitalOffset = document.getElementById('digital-offset');
+    els.digitalYear = document.getElementById('digit-year');
+    els.digitalMonth = document.getElementById('digit-month');
+    els.digitalDay = document.getElementById('digit-day');
+    els.digitalHour = document.getElementById('digit-hour');
+    els.digitalMinute = document.getElementById('digit-minute');
+    els.digitalSecond = document.getElementById('digit-second');
+    els.digitalOffset = document.getElementById('digit-offset');
 
     function getDaysInMonth(date) {
         return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();

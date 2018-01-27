@@ -54,11 +54,11 @@ input {
     position: fixed;
     right: 0;
     top: 0;
+    transition: background-color 0.25s;
     z-index: -1;
 }
 #toggle-theme:checked ~ .bg {
     background-color: #ddd;
-    color: #000;
 }
 .display-analog {
     background-color: #000;
@@ -67,7 +67,7 @@ input {
     height: 92.5vw;
     margin: 3.5vw auto;
     position: relative;
-    transition: transform 1.5s;
+    transition: background-color 0.25s, color 0.25s, transform 1.5s;
     width: 92.5vw;
 }
 #toggle-origin:checked ~ .display-analog {
@@ -79,15 +79,14 @@ input {
 }
 .display-digital {
     background-color: #000;
-    color: #fff;
     font-size: 6.9vw;
     margin: 0 auto;
     padding: 1% 1.75% 0.75%;
+    transition: background-color 0.25s;
     width: 92.5vw;
 }
 #toggle-theme:checked ~ .display-digital {
     background-color: #fff;
-    color: #000;
 }
 .pip {
     left: 50%;
@@ -130,6 +129,7 @@ input {
 }
 .hand {
     position: absolute;
+    transition: background-color 0.25s;
 }
 .hand-month {
     background-color: #ddd;
@@ -197,43 +197,50 @@ input {
     position: absolute;
 }
 .rule-hori {
-    height: .2%;
+    height: 0.2%;
     top: 49.9%;
     width: 100%;
 }
 .rule-vert {
     height: 100%;
     left: 49.9%;
-    width: .2%;
+    width: 0.2%;
 }
-.digital-month {
+.digit {
+    color: #fff;
+    transition: color 0.25s;
+}
+#toggle-theme:checked ~ * .digit {
+    color: #000;
+}
+.digit-month {
     color: #ddd;
 }
-#toggle-theme:checked ~ * .digital-month {
+#toggle-theme:checked ~ * .digit-month {
     color: #222;
 }
-.digital-day {
+.digit-day {
     color: #bbb;
 }
-#toggle-theme:checked ~ * .digital-day {
+#toggle-theme:checked ~ * .digit-day {
     color: #444;
 }
-.digital-hour {
+.digit-hour {
     color: #999;
 }
-#toggle-theme:checked ~ * .digital-hour {
+#toggle-theme:checked ~ * .digit-hour {
     color: #666;
 }
-.digital-minute {
+.digit-minute {
     color: #777;
 }
-#toggle-theme:checked ~ * .digital-minute {
+#toggle-theme:checked ~ * .digit-minute {
     color: #888;
 }
-.digital-second {
+.digit-second {
     color: #555;
 }
-#toggle-theme:checked ~ * .digital-second {
+#toggle-theme:checked ~ * .digit-second {
     color: #aaa;
 }
 .toggle {
