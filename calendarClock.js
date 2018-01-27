@@ -1,6 +1,6 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 1hr? Monospace font? Or make each digital span a display-inline block of set width?
+// 1hr? Make each digital span a display-inline block of set width.
 // 2hr? Hover (and click/tap) on number or hand to highlight hand/number: Listen for mouseover or touch. Toggle class on hand and digits.
 // 2hr? Fix bug where minute updates late after screen in background.
 // 8hr? Add lunar.
@@ -165,6 +165,6 @@ document.addEventListener('DOMContentLoaded', function () {
     drawPipHour();
     drawPipMinute();
     updateAll();
-    // setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
+    setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
 
 });
