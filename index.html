@@ -38,21 +38,18 @@
 
     </head>
 
-    <body>
+    <body class="">
 
         <div class="display-analog">
-
             <p class="pip pip-month" id="pip-month"></p>
             <p class="pip pip-day" id="pip-day"></p>
             <p class="pip pip-hour" id="pip-hour"></p>
             <p class="pip pip-minute" id="pip-minute"></p>
-
             <div class="hand hand-month" id="hand-month"></div>
             <div class="hand hand-day" id="hand-day"></div>
             <div class="hand hand-hour" id="hand-hour"></div>
             <div class="hand hand-minute" id="hand-minute"></div>
             <div class="hand hand-second" id="hand-second"></div>
-
             <div class="rule rule-hori"></div>
             <div class="rule rule-vert"></div>
         </div>
@@ -62,6 +59,11 @@
             <span class="digital-hour" id="digital-hour">00</span>:<span class="digital-minute" id="digital-minute">00</span>:<span class="digital-second" id="digital-second">00</span>
             (UTC<span id="digital-offset">&#xb1;0.0</span>)
         </p>
+
+        <div class="toggle">
+            <input id="toggle-theme" type="checkbox">
+            <label for="toggle-theme"></label>
+        </div>
 
     </body>
 

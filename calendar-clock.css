@@ -35,26 +35,36 @@
     box-sizing: border-box;
 }
 body {
-    background-color: #000;
-    color: #000;
+    background-color: #222;
+    color: #fff;
     font-family: 'Rajdhani', Helvetica, sans-serif;
     font-weight: 700;
     text-align: center;
 }
+body.light {
+    background-color: #ddd;
+    color: #000;
+}
 .display-analog {
-    background-color: #fff;
+    background-color: #000;
     border-radius: 50%;
     height: 92.5vw;
     margin: 3.5vw auto;
     position: relative;
     width: 92.5vw;
 }
-.display-digital {
+.light .display-analog {
     background-color: #fff;
+}
+.display-digital {
+    background-color: #000;
     font-size: 6.9vw;
     margin: 0 auto;
     padding: 1% 1.75% 0.75%;
     width: 92.5vw;
+}
+.light .display-digital {
+    background-color: #fff;
 }
 .pip {
     left: 50%;
@@ -100,7 +110,7 @@ body {
     position: absolute;
 }
 .hand-month {
-    background-color: #222;
+    background-color: #ddd;
     height: 29%; /* 55% - top */
     left: 46.75%; /* 50% - width / 2 */
     top: 26%;
@@ -108,8 +118,11 @@ body {
     transform: rotate(0deg);
     width: 6.5%;
 }
+.light .hand-month {
+    background-color: #222;
+}
 .hand-day {
-    background-color: #444;
+    background-color: #bbb;
     height: 39.25%;
     left: 47.75%;
     top: 15.75%;
@@ -117,8 +130,11 @@ body {
     transform: rotate(0deg);
     width: 4.5%;
 }
+.light .hand-day {
+    background-color: #444;
+}
 .hand-hour {
-    background-color: #666;
+    background-color: #999;
     height: 46.5%;
     left: 48.75%;
     top: 8.5%;
@@ -126,8 +142,11 @@ body {
     transform: rotate(0deg);
     width: 2.5%;
 }
+.light .hand-hour {
+    background-color: #666;
+}
 .hand-minute {
-    background-color: #888;
+    background-color: #777;
     height: 51.45%;
     left: 49.5%;
     top: 3.55%;
@@ -135,14 +154,20 @@ body {
     transform: rotate(0deg);
     width: 1%;
 }
+.light .hand-minute {
+    background-color: #888;
+}
 .hand-second {
-    background-color: #aaa;
+    background-color: #555;
     height: 54.1%;
     left: 49.875%;
     top: 0.9%;
     transform-origin: 50% 90.75%;
     transform: rotate(0deg);
     width: 0.5%;
+}
+.light .hand-second {
+    background-color: #aaa;
 }
 .rule {
     background-color: red;
@@ -160,19 +185,59 @@ body {
     width: .2%;
 }
 .digital-month {
+    color: #ddd;
+}
+.light .digital-month {
     color: #222;
 }
 .digital-day {
+    color: #bbb;
+}
+.light .digital-day {
     color: #444;
 }
 .digital-hour {
+    color: #999;
+}
+.light .digital-hour {
     color: #666;
 }
 .digital-minute {
+    color: #777;
+}
+.light .digital-minute {
     color: #888;
 }
 .digital-second {
+    color: #555;
+}
+.light .digital-second {
     color: #aaa;
+}
+.toggle {
+    display: inline-block;
+    height: 15vw;
+    margin: 3.5vw auto;
+    position: relative;
+    width: 15vw;
+}
+.toggle input {
+    margin: 0;
+    opacity: 0;
+}
+.toggle label {
+    background-color: #333;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+}
+.toggle input:checked + label {
+    background-color: #777;
+}
+.toggle input:active + label {
+    background-color: #999;
 }
 @media screen and (orientation: landscape) {
     .display-analog {
