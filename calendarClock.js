@@ -1,10 +1,12 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
+// 1hr? Fix placement of landscape buttons.
 // 1hr? Make each digital span a display-inline block of set width.
 // 2hr? Hover (and click/tap) on number or hand to highlight hand/number: Listen for mouseover or touch. Toggle class on hand and digits.
 // 2hr? Fix bug where minute updates late after screen in background.
 // 8hr? Add lunar.
-// 2hr? Buttons: Greg/Lunar, DST/ST, Up/Down: Listen for click. Toggle class on body or els.
+// 2hr? Toggle Greg/Lunar.
+// 1hr? Toggle DST/ST.
 // 3hr? Info screen: Markup. Style. Listen for click, toggle class.
 // 0hr? Remove year?
 // 1hr? Add to current rotation (read from dom el or stored in app data) w/ transition for less dom paint?

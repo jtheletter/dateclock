@@ -37,6 +37,7 @@
 body {
     background-color: #777;
     font-family: 'Rajdhani', Helvetica, sans-serif;
+    font-size: 0;
     font-weight: 700;
     text-align: center;
 }
@@ -66,7 +67,11 @@ input {
     height: 92.5vw;
     margin: 3.5vw auto;
     position: relative;
+    transition: transform 1.5s;
     width: 92.5vw;
+}
+#toggle-origin:checked ~ .display-analog {
+    transform: rotate(180deg);
 }
 #toggle-theme:checked ~ .display-analog {
     background-color: #fff;
@@ -115,10 +120,10 @@ input {
 .pip > * {
     font-weight: 100;
     height: 100%;
-    left: -50%;
+    left: -15%;
     position: absolute;
     transform-origin: 50% 100%;
-    width: 100%;
+    width: 30%;
 }
 .pip > strong {
     font-weight: 800
@@ -236,7 +241,7 @@ input {
     cursor: pointer;
     display: inline-block;
     height: 10vw;
-    margin: 3.5vw auto;
+    margin: 3.5vw 1.75vw;
     overflow: hidden;
     position: relative;
     text-indent: 100%;
@@ -244,10 +249,16 @@ input {
     white-space: nowrap;
     width: 10vw;
 }
-#toggle-theme:checked ~ .toggle {
+#toggle-origin:checked ~ #toggle-origin-label {
     background-color: #777;
 }
-#toggle-theme:active ~ .toggle {
+#toggle-origin:active ~ #toggle-origin-label {
+    background-color: #999;
+}
+#toggle-theme:checked ~ #toggle-theme-label {
+    background-color: #777;
+}
+#toggle-theme:active ~ #toggle-theme-label {
     background-color: #999;
 }
 @media screen and (orientation: landscape) {
@@ -274,6 +285,7 @@ input {
     }
     .toggle {
         height: 10vh;
+        margin: 2vh 1.75vh;
         position: fixed;
         right: 0;
         top: 0;
