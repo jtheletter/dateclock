@@ -2,7 +2,6 @@
     font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-light-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-light-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-light-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-light-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-light-webfont.svg#rajdhaniregular') format('svg');
@@ -12,32 +11,8 @@
 }
 @font-face {
     font-family: 'Rajdhani';
-    src: url('fonts/rajdhani/rajdhani-regular-webfont.eot');
-    src: url('fonts/rajdhani/rajdhani-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-regular-webfont.woff') format('woff'),
-         url('fonts/rajdhani/rajdhani-regular-webfont.ttf') format('truetype'),
-         url('fonts/rajdhani/rajdhani-regular-webfont.svg#rajdhaniregular') format('svg');
-    font-weight: 200;
-    font-style: normal;
-    unicode-range: U+0020-007F;
-}
-@font-face {
-    font-family: 'Rajdhani';
-    src: url('fonts/rajdhani/rajdhani-medium-webfont.eot');
-    src: url('fonts/rajdhani/rajdhani-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-medium-webfont.woff2') format('woff2'),
-         url('fonts/rajdhani/rajdhani-medium-webfont.woff') format('woff'),
-         url('fonts/rajdhani/rajdhani-medium-webfont.ttf') format('truetype'),
-         url('fonts/rajdhani/rajdhani-medium-webfont.svg#rajdhaniregular') format('svg');
-    font-weight: 400;
-    font-style: normal;
-    unicode-range: U+0020-007F;
-}
-@font-face {
-    font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-semibold-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-semibold-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-semibold-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-semibold-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-semibold-webfont.svg#rajdhaniregular') format('svg');
@@ -49,7 +24,6 @@
     font-family: 'Rajdhani';
     src: url('fonts/rajdhani/rajdhani-bold-webfont.eot');
     src: url('fonts/rajdhani/rajdhani-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani/rajdhani-bold-webfont.woff2') format('woff2'),
          url('fonts/rajdhani/rajdhani-bold-webfont.woff') format('woff'),
          url('fonts/rajdhani/rajdhani-bold-webfont.ttf') format('truetype'),
          url('fonts/rajdhani/rajdhani-bold-webfont.svg#rajdhaniregular') format('svg');
@@ -68,20 +42,20 @@ body {
     font-weight: 700;
     text-align: center;
 }
-.display-analog { /* orientation: portrait */
+.display-analog {
     background-color: #fff;
     border-radius: 50%;
-    height: calc(100vw - 50px);
-    margin: 25px auto;
+    height: 92.5vw;
+    margin: 3.5vw auto;
     position: relative;
-    width: calc(100vw - 50px);
+    width: 92.5vw;
 }
-.display-digital { /* orientation: portrait */
+.display-digital {
     background-color: #fff;
-    display: inline-block;
     font-size: 6.9vw;
-    margin: auto;
+    margin: 0 auto;
     padding: 1% 1.75% 0.75%;
+    width: 92.5vw;
 }
 .pip {
     left: 50%;
@@ -203,11 +177,13 @@ body {
 }
 @media screen and (orientation: landscape) {
     .display-analog {
-        height: calc(100vh - 150px);
-        width: calc(100vh - 150px);
+        height: 82.5vh;
+        margin: 2.5vh auto;
+        width: 82.5vh;
     }
     .display-digital {
         font-size: 6vh;
+        width: 82.5vh;
     }
     .pip-month {
         font-size: 7vh;
