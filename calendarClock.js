@@ -1,16 +1,17 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 1hr? Fix placement of landscape buttons.
-// 1hr? Make each digital span a display-inline block of set width.
+// 23hr?
+// 1hr? Monospace font?
+// 1hr? Placement of buttons.
 // 2hr? Hover (and click/tap) on number or hand to highlight hand/number: Listen for mouseover or touch. Toggle class on hand and digits.
-// 2hr? Fix bug where minute updates late after screen in background.
+// 2hr? Fix bug where minute+ updates late after screen in background.
+// 1hr? Toggle DST/ST.
 // 8hr? Add lunar.
 // 2hr? Toggle Greg/Lunar.
-// 1hr? Toggle DST/ST.
 // 3hr? Info screen: Markup. Style. Listen for click, toggle class.
-// 0hr? Remove year?
-// 1hr? Add to current rotation (read from dom el or stored in app data) w/ transition for less dom paint?
 // 1hr? Update favicon, OG image.
+// 1hr? Possible to go full screen on phone?
+// 1hr? Add to current rotation (read from dom el or stored in app data) w/ transition for less dom paint?
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -23,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     els.handSecond = document.getElementById('hand-second');
     els.handOffset = document.getElementById('hand-offset');
 
-    els.digitalYear = document.getElementById('digit-year');
     els.digitalMonth = document.getElementById('digit-month');
     els.digitalDay = document.getElementById('digit-day');
     els.digitalHour = document.getElementById('digit-hour');
@@ -37,9 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function rotate(el, degs) {
         el.style.transform = `rotate(${degs}deg)`;
     }
-    function updateYear () {
-        els.digitalYear.textContent = new Date().getFullYear();
-    }
     function updateMonth () {
         let now = new Date();
         let month = now.getMonth() + 1; // Add one month for natural counting.
@@ -48,9 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
         let rotation = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
         rotate(els.handMonth, rotation);
         els.digitalMonth.textContent = month < 10 ? `0${month}` : month;
-        if (month === 1 && day === 1) { // Update year (which is digital only) on January 1st.
-            updateYear();
-        }
     }
     function updateDay () {
         let now = new Date();
@@ -108,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     function updateAll () {
-        updateYear();
         updateMonth();
         updateDay();
         updateHour();

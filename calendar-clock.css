@@ -79,9 +79,9 @@ input {
 }
 .display-digital {
     background-color: #000;
-    font-size: 6.9vw;
+    font-size: 8.25vw;
     margin: 0 auto;
-    padding: 1% 1.75% 0.75%;
+    padding: 1.75vw 1.75vw 1vw;
     transition: background-color 0.25s;
     width: 92.5vw;
 }
@@ -213,6 +213,10 @@ input {
 #toggle-theme:checked ~ * .digit {
     color: #000;
 }
+.digit-double {
+    display: inline-block;
+    width: 8.75vw;
+}
 .digit-month {
     color: #ddd;
 }
@@ -275,8 +279,12 @@ input {
         width: 82.5vh;
     }
     .display-digital {
-        font-size: 6vh;
+        font-size: 7.3vh;
+        padding: 1.33vh 1.75vh 1vh;
         width: 82.5vh;
+    }
+    .digit-double {
+        width: 7.75vh;
     }
     .pip-month {
         font-size: 7vh;
