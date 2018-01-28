@@ -1,13 +1,11 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 23hr?
-// 1hr? Monospace font?
-// 1hr? Placement of buttons.
+// 2hr? Style of buttons.
 // 2hr? Hover (and click/tap) on number or hand to highlight hand/number: Listen for mouseover or touch. Toggle class on hand and digits.
+    // -- Give them an outer glow (easier to adapt to future color palettes).
 // 2hr? Fix bug where minute+ updates late after screen in background.
 // 1hr? Toggle DST/ST.
-// 8hr? Add lunar.
-// 2hr? Toggle Greg/Lunar.
+// 8hr? Add lunar. Toggle Greg/Lunar.
 // 3hr? Info screen: Markup. Style. Listen for click, toggle class.
 // 1hr? Update favicon, OG image.
 // 1hr? Possible to go full screen on phone?
@@ -93,9 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function updateOffset () {
         let offset = new Date().getTimezoneOffset() / 60;
-        if (offset < 0) {
+        if (offset > 0) {
             els.digitalOffset.textContent = `\u002d${offset}`; // hyphen-minus sign
-        } else if (offset > 0) {
+        } else if (offset < 0) {
             els.digitalOffset.textContent = `\u002b${offset}`; // plus sign
         } else {
             els.digitalOffset.textContent = `\u00b1${offset}`; // plus-minus sign
@@ -125,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let daysInMonth = getDaysInMonth(new Date());
         let i, el, degs;
         for (i = 1; i <= daysInMonth; i++) {
-            el = i % 3 - 1 === 0 ? document.createElement('strong') : document.createElement('span');
+            el = i % 7 - 1 === 0 ? document.createElement('strong') : document.createElement('span');
             el.textContent = i;
             degs = (i - 1) / daysInMonth * 360; // Subtract 1 for 1-index (natural count).
             el.style.transform = `rotate(${degs}deg)`;

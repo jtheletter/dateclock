@@ -12,14 +12,14 @@
     font-weight: 600;
     src: url('fonts/sourcecodepro-semibold-webfont.woff2') format('woff2'),
          url('fonts/sourcecodepro-semibold-webfont.woff') format('woff');
-    unicode-range: U+0030-003A, U+0028-0029 U+002D, U+002E, U+00B1, U+002B, U+2010, U+2004; /* 0 thru colon, parens, dot, hyphen-minus, plus-minus, plus, hyphen, three-per-em space */
+    unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
 @font-face {
     font-family: 'Source Code Pro';
     font-style: normal;
-    font-weight: 900;
-    src: url('fonts/sourcecodepro-black-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-black-webfont.woff') format('woff');
+    font-weight: 700;
+    src: url('fonts/sourcecodepro-bold-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
     unicode-range: U+0030-0039; /* 0 thru 9 */
 }
 * {
@@ -54,11 +54,11 @@ input {
     background-color: #000;
     color: #fff;
     border-radius: 50%;
-    height: 92.5vw;
-    margin: 3.5vw auto;
+    height: 97vw;
+    margin: 2vw auto;
     position: relative;
     transition: background-color 0.25s, color 0.25s, transform 1.5s;
-    width: 92.5vw;
+    width: 97vw;
 }
 #toggle-origin:checked ~ .display-analog {
     transform: rotate(180deg);
@@ -69,12 +69,13 @@ input {
 }
 .display-digital {
     background-color: #000;
-    font-size: 6.3vw;
+    display: inline-block;
+    font-size: 6.6vw;
     font-weight: 600;
     margin: 0 auto;
-    padding: 1.2vw 0 1.4vw;
+    padding: 1.2vw 1.1vw 1.4vw;
+    text-indent: 1.5vw;
     transition: background-color 0.25s;
-    width: 92.5vw;
 }
 #toggle-theme:checked ~ .display-digital {
     background-color: #fff;
@@ -116,7 +117,7 @@ input {
     width: 30%;
 }
 .pip > strong {
-    font-weight: 900
+    font-weight: 700
 }
 .hand {
     position: absolute;
@@ -198,11 +199,11 @@ input {
     width: 0.2%;
 }
 .digit {
-    color: #fff;
+    color: #333;
     transition: color 0.25s;
 }
 #toggle-theme:checked ~ * .digit {
-    color: #000;
+    color: #ccc;
 }
 .digit-month {
     color: #ddd;
@@ -234,18 +235,33 @@ input {
 #toggle-theme:checked ~ * .digit-second {
     color: #aaa;
 }
+.sep-hori {
+    display: block;
+}
 .toggle {
     background-color: #333;
     cursor: pointer;
     display: inline-block;
-    height: 10vw;
-    margin: 3.5vw 1.75vw;
+    height: 22.5vw;
+    margin: 2vw 1vw;
     overflow: hidden;
     position: relative;
     text-indent: 100%;
     transition: background-color 0.25s;
     white-space: nowrap;
-    width: 10vw;
+    width: 22.5vw;
+}
+#toggle-month:checked ~ #toggle-month-label {
+    background-color: #777;
+}
+#toggle-month:active ~ #toggle-month-label {
+    background-color: #999;
+}
+#toggle-time:checked ~ #toggle-time-label {
+    background-color: #777;
+}
+#toggle-time:active ~ #toggle-time-label {
+    background-color: #999;
 }
 #toggle-origin:checked ~ #toggle-origin-label {
     background-color: #777;
@@ -259,7 +275,36 @@ input {
 #toggle-theme:active ~ #toggle-theme-label {
     background-color: #999;
 }
-@media screen and (orientation: landscape) {
+@media screen and (min-aspect-ratio: 3/4) {
+    .display-analog {
+        height: 70vh;
+        margin: 1.5vh auto;
+        width: 70vh;
+    }
+    .display-digital {
+        font-size: 4.7vh;
+        padding: 1.3vh 1.6vh 1.6vh;
+        text-indent: 1vh;
+    }
+    .pip-month {
+        font-size: 4.5vh;
+    }
+    .pip-day {
+        font-size: 3.5vh;
+    }
+    .pip-hour {
+        font-size: 2.25vh;
+    }
+    .pip-minute {
+        font-size: 1.5vh;
+    }
+    .toggle {
+        height: 16.3vh;
+        margin: 1.5vh 0.75vh;
+        width: 16.3vh;
+    }
+}
+@media screen and (min-aspect-ratio: 4/3) {
     .display-analog {
         height: 82.5vh;
         margin: 2.5vh auto;
@@ -267,8 +312,6 @@ input {
     }
     .display-digital {
         font-size: 5.6vh;
-        padding: 1vh 0 1.2vh;
-        width: 82.5vh;
     }
     .pip-month {
         font-size: 6vh;
@@ -283,11 +326,23 @@ input {
         font-size: 2vh;
     }
     .toggle {
-        height: 10vh;
-        margin: 2vh 1.75vh;
-        position: fixed;
+        height: 21.5vh;
+        margin: 2.5vh;
+        position: absolute;
         right: 0;
+        width: 21.5vh;
+        z-index: 1;
+    }
+    #toggle-month-label {
         top: 0;
-        width: 10vh;
+    }
+    #toggle-time-label {
+        top: 24vh;
+    }
+    #toggle-origin-label {
+        top: 48vh;
+    }
+    #toggle-theme-label {
+        top: 72vh;
     }
 }
