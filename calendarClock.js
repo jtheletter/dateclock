@@ -160,6 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
     drawPipHour();
     drawPipMinute();
     updateAll();
-    setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
+    // setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
 
 });

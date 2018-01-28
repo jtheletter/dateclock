@@ -1,42 +1,181 @@
 @font-face {
-    font-family: 'Rajdhani';
-    src: url('fonts/rajdhani-light-webfont.eot');
-    src: url('fonts/rajdhani-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani-light-webfont.woff') format('woff'),
-         url('fonts/rajdhani-light-webfont.ttf') format('truetype'),
-         url('fonts/rajdhani-light-webfont.svg#rajdhaniregular') format('svg');
-    font-weight: 100;
+    font-family: 'Source Code Pro';
+    src: url('fonts/sourcecodepro-extralight-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-extralight-webfont.woff') format('woff');
+    font-weight: 200;
     font-style: normal;
-    unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani';
-    src: url('fonts/rajdhani-semibold-webfont.eot');
-    src: url('fonts/rajdhani-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani-semibold-webfont.woff') format('woff'),
-         url('fonts/rajdhani-semibold-webfont.ttf') format('truetype'),
-         url('fonts/rajdhani-semibold-webfont.svg#rajdhaniregular') format('svg');
+    font-family: 'Source Code Pro';
+    src: url('fonts/sourcecodepro-light-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('fonts/sourcecodepro-regular-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('fonts/sourcecodepro-medium-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-medium-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('fonts/sourcecodepro-semibold-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-semibold-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('fonts/sourcecodepro-bold-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
     font-weight: 700;
     font-style: normal;
-    unicode-range: U+0020-007F;
 }
 @font-face {
-    font-family: 'Rajdhani';
-    src: url('fonts/rajdhani-bold-webfont.eot');
-    src: url('fonts/rajdhani-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/rajdhani-bold-webfont.woff') format('woff'),
-         url('fonts/rajdhani-bold-webfont.ttf') format('truetype'),
-         url('fonts/rajdhani-bold-webfont.svg#rajdhaniregular') format('svg');
+    font-family: 'Source Code Pro';
+    src: url('fonts/sourcecodepro-black-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-black-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-Thin.eot');
+    src: url('fonts/LeagueMono-Thin.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-Thin.woff2') format('woff2'),
+         url('fonts/LeagueMono-Thin.woff') format('woff'),
+         url('fonts/LeagueMono-Thin.ttf') format('truetype'),
+         url('fonts/LeagueMono-Thin.svg#office_code_pro_dlight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-UltraLight.eot');
+    src: url('fonts/LeagueMono-UltraLight.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-UltraLight.woff2') format('woff2'),
+         url('fonts/LeagueMono-UltraLight.woff') format('woff'),
+         url('fonts/LeagueMono-UltraLight.ttf') format('truetype'),
+         url('fonts/LeagueMono-UltraLight.svg#office_code_pro_dlight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-Light.eot');
+    src: url('fonts/LeagueMono-Light.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-Light.woff2') format('woff2'),
+         url('fonts/LeagueMono-Light.woff') format('woff'),
+         url('fonts/LeagueMono-Light.ttf') format('truetype'),
+         url('fonts/LeagueMono-Light.svg#office_code_pro_dlight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-Regular.eot');
+    src: url('fonts/LeagueMono-Regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-Regular.woff2') format('woff2'),
+         url('fonts/LeagueMono-Regular.woff') format('woff'),
+         url('fonts/LeagueMono-Regular.ttf') format('truetype'),
+         url('fonts/LeagueMono-Regular.svg#office_code_pro_dlight') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-Medium.eot');
+    src: url('fonts/LeagueMono-Medium.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-Medium.woff2') format('woff2'),
+         url('fonts/LeagueMono-Medium.woff') format('woff'),
+         url('fonts/LeagueMono-Medium.ttf') format('truetype'),
+         url('fonts/LeagueMono-Medium.svg#office_code_pro_dlight') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-SemiBold.eot');
+    src: url('fonts/LeagueMono-SemiBold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-SemiBold.woff2') format('woff2'),
+         url('fonts/LeagueMono-SemiBold.woff') format('woff'),
+         url('fonts/LeagueMono-SemiBold.ttf') format('truetype'),
+         url('fonts/LeagueMono-SemiBold.svg#office_code_pro_dlight') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-Bold.eot');
+    src: url('fonts/LeagueMono-Bold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-Bold.woff2') format('woff2'),
+         url('fonts/LeagueMono-Bold.woff') format('woff'),
+         url('fonts/LeagueMono-Bold.ttf') format('truetype'),
+         url('fonts/LeagueMono-Bold.svg#office_code_pro_dlight') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'League Mono';
+    src: url('fonts/LeagueMono-ExtraBold.eot');
+    src: url('fonts/LeagueMono-ExtraBold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LeagueMono-ExtraBold.woff2') format('woff2'),
+         url('fonts/LeagueMono-ExtraBold.woff') format('woff'),
+         url('fonts/LeagueMono-ExtraBold.ttf') format('truetype'),
+         url('fonts/LeagueMono-ExtraBold.svg#office_code_pro_dlight') format('svg');
     font-weight: 800;
     font-style: normal;
-    unicode-range: U+0020-007F;
+}
+@font-face {
+    font-family: 'Office Code Pro D';
+    src: url('fonts/officecodeprod-light-webfont.eot');
+    src: url('fonts/officecodeprod-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/officecodeprod-light-webfont.woff2') format('woff2'),
+         url('fonts/officecodeprod-light-webfont.woff') format('woff'),
+         url('fonts/officecodeprod-light-webfont.ttf') format('truetype'),
+         url('fonts/officecodeprod-light-webfont.svg#office_code_pro_dlight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Office Code Pro D';
+    src: url('fonts/officecodeprod-regular-webfont.eot');
+    src: url('fonts/officecodeprod-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/officecodeprod-regular-webfont.woff2') format('woff2'),
+         url('fonts/officecodeprod-regular-webfont.woff') format('woff'),
+         url('fonts/officecodeprod-regular-webfont.ttf') format('truetype'),
+         url('fonts/officecodeprod-regular-webfont.svg#office_code_pro_dregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Office Code Pro D';
+    src: url('fonts/OfficeCodeProD-Bold-webfont.eot');
+    src: url('fonts/OfficeCodeProD-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OfficeCodeProD-Bold-webfont.woff2') format('woff2'),
+         url('fonts/OfficeCodeProD-Bold-webfont.woff') format('woff'),
+         url('fonts/OfficeCodeProD-Bold-webfont.ttf') format('truetype'),
+         url('fonts/OfficeCodeProD-Bold-webfont.svg#office_code_pro_dbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
 }
 * {
     box-sizing: border-box;
 }
 body {
     background-color: #777;
-    font-family: 'Rajdhani', Helvetica, sans-serif;
+    font-family: 'League Mono', cursive;
+    /*font-family: 'Source Code Pro', cursive;*/
+    /*font-family: 'Office Code Pro D', cursive;*/
     font-size: 0;
     font-weight: 700;
     text-align: center;
@@ -213,10 +352,6 @@ input {
 #toggle-theme:checked ~ * .digit {
     color: #000;
 }
-.digit-double {
-    display: inline-block;
-    width: 8.75vw;
-}
 .digit-month {
     color: #ddd;
 }
@@ -282,9 +417,6 @@ input {
         font-size: 7.3vh;
         padding: 1.33vh 1.75vh 1vh;
         width: 82.5vh;
-    }
-    .digit-double {
-        width: 7.75vh;
     }
     .pip-month {
         font-size: 7vh;
