@@ -94,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateOffset () {
         let offset = new Date().getTimezoneOffset() / 60;
         if (offset < 0) {
-            els.digitalOffset.textContent = `\u002b${offset}`;
+            els.digitalOffset.textContent = `\u002d${offset}`; // hyphen-minus sign
         } else if (offset > 0) {
-            els.digitalOffset.textContent = `\u2212${offset}`;
+            els.digitalOffset.textContent = `\u002b${offset}`; // plus sign
         } else {
-            els.digitalOffset.textContent = `\u00b1${offset}`;
+            els.digitalOffset.textContent = `\u00b1${offset}`; // plus-minus sign
         }
     }
     function updateAll () {
@@ -160,6 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
     drawPipHour();
     drawPipMinute();
     updateAll();
-    // setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
+    setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
 
 });

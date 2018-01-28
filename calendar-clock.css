@@ -1,183 +1,34 @@
 @font-face {
     font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 200;
     src: url('fonts/sourcecodepro-extralight-webfont.woff2') format('woff2'),
          url('fonts/sourcecodepro-extralight-webfont.woff') format('woff');
-    font-weight: 200;
-    font-style: normal;
+    unicode-range: U+0030-0039; /* 0 thru 9 */
 }
 @font-face {
     font-family: 'Source Code Pro';
-    src: url('fonts/sourcecodepro-light-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-light-webfont.woff') format('woff');
-    font-weight: 300;
     font-style: normal;
-}
-@font-face {
-    font-family: 'Source Code Pro';
-    src: url('fonts/sourcecodepro-regular-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-regular-webfont.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Source Code Pro';
-    src: url('fonts/sourcecodepro-medium-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-medium-webfont.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Source Code Pro';
+    font-weight: 600;
     src: url('fonts/sourcecodepro-semibold-webfont.woff2') format('woff2'),
          url('fonts/sourcecodepro-semibold-webfont.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
+    unicode-range: U+0030-003A, U+0028-0029 U+002D, U+002E, U+00B1, U+002B, U+2010, U+2004; /* 0 thru colon, parens, dot, hyphen-minus, plus-minus, plus, hyphen, three-per-em space */
 }
 @font-face {
     font-family: 'Source Code Pro';
-    src: url('fonts/sourcecodepro-bold-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
-    font-weight: 700;
     font-style: normal;
-}
-@font-face {
-    font-family: 'Source Code Pro';
+    font-weight: 900;
     src: url('fonts/sourcecodepro-black-webfont.woff2') format('woff2'),
          url('fonts/sourcecodepro-black-webfont.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-Thin.eot');
-    src: url('fonts/LeagueMono-Thin.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-Thin.woff2') format('woff2'),
-         url('fonts/LeagueMono-Thin.woff') format('woff'),
-         url('fonts/LeagueMono-Thin.ttf') format('truetype'),
-         url('fonts/LeagueMono-Thin.svg#office_code_pro_dlight') format('svg');
-    font-weight: 100;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-UltraLight.eot');
-    src: url('fonts/LeagueMono-UltraLight.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-UltraLight.woff2') format('woff2'),
-         url('fonts/LeagueMono-UltraLight.woff') format('woff'),
-         url('fonts/LeagueMono-UltraLight.ttf') format('truetype'),
-         url('fonts/LeagueMono-UltraLight.svg#office_code_pro_dlight') format('svg');
-    font-weight: 200;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-Light.eot');
-    src: url('fonts/LeagueMono-Light.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-Light.woff2') format('woff2'),
-         url('fonts/LeagueMono-Light.woff') format('woff'),
-         url('fonts/LeagueMono-Light.ttf') format('truetype'),
-         url('fonts/LeagueMono-Light.svg#office_code_pro_dlight') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-Regular.eot');
-    src: url('fonts/LeagueMono-Regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-Regular.woff2') format('woff2'),
-         url('fonts/LeagueMono-Regular.woff') format('woff'),
-         url('fonts/LeagueMono-Regular.ttf') format('truetype'),
-         url('fonts/LeagueMono-Regular.svg#office_code_pro_dlight') format('svg');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-Medium.eot');
-    src: url('fonts/LeagueMono-Medium.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-Medium.woff2') format('woff2'),
-         url('fonts/LeagueMono-Medium.woff') format('woff'),
-         url('fonts/LeagueMono-Medium.ttf') format('truetype'),
-         url('fonts/LeagueMono-Medium.svg#office_code_pro_dlight') format('svg');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-SemiBold.eot');
-    src: url('fonts/LeagueMono-SemiBold.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-SemiBold.woff2') format('woff2'),
-         url('fonts/LeagueMono-SemiBold.woff') format('woff'),
-         url('fonts/LeagueMono-SemiBold.ttf') format('truetype'),
-         url('fonts/LeagueMono-SemiBold.svg#office_code_pro_dlight') format('svg');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-Bold.eot');
-    src: url('fonts/LeagueMono-Bold.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-Bold.woff2') format('woff2'),
-         url('fonts/LeagueMono-Bold.woff') format('woff'),
-         url('fonts/LeagueMono-Bold.ttf') format('truetype'),
-         url('fonts/LeagueMono-Bold.svg#office_code_pro_dlight') format('svg');
-    font-weight: 700;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'League Mono';
-    src: url('fonts/LeagueMono-ExtraBold.eot');
-    src: url('fonts/LeagueMono-ExtraBold.eot?#iefix') format('embedded-opentype'),
-         url('fonts/LeagueMono-ExtraBold.woff2') format('woff2'),
-         url('fonts/LeagueMono-ExtraBold.woff') format('woff'),
-         url('fonts/LeagueMono-ExtraBold.ttf') format('truetype'),
-         url('fonts/LeagueMono-ExtraBold.svg#office_code_pro_dlight') format('svg');
-    font-weight: 800;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Office Code Pro D';
-    src: url('fonts/officecodeprod-light-webfont.eot');
-    src: url('fonts/officecodeprod-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/officecodeprod-light-webfont.woff2') format('woff2'),
-         url('fonts/officecodeprod-light-webfont.woff') format('woff'),
-         url('fonts/officecodeprod-light-webfont.ttf') format('truetype'),
-         url('fonts/officecodeprod-light-webfont.svg#office_code_pro_dlight') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Office Code Pro D';
-    src: url('fonts/officecodeprod-regular-webfont.eot');
-    src: url('fonts/officecodeprod-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/officecodeprod-regular-webfont.woff2') format('woff2'),
-         url('fonts/officecodeprod-regular-webfont.woff') format('woff'),
-         url('fonts/officecodeprod-regular-webfont.ttf') format('truetype'),
-         url('fonts/officecodeprod-regular-webfont.svg#office_code_pro_dregular') format('svg');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Office Code Pro D';
-    src: url('fonts/OfficeCodeProD-Bold-webfont.eot');
-    src: url('fonts/OfficeCodeProD-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OfficeCodeProD-Bold-webfont.woff2') format('woff2'),
-         url('fonts/OfficeCodeProD-Bold-webfont.woff') format('woff'),
-         url('fonts/OfficeCodeProD-Bold-webfont.ttf') format('truetype'),
-         url('fonts/OfficeCodeProD-Bold-webfont.svg#office_code_pro_dbold') format('svg');
-    font-weight: 700;
-    font-style: normal;
+    unicode-range: U+0030-0039; /* 0 thru 9 */
 }
 * {
     box-sizing: border-box;
 }
 body {
     background-color: #777;
-    font-family: 'League Mono', cursive;
-    /*font-family: 'Source Code Pro', cursive;*/
-    /*font-family: 'Office Code Pro D', cursive;*/
+    font-family: 'Source Code Pro', cursive;
     font-size: 0;
-    font-weight: 700;
     text-align: center;
 }
 input {
@@ -218,9 +69,10 @@ input {
 }
 .display-digital {
     background-color: #000;
-    font-size: 8.25vw;
+    font-size: 6.3vw;
+    font-weight: 600;
     margin: 0 auto;
-    padding: 1.75vw 1.75vw 1vw;
+    padding: 1.2vw 0 1.4vw;
     transition: background-color 0.25s;
     width: 92.5vw;
 }
@@ -232,22 +84,22 @@ input {
     position: absolute;
 }
 .pip-month {
-    font-size: 7vw;
-    height: 31.5%; /* 50% - top */
-    top: 18.5%;
-    width: 31.5%; /* same as height */
+    font-size: 6vw;
+    height: 31%; /* 50% - top */
+    top: 19%;
+    width: 31%; /* same as height */
 }
 .pip-day {
-    font-size: 4.25vw;
+    font-size: 4vw;
     height: 39%;
     top: 11%;
     width: 39%;
 }
 .pip-hour {
     font-size: 3vw;
-    height: 44.75%;
-    top: 5.25%;
-    width: 44.75%;
+    height: 44.5%;
+    top: 5.5%;
+    width: 44.5%;
 }
 .pip-minute {
     font-size: 2vw;
@@ -256,7 +108,7 @@ input {
     width: 48.5%;
 }
 .pip > * {
-    font-weight: 100;
+    font-weight: 200;
     height: 100%;
     left: -15%;
     position: absolute;
@@ -264,7 +116,7 @@ input {
     width: 30%;
 }
 .pip > strong {
-    font-weight: 800
+    font-weight: 900
 }
 .hand {
     position: absolute;
@@ -284,9 +136,9 @@ input {
 }
 .hand-day {
     background-color: #bbb;
-    height: 39.25%;
+    height: 39.4%;
     left: 47.75%;
-    top: 15.75%;
+    top: 15.6%;
     transform-origin: 50% 87%;
     transform: rotate(0deg);
     width: 4.5%;
@@ -296,9 +148,9 @@ input {
 }
 .hand-hour {
     background-color: #999;
-    height: 46.5%;
+    height: 46%;
     left: 48.75%;
-    top: 8.5%;
+    top: 9%;
     transform-origin: 50% 89.125%;
     transform: rotate(0deg);
     width: 2.5%;
@@ -308,10 +160,10 @@ input {
 }
 .hand-minute {
     background-color: #777;
-    height: 51.45%;
+    height: 51%;
     left: 49.5%;
-    top: 3.55%;
-    transform-origin: 50% 90.25%;
+    top: 4%;
+    transform-origin: 50% 90%;
     transform: rotate(0deg);
     width: 1%;
 }
@@ -320,9 +172,9 @@ input {
 }
 .hand-second {
     background-color: #555;
-    height: 54.1%;
+    height: 53.6%;
     left: 49.875%;
-    top: 0.9%;
+    top: 1.4%;
     transform-origin: 50% 90.75%;
     transform: rotate(0deg);
     width: 0.5%;
@@ -414,15 +266,15 @@ input {
         width: 82.5vh;
     }
     .display-digital {
-        font-size: 7.3vh;
-        padding: 1.33vh 1.75vh 1vh;
+        font-size: 5.6vh;
+        padding: 1vh 0 1.2vh;
         width: 82.5vh;
     }
     .pip-month {
-        font-size: 7vh;
+        font-size: 6vh;
     }
     .pip-day {
-        font-size: 4.25vh;
+        font-size: 4vh;
     }
     .pip-hour {
         font-size: 3vh;
