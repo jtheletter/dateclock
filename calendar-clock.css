@@ -20,7 +20,7 @@
     font-weight: 700;
     src: url('fonts/sourcecodepro-bold-webfont.woff2') format('woff2'),
          url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
-    unicode-range: U+0030-0039; /* 0 thru 9 */
+    unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
 * {
     box-sizing: border-box;
@@ -50,7 +50,7 @@ input {
 #toggle-theme:checked ~ .bg {
     background-color: #ddd;
 }
-.mark {
+.dial {
     background-color: #000;
     border-radius: 50%;
     color: #fff;
@@ -63,26 +63,25 @@ input {
     transition: background-color 0.25s, color 0.25s;
     width: 97vw;
 }
-#toggle-theme:checked ~ .mark {
+#toggle-theme:checked ~ .dial {
     background-color: #fff;
     color: #000;
 }
 .title, .copyright {
-    font-weight: 600;
+    font-weight: 700;
     position: absolute;
     width: 100%;
 }
 .title {
-    line-height: 1.25;
-    font-size: 3vw;
-    top: 35%;
+    line-height: 1.125;
+    font-size: 3.25vw;
+    top: 33.33%;
 }
 .copyright {
-    bottom: 35%;
-    font-size: 1.75vw;
+    bottom: 35.5%;
+    font-size: 1.67vw;
 }
 .display-analog {
-    /*background-color: #000;*/
     color: #fff;
     border-radius: 50%;
     height: 97vw;
@@ -96,7 +95,6 @@ input {
     transform: rotate(0);
 }
 #toggle-theme:checked ~ .display-analog {
-    /*background-color: #fff;*/
     color: #000;
 }
 .display-digital {
@@ -357,10 +355,16 @@ input {
     display: none;
 }
 @media screen and (min-aspect-ratio: 3/4) {
-    .mark, .display-analog {
+    .dial, .display-analog {
         height: 70vh;
         margin: 1.5vh auto;
         width: 70vh;
+    }
+    .title {
+        font-size: 2.4vh;
+    }
+    .copyright {
+        font-size: 1.25vh;
     }
     .display-digital {
         font-size: 4.7vh;
@@ -378,12 +382,6 @@ input {
     }
     .pip-minute {
         font-size: 1.5vh;
-    }
-    .title {
-        font-size: 2vh;
-    }
-    .copyright {
-        font-size: 1.25vh;
     }
     .toggle-label {
         font-size: 2.6vh;
@@ -417,10 +415,16 @@ input {
     }
 }
 @media screen and (min-aspect-ratio: 4/3) {
-    .mark, .display-analog {
+    .dial, .display-analog {
         height: 82.5vh;
         margin: 2.5vh auto;
         width: 82.5vh;
+    }
+    .title {
+        font-size: 2.5vh;
+    }
+    .copyright {
+        font-size: 1.4vh;
     }
     .display-digital {
         font-size: 5.6vh;
