@@ -53,7 +53,7 @@ input {
 .dial {
     background-color: #000;
     border-radius: 50%;
-    color: #fff;
+    color: #eee;
     height: 97vw;
     left: 0;
     margin: 2vw auto;
@@ -65,7 +65,7 @@ input {
 }
 #toggle-theme:checked ~ .dial {
     background-color: #fff;
-    color: #000;
+    color: #111;
 }
 .title, .copyright {
     font-weight: 700;
@@ -416,9 +416,9 @@ input {
 }
 @media screen and (min-aspect-ratio: 4/3) {
     .dial, .display-analog {
-        height: 82.5vh;
+        height: 83.5vh;
         margin: 2.5vh auto;
-        width: 82.5vh;
+        width: 83.5vh;
     }
     .title {
         font-size: 2.5vh;
@@ -442,11 +442,11 @@ input {
         font-size: 2vh;
     }
     .toggle-label {
-        height: 21.5vh;
+        height: 21.75vh;
         margin: 2.5vh;
         position: absolute;
         right: 0;
-        width: 21.5vh;
+        width: 21.75vh;
         z-index: 1;
     }
     .toggle-label {
@@ -480,12 +480,12 @@ input {
         top: 0;
     }
     #toggle-label-time {
-        top: 24vh;
+        top: 24.25vh;
     }
     #toggle-label-orientation {
-        top: 48vh;
+        top: 48.5vh;
     }
     #toggle-label-theme {
-        top: 72vh;
+        top: 72.75vh;
     }
 }
