@@ -1,13 +1,15 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 3hr? Info screen: Markup. Style. Set user-select-none elsewhere.
-// 2hr? Fix bug where minute+ updates late after screen in background.
-// 2hr? Toggle DST/ST.
-// 2hr? Outer-glow numer/hand on mouseover/touch.
-// 8hr? Add lunar calculations.
-// 1hr? Update favicon, OG image.
-// 1hr? Possible to go full screen on phone?
-// 1hr? Cookie settings.
+// 1hr Add copyright to markup.
+// 3hr Info screen: Markup. Style. Set user-select-none elsewhere.
+// 2hr Fix bug where minute+ updates late after screen in background.
+// 2hr Toggle DST/ST.
+// 2hr "Month/Day/Hour/Minute/Second" central title & outer glow on numer/hand on mouseover/touch.
+// 8hr Add lunar calculations.
+// 1hr Update favicon, OG image.
+// 1hr Possible to go full screen on phone?
+// 1hr Cookie settings.
+// 1hr Troubleshoot older iOS.
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -156,6 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
     drawPipHour();
     drawPipMinute();
     updateAll();
-    setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
+    // setInterval(updateSecond, 40); // Arbitray rate that looks good enough onscreen.
 
 });
