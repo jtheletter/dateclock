@@ -1,15 +1,13 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 2hr? Style of buttons.
-// 2hr? Hover (and click/tap) on number or hand to highlight hand/number: Listen for mouseover or touch. Toggle class on hand and digits.
-    // -- Give them an outer glow (easier to adapt to future color palettes).
+// 3hr? Info screen: Markup. Style. Set user-select-none elsewhere.
 // 2hr? Fix bug where minute+ updates late after screen in background.
-// 1hr? Toggle DST/ST.
-// 8hr? Add lunar. Toggle Greg/Lunar.
-// 3hr? Info screen: Markup. Style. Listen for click, toggle class.
+// 2hr? Toggle DST/ST.
+// 2hr? Outer-glow numer/hand on mouseover/touch.
+// 8hr? Add lunar calculations.
 // 1hr? Update favicon, OG image.
 // 1hr? Possible to go full screen on phone?
-// 1hr? Add to current rotation (read from dom el or stored in app data) w/ transition for less dom paint?
+// 1hr? Cookie settings.
 
 document.addEventListener('DOMContentLoaded', function () {
 

@@ -27,7 +27,7 @@
 }
 body {
     background-color: #777;
-    font-family: 'Source Code Pro', cursive;
+    font-family: 'Source Code Pro', monospace;
     font-size: 0;
     text-align: center;
 }
@@ -57,11 +57,12 @@ input {
     height: 97vw;
     margin: 2vw auto;
     position: relative;
+    transform: rotate(180deg);
     transition: background-color 0.25s, color 0.25s, transform 1.5s;
     width: 97vw;
 }
-#toggle-origin:checked ~ .display-analog {
-    transform: rotate(180deg);
+#toggle-orientation:checked ~ .display-analog {
+    transform: rotate(0);
 }
 #toggle-theme:checked ~ .display-analog {
     background-color: #fff;
@@ -238,42 +239,91 @@ input {
 .sep-hori {
     display: block;
 }
-.toggle {
-    background-color: #333;
+.toggle-label {
+    background-color: #000;
+    color: #fff;
     cursor: pointer;
     display: inline-block;
+    font-size: 3.4vw;
+    font-weight: 600;
     height: 22.5vw;
     margin: 2vw 1vw;
-    overflow: hidden;
     position: relative;
-    text-indent: 100%;
-    transition: background-color 0.25s;
-    white-space: nowrap;
+    transition: background-color 0.25s, color 0.25s;
     width: 22.5vw;
 }
-#toggle-month:checked ~ #toggle-month-label {
-    background-color: #777;
+.toggle-label::before {
+    background-color: #333;
+    content: '';
+    height: calc(50% - 1vw);
+    left: 1vw;
+    position: absolute;
+    right: 1vw;
+    transform: translateY(calc(100% + 1vw));
+    transition: background-color 0.25s, transform 0.25s;
 }
-#toggle-month:active ~ #toggle-month-label {
-    background-color: #999;
+.toggle-label span {
+    bottom: auto;
+    height: 50%;
+    left: 0;
+    line-height: 12vw;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
-#toggle-time:checked ~ #toggle-time-label {
-    background-color: #777;
+.toggle-label span:last-child {
+    bottom: 0;
+    line-height: 10vw;
+    top: auto;
 }
-#toggle-time:active ~ #toggle-time-label {
-    background-color: #999;
+#toggle-theme:checked ~ .toggle-label {
+    background-color: #fff;
+    color: #000;
 }
-#toggle-origin:checked ~ #toggle-origin-label {
-    background-color: #777;
+#toggle-theme:checked ~ .toggle-label::before {
+    background-color: #ccc;
 }
-#toggle-origin:active ~ #toggle-origin-label {
-    background-color: #999;
+#toggle-month:checked ~ #toggle-label-month::before {
+    transform: translateY(1vw);
 }
-#toggle-theme:checked ~ #toggle-theme-label {
-    background-color: #777;
+#toggle-time:checked ~ #toggle-label-time::before {
+    transform: translateY(1vw);
 }
-#toggle-theme:active ~ #toggle-theme-label {
-    background-color: #999;
+#toggle-orientation:checked ~ #toggle-label-orientation::before {
+    transform: translateY(1vw);
+}
+#toggle-theme:checked ~ #toggle-label-theme::before {
+    transform: translateY(1vw);
+}
+#toggle-month:active ~ #toggle-label-month {
+    background-color: #222;
+}
+#toggle-time:active ~ #toggle-label-time {
+    background-color: #222;
+}
+#toggle-orientation:active ~ #toggle-label-orientation {
+    background-color: #222;
+}
+#toggle-theme:active ~ #toggle-label-theme {
+    background-color: #222;
+}
+#toggle-month:active ~ #toggle-theme:checked ~ #toggle-label-month {
+    background-color: #eee;
+}
+#toggle-time:active ~ #toggle-theme:checked ~ #toggle-label-time {
+    background-color: #eee;
+}
+#toggle-orientation:active ~ #toggle-theme:checked ~ #toggle-label-orientation {
+    background-color: #eee;
+}
+#toggle-theme:active ~ #toggle-theme:checked ~ #toggle-label-theme {
+    background-color: #eee;
+}
+#toggle-label-month, #toggle-label-time {
+    cursor: not-allowed;
+}
+#toggle-label-month::before, #toggle-label-time::before {
+    display: none;
 }
 @media screen and (min-aspect-ratio: 3/4) {
     .display-analog {
@@ -298,10 +348,35 @@ input {
     .pip-minute {
         font-size: 1.5vh;
     }
-    .toggle {
+    .toggle-label {
+        font-size: 2.6vh;
         height: 16.3vh;
         margin: 1.5vh 0.75vh;
         width: 16.3vh;
+    }
+    .toggle-label::before {
+        height: calc(50% - 0.5vh);
+        left: 0.5vh;
+        right: 0.5vh;
+        transform: translateY(calc(100% + 0.5vh));
+    }
+    .toggle-label span {
+        line-height: 8.5vh;
+    }
+    .toggle-label span:last-child {
+        line-height: 8vh;
+    }
+    #toggle-month:checked ~ #toggle-label-month::before {
+        transform: translateY(0.5vh);
+    }
+    #toggle-time:checked ~ #toggle-label-time::before {
+        transform: translateY(0.5vh);
+    }
+    #toggle-orientation:checked ~ #toggle-label-orientation::before {
+        transform: translateY(0.5vh);
+    }
+    #toggle-theme:checked ~ #toggle-label-theme::before {
+        transform: translateY(0.5vh);
     }
 }
 @media screen and (min-aspect-ratio: 4/3) {
@@ -325,7 +400,7 @@ input {
     .pip-minute {
         font-size: 2vh;
     }
-    .toggle {
+    .toggle-label {
         height: 21.5vh;
         margin: 2.5vh;
         position: absolute;
@@ -333,16 +408,43 @@ input {
         width: 21.5vh;
         z-index: 1;
     }
-    #toggle-month-label {
+    .toggle-label {
+        font-size: 3.2vh;
+    }
+    .toggle-label::before {
+        height: calc(50% - 1vh);
+        left: 1vh;
+        right: 1vh;
+        transform: translateY(calc(100% + 1vh));
+    }
+    .toggle-label span {
+        line-height: 11.5vh;
+    }
+    .toggle-label span:last-child {
+        line-height: 10vh;
+    }
+    #toggle-month:checked ~ #toggle-label-month::before {
+        transform: translateY(1vh);
+    }
+    #toggle-time:checked ~ #toggle-label-time::before {
+        transform: translateY(1vh);
+    }
+    #toggle-orientation:checked ~ #toggle-label-orientation::before {
+        transform: translateY(1vh);
+    }
+    #toggle-theme:checked ~ #toggle-label-theme::before {
+        transform: translateY(1vh);
+    }
+    #toggle-label-month {
         top: 0;
     }
-    #toggle-time-label {
+    #toggle-label-time {
         top: 24vh;
     }
-    #toggle-origin-label {
+    #toggle-label-orientation {
         top: 48vh;
     }
-    #toggle-theme-label {
+    #toggle-label-theme {
         top: 72vh;
     }
 }
