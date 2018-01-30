@@ -1,5 +1,6 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
+// 2hr Redraw month pips as needed.
 // 2hr Toggle DST/ST.
 // 2hr "Month/Day/Hour/Minute/Second" central title & outer glow on numer/hand on mouseover/touch.
 // 1hr Set user-select-none on most elements.
@@ -22,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
             els.pipMonth.appendChild(el);
         }
     }
-    function drawPipDay () {
-        let daysInMonth = getDaysInMonth(new Date());
+    function drawPipDay (datetime = new Date()) {
+        let daysInMonth = getDaysInMonth(datetime);
         let i, el, degs;
         for (i = 1; i <= daysInMonth; i++) {
             el = i % 7 - 1 === 0 ? document.createElement('strong') : document.createElement('span');
@@ -57,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function rotate(el, degs) {
         el.style.transform = `rotate(${degs}deg)`;
     }
-    function getDaysInMonth(date) {
-        return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    function getDaysInMonth(datetime) {
+        return new Date(datetime.getFullYear(), datetime.getMonth() + 1, 0).getDate();
     }
 
     function setOffset (datetime = new Date()) {
@@ -147,12 +148,16 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitalSecond = document.getElementById('digit-second');
     els.digitalOffset = document.getElementById('digit-offset');
 
+    let datetime;
+    datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
+    datetime = new Date();
+
     drawPipMonth();
-    drawPipDay();
+    drawPipDay(datetime);
     drawPipHour();
     drawPipMinute();
 
-    // setTime(new Date(1970, 3 - 1, 25, 9, 35, 42.5)); // "Factory Display"
+    setTime(datetime);
     setInterval(setTime, 40); // Arbitray rate that looks good enough onscreen.
 
 });

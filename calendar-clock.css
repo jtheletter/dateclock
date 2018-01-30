@@ -74,13 +74,13 @@ input {
 .title {
     font-weight: 700;
     line-height: 1.125;
-    font-size: 3.25vw;
-    top: 33.33%;
+    font-size: 3.3vw;
+    top: 32.25%;
 }
 .copyright {
     bottom: 35.5%;
     font-size: 2vw;
-    font-weight: 600;
+    font-weight: 300;
 }
 .display-analog {
     color: #fff;
@@ -111,15 +111,30 @@ input {
 #toggle-theme:checked ~ .display-digital {
     background-color: #fff;
 }
+.rule {
+    background-color: red;
+    display: none;
+    position: absolute;
+}
+.rule-hori {
+    height: 0.2%;
+    top: 49.9%;
+    width: 100%;
+}
+.rule-vert {
+    height: 100%;
+    left: 49.9%;
+    width: 0.2%;
+}
 .pip {
     left: 50%;
     position: absolute;
 }
 .pip-month {
     font-size: 6vw;
-    height: 31%; /* 50% - top */
-    top: 19%;
-    width: 31%; /* same as height */
+    height: 31.5%; /* 50% - top */
+    top: 18.5%;
+    width: 31.5%; /* same as height */
 }
 .pip-day {
     font-size: 4vw;
@@ -156,10 +171,10 @@ input {
 }
 .hand-month {
     background-color: #ddd;
-    height: 29%; /* 55% - top */
+    height: 29.5%; /* 55% - top */
     left: 46.75%; /* 50% - width / 2 */
-    top: 26%;
-    transform-origin: 50% 82.5%; /* 50% eyeball% */
+    top: 25.5%;
+    transform-origin: 50% 83.1%; /* 50% eyeball% */
     transform: rotate(0deg);
     width: 6.5%;
 }
@@ -171,7 +186,7 @@ input {
     height: 39.4%;
     left: 47.75%;
     top: 15.6%;
-    transform-origin: 50% 87%;
+    transform-origin: 50% 87.2%;
     transform: rotate(0deg);
     width: 4.5%;
 }
@@ -183,7 +198,7 @@ input {
     height: 46%;
     left: 48.75%;
     top: 9%;
-    transform-origin: 50% 89.125%;
+    transform-origin: 50% 89%;
     transform: rotate(0deg);
     width: 2.5%;
 }
@@ -195,7 +210,7 @@ input {
     height: 51%;
     left: 49.5%;
     top: 4%;
-    transform-origin: 50% 90%;
+    transform-origin: 50% 90.3%;
     transform: rotate(0deg);
     width: 1%;
 }
@@ -207,27 +222,12 @@ input {
     height: 53.6%;
     left: 49.875%;
     top: 1.4%;
-    transform-origin: 50% 90.75%;
+    transform-origin: 50% 90.7%;
     transform: rotate(0deg);
     width: 0.5%;
 }
 #toggle-theme:checked ~ * .hand-second {
     background-color: #aaa;
-}
-.rule {
-    background-color: red;
-    display: none;
-    position: absolute;
-}
-.rule-hori {
-    height: 0.2%;
-    top: 49.9%;
-    width: 100%;
-}
-.rule-vert {
-    height: 100%;
-    left: 49.9%;
-    width: 0.2%;
 }
 .digit {
     color: #333;
@@ -365,7 +365,7 @@ input {
         font-size: 2.4vh;
     }
     .copyright {
-        font-size: 1.2vh;
+        font-size: 1vh;
     }
     .display-digital {
         font-size: 4.7vh;
@@ -373,10 +373,10 @@ input {
         text-indent: 1vh;
     }
     .pip-month {
-        font-size: 4.5vh;
+        font-size: 4.4vh;
     }
     .pip-day {
-        font-size: 3.5vh;
+        font-size: 2.9vh;
     }
     .pip-hour {
         font-size: 2.25vh;
@@ -422,25 +422,25 @@ input {
         width: 83.5vh;
     }
     .title {
-        font-size: 2.5vh;
+        font-size: 2.8vh;
     }
     .copyright {
-        font-size: 1.3vh;
+        font-size: 1.1vh;
     }
     .display-digital {
         font-size: 5.6vh;
     }
     .pip-month {
-        font-size: 6vh;
+        font-size: 5.5vh;
     }
     .pip-day {
-        font-size: 4vh;
+        font-size: 3.4vh;
     }
     .pip-hour {
-        font-size: 3vh;
+        font-size: 2.6vh;
     }
     .pip-minute {
-        font-size: 2vh;
+        font-size: 1.8vh;
     }
     .toggle-label {
         height: 21.75vh;
