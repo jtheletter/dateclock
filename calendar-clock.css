@@ -89,7 +89,7 @@ input {
     margin: 2vw auto;
     position: relative;
     transform: rotate(180deg);
-    transition: background-color 0.25s, color 0.25s, transform 1.5s;
+    transition: background-color 0.25s, color 0.25s, transform 1s;
     width: 97vw;
 }
 #toggle-orientation:checked ~ .display-analog {
@@ -349,10 +349,10 @@ input {
 #toggle-theme:active ~ #toggle-theme:checked ~ #toggle-label-theme {
     background-color: #eee;
 }
-#toggle-label-month, #toggle-label-time {
+#toggle-label-month {
     cursor: not-allowed;
 }
-#toggle-label-month::before, #toggle-label-time::before {
+#toggle-label-month::before {
     display: none;
 }
 @media screen and (min-aspect-ratio: 3/4) {

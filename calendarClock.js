@@ -1,6 +1,5 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 2hr Toggle DST/ST.
 // 2hr "Month/Day/Hour/Minute/Second" central title & outer glow on numer/hand on mouseover/touch.
 // 1hr Set user-select-none on most elements.
 // 1hr Update favicon, OG image.
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             el.style.transform = `rotate(${degs}deg)`;
             els.pipDay.appendChild(el);
         }
-        totalOfPipDay = daysInMonth;
+        numberOfDayPips = daysInMonth;
     }
     function drawPipHour () { // Draw 0 thru 23.
         let i, el, degs;
@@ -54,14 +53,21 @@ document.addEventListener('DOMContentLoaded', function () {
             els.pipMinute.appendChild(el);
         }
     }
-
     function rotate(el, degs) {
         el.style.transform = `rotate(${degs}deg)`;
     }
     function getDaysInMonth(datetime) {
         return new Date(datetime.getFullYear(), datetime.getMonth() + 1, 0).getDate();
     }
-
+    function getHoursInDst (datetime = new Date()) {
+        let januaryOffsetHours = new Date(datetime.getFullYear(), 0, 1).getTimezoneOffset() / 60;
+        let julyOffsetHours = new Date(datetime.getFullYear(), 6, 1).getTimezoneOffset() / 60;
+        return Math.abs(januaryOffsetHours - julyOffsetHours);
+    }
+    function isDstExpected (datetime = new Date()) {
+        let currentOffsetHours = datetime.getTimezoneOffset() / 60; // 8
+        return hoursInDst - currentOffsetHours === 0;
+    }
     function setOffset (datetime = new Date()) {
         let offset = new Date().getTimezoneOffset() / 60;
         if (offset > 0) {
@@ -79,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let degs = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
         rotate(els.handMonth, degs);
         els.digitalMonth.textContent = month < 10 ? `0${month}` : month;
-        if (daysInMonth !== totalOfPipDay) { // Update pips for days of month, if total days changes.
+        if (daysInMonth !== numberOfDayPips) { // Update pips for days of month, if total days changes.
             drawPipDay(datetime);
         }
     }
@@ -116,7 +122,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         prevSetMinute = datetime;
     }
-    function setTime (datetime = new Date()) {
+    function setClock (datetime = new Date()) { // Set seconds. Set larger units as needed.
+        if (isDstExpected(datetime) && !els.toggleTime.checked) {
+            datetime = new Date(datetime.valueOf() - hoursInDst * 60 * 60 * 1000);
+        } else if (!isDstExpected(datetime) && els.toggleTime.checked) {
+            datetime = new Date(datetime.valueOf() + hoursInDst * 60 * 60 * 1000);
+        }
         let second = datetime.getSeconds();
         let millisecond = datetime.getMilliseconds();
         let degs = (second + millisecond / 1000) / 60 * 360;
@@ -127,12 +138,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    let els = {};
-    let totalOfPipDay = 31;
+    // let datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
+    let datetime = new Date();
+
+    let numberOfDayPips = getDaysInMonth(datetime);
+    let hoursInDst = getHoursInDst(datetime);
+
     let prevSetDay = 0;
     let prevSetHour = 0;
     let prevSetMinute = 0;
-    let datetime;
+
+    let els = {};
+
+    els.toggleTime = document.getElementById('toggle-time');
 
     els.pipMonth = document.getElementById('pip-month');
     els.pipDay = document.getElementById('pip-day');
@@ -153,15 +171,22 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitalSecond = document.getElementById('digit-second');
     els.digitalOffset = document.getElementById('digit-offset');
 
-    // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
-    datetime = new Date();
+    els.toggleLabelTime = document.getElementById('toggle-label-time');
+
+    els.toggleTime.checked = isDstExpected(datetime);
+
+    els.toggleLabelTime.addEventListener('click', () => {
+        prevSetDay = 0;
+        prevSetHour = 0;
+        prevSetMinute = 0;
+    })
 
     drawPipMonth();
     drawPipDay(datetime);
     drawPipHour();
     drawPipMinute();
 
-    setTime(datetime);
-    setInterval(setTime, 40); // Arbitray rate that looks good enough onscreen.
+    // setClock(datetime);
+    setInterval(setClock, 40); // Arbitray rate that looks good enough onscreen.
 
 });
