@@ -1,6 +1,5 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 2hr Redraw month pips as needed.
 // 2hr Toggle DST/ST.
 // 2hr "Month/Day/Hour/Minute/Second" central title & outer glow on numer/hand on mouseover/touch.
 // 1hr Set user-select-none on most elements.
@@ -13,7 +12,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    function drawPipMonth () {
+    function drawPipMonth () { // Draw 1 thru 12.
         let i, el, degs;
         for (i = 1; i <= 12; i++) {
             el = i % 3 - 1 === 0 ? document.createElement('strong') : document.createElement('span');
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             els.pipMonth.appendChild(el);
         }
     }
-    function drawPipDay (datetime = new Date()) {
+    function drawPipDay (datetime = new Date()) { // Draw 1 thru 28, 29, 30, or 31.
         let daysInMonth = getDaysInMonth(datetime);
         let i, el, degs;
         for (i = 1; i <= daysInMonth; i++) {
@@ -33,8 +32,9 @@ document.addEventListener('DOMContentLoaded', function () {
             el.style.transform = `rotate(${degs}deg)`;
             els.pipDay.appendChild(el);
         }
+        totalOfPipDay = daysInMonth;
     }
-    function drawPipHour () {
+    function drawPipHour () { // Draw 0 thru 23.
         let i, el, degs;
         for (i = 0; i < 24; i++) {
             el = i % 3 === 0 ? document.createElement('strong') : document.createElement('span');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             els.pipHour.appendChild(el);
         }
     }
-    function drawPipMinute () {
+    function drawPipMinute () { // Draw 0 thru 59.
         let i, el, degs;
         for (i = 0; i < 60; i++) {
             el = i % 5 === 0 ? document.createElement('strong') : document.createElement('span');
@@ -79,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let degs = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
         rotate(els.handMonth, degs);
         els.digitalMonth.textContent = month < 10 ? `0${month}` : month;
+        if (daysInMonth !== totalOfPipDay) { // Update pips for days of month, if total days changes.
+            drawPipDay(datetime);
+        }
     }
     function setDay (datetime = new Date()) {
         let day = datetime.getDate();
@@ -125,9 +128,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let els = {};
+    let totalOfPipDay = 31;
     let prevSetDay = 0;
     let prevSetHour = 0;
     let prevSetMinute = 0;
+    let datetime;
 
     els.pipMonth = document.getElementById('pip-month');
     els.pipDay = document.getElementById('pip-day');
@@ -148,8 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitalSecond = document.getElementById('digit-second');
     els.digitalOffset = document.getElementById('digit-offset');
 
-    let datetime;
-    datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
+    // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
     datetime = new Date();
 
     drawPipMonth();
