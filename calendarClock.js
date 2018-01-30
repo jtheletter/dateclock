@@ -3,11 +3,12 @@
 // 2hr "Month/Day/Hour/Minute/Second" central title & outer glow on numer/hand on mouseover/touch.
 // 1hr Set user-select-none on most elements.
 // 1hr Update favicon, OG image.
+// 3hr Info screen.
+
 // 1hr Cookie settings.
 // 8hr Add lunar calculations.
 // 2hr Audit performance.
 // 1hr Troubleshoot older iOS.
-// 3hr Info screen?
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let datetime = new Date();
 
     let numberOfDayPips = getDaysInMonth(datetime);
-    let hoursInDst = getHoursInDst(datetime);
+    let hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
 
     let prevSetDay = 0;
     let prevSetHour = 0;
