@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'Source Code Pro';
     font-style: normal;
-    font-weight: 200;
-    src: url('fonts/sourcecodepro-extralight-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-extralight-webfont.woff') format('woff');
-    unicode-range: U+0030-0039; /* 0 thru 9 */
+    font-weight: 300;
+    src: url('fonts/sourcecodepro-light-webfont.woff2') format('woff2'),
+         url('fonts/sourcecodepro-light-webfont.woff') format('woff');
+    unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
 @font-face {
     font-family: 'Source Code Pro';
@@ -68,18 +68,19 @@ input {
     color: #111;
 }
 .title, .copyright {
-    font-weight: 700;
     position: absolute;
     width: 100%;
 }
 .title {
+    font-weight: 700;
     line-height: 1.125;
     font-size: 3.25vw;
     top: 33.33%;
 }
 .copyright {
     bottom: 35.5%;
-    font-size: 1.67vw;
+    font-size: 2vw;
+    font-weight: 600;
 }
 .display-analog {
     color: #fff;
@@ -139,7 +140,7 @@ input {
     width: 48.5%;
 }
 .pip > * {
-    font-weight: 200;
+    font-weight: 300;
     height: 100%;
     left: -15%;
     position: absolute;
@@ -364,7 +365,7 @@ input {
         font-size: 2.4vh;
     }
     .copyright {
-        font-size: 1.25vh;
+        font-size: 1.2vh;
     }
     .display-digital {
         font-size: 4.7vh;
@@ -424,7 +425,7 @@ input {
         font-size: 2.5vh;
     }
     .copyright {
-        font-size: 1.4vh;
+        font-size: 1.3vh;
     }
     .display-digital {
         font-size: 5.6vh;
