@@ -71,7 +71,7 @@ input {
     background-color: #fff;
     color: #111;
 }
-.brand, .copyright {
+.brand, .copyright, .utc-offset {
     position: absolute;
     width: 100%;
 }
@@ -79,12 +79,17 @@ input {
     font-weight: 700;
     line-height: 1.125;
     font-size: 3.3vw;
-    top: 32.25%;
+    top: 31.25%;
 }
 .copyright {
-    bottom: 35.5%;
+    top: 39.5%;
     font-size: 2vw;
     font-weight: 300;
+}
+.utc-offset {
+    bottom: 33.5%;
+    font-size: 3.25vw;
+    font-weight: 600;
 }
 .display-analog {
     color: #fff;
@@ -105,11 +110,10 @@ input {
 .display-digital {
     background-color: #000;
     display: inline-block;
-    font-size: 6.6vw;
-    font-weight: 600;
+    font-size: 7.6vw;
+    font-weight: 300;
     margin: 0 auto;
-    padding: 1.2vw 1.1vw 1.4vw;
-    text-indent: 1.5vw;
+    padding: 1vw 6vw 0.9vw;
     transition: background-color 0.25s;
 }
 #toggle-theme:checked ~ .display-digital {
@@ -267,7 +271,7 @@ input {
 }
 .digit {
     color: #333;
-    padding: 0 0 0.25vw;
+    display: inline-block;
     transition: color 0.25s;
 }
 #toggle-theme:checked ~ * .digit {
@@ -422,10 +426,12 @@ input {
     .copyright {
         font-size: 1vh;
     }
+    .utc-offset {
+        font-size: 2.4vh;
+    }
     .display-digital {
-        font-size: 4.7vh;
-        padding: 1.3vh 1.6vh 1.6vh;
-        text-indent: 1vh;
+        font-size: 5.6vh;
+        padding: 0.7vh 4.4vh 0.5vh;
     }
     .pip-month {
         font-size: 4.4vh;
@@ -482,18 +488,15 @@ input {
 }
 @media screen and (min-aspect-ratio: 4/3) {
     .dial, .display-analog {
-        height: 83.5vh;
+        height: 85vh;
         margin: 2.5vh auto;
-        width: 83.5vh;
+        width: 85vh;
     }
     .brand {
         font-size: 2.8vh;
     }
     .copyright {
         font-size: 1.1vh;
-    }
-    .display-digital {
-        font-size: 5.6vh;
     }
     .pip-month {
         font-size: 5.5vh;

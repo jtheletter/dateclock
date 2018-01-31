@@ -1,12 +1,11 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 1hr Digital display taller for touch.
-// 1hr Update favicon, OG image.
 // 3hr Info screen.
+// 1hr Update favicon, OG image.
 // 1hr Cookie settings.
 // 8hr Add lunar calculations.
 // 2hr Audit performance.
-// 1hr Troubleshoot older iOS.
+// 2hr Troubleshoot older iOS.
 
 document.addEventListener('DOMContentLoaded', function () {
     function focusMonth (evt) {
@@ -119,11 +118,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function setOffset (datetime = new Date()) {
         let offset = new Date().getTimezoneOffset() / 60;
         if (offset > 0) {
-            els.digitOffset.textContent = `\u002d${offset}`; // hyphen-minus sign
+            els.utcOffset.textContent = `UTC\u002d${offset}h`; // hyphen-minus sign
         } else if (offset < 0) {
-            els.digitOffset.textContent = `\u002b${offset}`; // plus sign
+            els.utcOffset.textContent = `UTC\u002b${offset}h`; // plus sign
         } else {
-            els.digitOffset.textContent = `\u00b1${offset}`; // plus-minus sign
+            els.utcOffset.textContent = `UTC\u00b1${offset}h`; // plus-minus sign
         }
     }
     function setMonth (datetime = new Date()) {
@@ -186,8 +185,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // let datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
     let datetime = new Date();
+    datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
 
     let numberOfDayPips = getDaysInMonth(datetime);
     let hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
@@ -208,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function () {
     els.handHour = document.getElementById('hand-hour');
     els.handMinute = document.getElementById('hand-minute');
     els.handSecond = document.getElementById('hand-second');
-    els.handOffset = document.getElementById('hand-offset');
     els.supertitleMonth = document.getElementById('supertitle-month');
     els.supertitleDay = document.getElementById('supertitle-day');
     els.supertitleHour = document.getElementById('supertitle-hour');
@@ -219,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitHour = document.getElementById('digit-hour');
     els.digitMinute = document.getElementById('digit-minute');
     els.digitSecond = document.getElementById('digit-second');
-    els.digitOffset = document.getElementById('digit-offset');
+    els.utcOffset = document.getElementById('utc-offset');
     els.toggleLabelTime = document.getElementById('toggle-label-time');
 
     els.handMonth.addEventListener('touchstart', focusMonth);
