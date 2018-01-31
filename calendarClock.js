@@ -1,9 +1,8 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 2hr "Month/Day/Hour/Minute/Second" central title & outer glow on numer/hand on mouseover/touch.
+// 1hr Digital display taller for touch.
 // 1hr Update favicon, OG image.
 // 3hr Info screen.
-
 // 1hr Cookie settings.
 // 8hr Add lunar calculations.
 // 2hr Audit performance.
@@ -12,42 +11,52 @@
 document.addEventListener('DOMContentLoaded', function () {
     function focusMonth (evt) {
         els.handMonth.classList.add('focus');
+        els.supertitleMonth.classList.add('focus');
         els.digitMonth.classList.add('focus');
     }
     function blurMonth (evt) {
         els.handMonth.classList.remove('focus');
+        els.supertitleMonth.classList.remove('focus');
         els.digitMonth.classList.remove('focus');
     }
     function focusDay () {
         els.handDay.classList.add('focus');
+        els.supertitleDay.classList.add('focus');
         els.digitDay.classList.add('focus');
     }
     function blurDay () {
         els.handDay.classList.remove('focus');
+        els.supertitleDay.classList.remove('focus');
         els.digitDay.classList.remove('focus');
     }
     function focusHour () {
         els.handHour.classList.add('focus');
+        els.supertitleHour.classList.add('focus');
         els.digitHour.classList.add('focus');
     }
     function blurHour () {
         els.handHour.classList.remove('focus');
+        els.supertitleHour.classList.remove('focus');
         els.digitHour.classList.remove('focus');
     }
     function focusMinute () {
         els.handMinute.classList.add('focus');
+        els.supertitleMinute.classList.add('focus');
         els.digitMinute.classList.add('focus');
     }
     function blurMinute () {
         els.handMinute.classList.remove('focus');
+        els.supertitleMinute.classList.remove('focus');
         els.digitMinute.classList.remove('focus');
     }
     function focusSecond () {
         els.handSecond.classList.add('focus');
+        els.supertitleSecond.classList.add('focus');
         els.digitSecond.classList.add('focus');
     }
     function blurSecond () {
         els.handSecond.classList.remove('focus');
+        els.supertitleSecond.classList.remove('focus');
         els.digitSecond.classList.remove('focus');
     }
     function drawPipMonth () { // Draw 1 thru 12.
@@ -200,6 +209,11 @@ document.addEventListener('DOMContentLoaded', function () {
     els.handMinute = document.getElementById('hand-minute');
     els.handSecond = document.getElementById('hand-second');
     els.handOffset = document.getElementById('hand-offset');
+    els.supertitleMonth = document.getElementById('supertitle-month');
+    els.supertitleDay = document.getElementById('supertitle-day');
+    els.supertitleHour = document.getElementById('supertitle-hour');
+    els.supertitleMinute = document.getElementById('supertitle-minute');
+    els.supertitleSecond = document.getElementById('supertitle-second');
     els.digitMonth = document.getElementById('digit-month');
     els.digitDay = document.getElementById('digit-day');
     els.digitHour = document.getElementById('digit-hour');

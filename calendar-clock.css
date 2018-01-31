@@ -71,11 +71,11 @@ input {
     background-color: #fff;
     color: #111;
 }
-.title, .copyright {
+.brand, .copyright {
     position: absolute;
     width: 100%;
 }
-.title {
+.brand {
     font-weight: 700;
     line-height: 1.125;
     font-size: 3.3vw;
@@ -233,6 +233,38 @@ input {
 #toggle-theme:checked ~ * .hand-second {
     background-color: #aaa;
 }
+.supertitle {
+    background-color: #333;
+    color: #fff;
+    font-size: 6vw;
+    font-weight: 600;
+    left: 36.75%;
+    opacity: 0;
+    padding: 1% 0;
+    position: absolute;
+    top: -1%;
+    transition: background-color 0.25s, color 0.25s, opacity 0.25s;
+    width: 26.5%;
+}
+#toggle-theme:checked ~ * .supertitle {
+    background-color: #ccc;
+    color: #000;
+}
+.supertitle.focus {
+    opacity: 1;
+}
+#supertitle-month {
+    left: 38.5%;
+    width: 23%;
+}
+#supertitle-day {
+    left: 42%;
+    width: 16%;
+}
+#supertitle-hour {
+    left: 40.25%;
+    width: 19.5%;
+}
 .digit {
     color: #333;
     padding: 0 0 0.25vw;
@@ -384,7 +416,7 @@ input {
         margin: 1.5vh auto;
         width: 70vh;
     }
-    .title {
+    .brand {
         font-size: 2.4vh;
     }
     .copyright {
@@ -406,6 +438,9 @@ input {
     }
     .pip-minute {
         font-size: 1.5vh;
+    }
+    .supertitle {
+        font-size: 4.5vh;
     }
     .digit {
         padding: 0 0 0.25vh;
@@ -451,7 +486,7 @@ input {
         margin: 2.5vh auto;
         width: 83.5vh;
     }
-    .title {
+    .brand {
         font-size: 2.8vh;
     }
     .copyright {
@@ -471,6 +506,9 @@ input {
     }
     .pip-minute {
         font-size: 1.8vh;
+    }
+    .supertitle {
+        font-size: 5vh;
     }
     .toggle-label {
         height: 21.75vh;
