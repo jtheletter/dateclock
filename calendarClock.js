@@ -1,7 +1,6 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
 // 2hr "Month/Day/Hour/Minute/Second" central title & outer glow on numer/hand on mouseover/touch.
-// 1hr Set user-select-none on most elements.
 // 1hr Update favicon, OG image.
 // 3hr Info screen.
 
@@ -11,7 +10,46 @@
 // 1hr Troubleshoot older iOS.
 
 document.addEventListener('DOMContentLoaded', function () {
-
+    function focusMonth (evt) {
+        els.handMonth.classList.add('focus');
+        els.digitMonth.classList.add('focus');
+    }
+    function blurMonth (evt) {
+        els.handMonth.classList.remove('focus');
+        els.digitMonth.classList.remove('focus');
+    }
+    function focusDay () {
+        els.handDay.classList.add('focus');
+        els.digitDay.classList.add('focus');
+    }
+    function blurDay () {
+        els.handDay.classList.remove('focus');
+        els.digitDay.classList.remove('focus');
+    }
+    function focusHour () {
+        els.handHour.classList.add('focus');
+        els.digitHour.classList.add('focus');
+    }
+    function blurHour () {
+        els.handHour.classList.remove('focus');
+        els.digitHour.classList.remove('focus');
+    }
+    function focusMinute () {
+        els.handMinute.classList.add('focus');
+        els.digitMinute.classList.add('focus');
+    }
+    function blurMinute () {
+        els.handMinute.classList.remove('focus');
+        els.digitMinute.classList.remove('focus');
+    }
+    function focusSecond () {
+        els.handSecond.classList.add('focus');
+        els.digitSecond.classList.add('focus');
+    }
+    function blurSecond () {
+        els.handSecond.classList.remove('focus');
+        els.digitSecond.classList.remove('focus');
+    }
     function drawPipMonth () { // Draw 1 thru 12.
         let i, el, degs;
         for (i = 1; i <= 12; i++) {
@@ -72,11 +110,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function setOffset (datetime = new Date()) {
         let offset = new Date().getTimezoneOffset() / 60;
         if (offset > 0) {
-            els.digitalOffset.textContent = `\u002d${offset}`; // hyphen-minus sign
+            els.digitOffset.textContent = `\u002d${offset}`; // hyphen-minus sign
         } else if (offset < 0) {
-            els.digitalOffset.textContent = `\u002b${offset}`; // plus sign
+            els.digitOffset.textContent = `\u002b${offset}`; // plus sign
         } else {
-            els.digitalOffset.textContent = `\u00b1${offset}`; // plus-minus sign
+            els.digitOffset.textContent = `\u00b1${offset}`; // plus-minus sign
         }
     }
     function setMonth (datetime = new Date()) {
@@ -85,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let daysInMonth = getDaysInMonth(datetime);
         let degs = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
         rotate(els.handMonth, degs);
-        els.digitalMonth.textContent = month < 10 ? `0${month}` : month;
+        els.digitMonth.textContent = month < 10 ? `0${month}` : month;
         if (daysInMonth !== numberOfDayPips) { // Update pips for days of month, if total days changes.
             drawPipDay(datetime);
         }
@@ -96,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let daysInMonth = getDaysInMonth(datetime);
         let degs = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
         rotate(els.handDay, degs);
-        els.digitalDay.textContent = day < 10 ? `0${day}` : day;
+        els.digitDay.textContent = day < 10 ? `0${day}` : day;
         prevSetDay = datetime;
     }
     function setHour (datetime = new Date()) {
@@ -104,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let minute = datetime.getMinutes();
         let degs = (hour + minute / 60) / 24 * 360;
         rotate(els.handHour, degs);
-        els.digitalHour.textContent = hour < 10 ? `0${hour}` : hour;
+        els.digitHour.textContent = hour < 10 ? `0${hour}` : hour;
         if (minute === 0 || datetime - prevSetDay > 1000 * 60 * 60) { // Update day, month, & offset each hour.
             setDay(datetime);
             setMonth(datetime);
@@ -117,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let second = datetime.getSeconds();
         let degs = (minute + second / 60) / 60 * 360;
         rotate(els.handMinute, degs);
-        els.digitalMinute.textContent = minute < 10 ? `0${minute}` : minute;
+        els.digitMinute.textContent = minute < 10 ? `0${minute}` : minute;
         if (second === 0 || datetime - prevSetHour > 1000 * 60) { // Update hour each minute.
             setHour(datetime);
         }
@@ -133,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let millisecond = datetime.getMilliseconds();
         let degs = (second + millisecond / 1000) / 60 * 360;
         rotate(els.handSecond, degs);
-        els.digitalSecond.textContent = second < 10 ? `0${second}` : second;
+        els.digitSecond.textContent = second < 10 ? `0${second}` : second;
         if (millisecond === 0 || datetime - prevSetMinute > 1000) { // Update minute each second.
             setMinute(datetime);
         }
@@ -152,42 +190,88 @@ document.addEventListener('DOMContentLoaded', function () {
     let els = {};
 
     els.toggleTime = document.getElementById('toggle-time');
-
     els.pipMonth = document.getElementById('pip-month');
     els.pipDay = document.getElementById('pip-day');
     els.pipHour = document.getElementById('pip-hour');
     els.pipMinute = document.getElementById('pip-minute');
-
     els.handMonth = document.getElementById('hand-month');
     els.handDay = document.getElementById('hand-day');
     els.handHour = document.getElementById('hand-hour');
     els.handMinute = document.getElementById('hand-minute');
     els.handSecond = document.getElementById('hand-second');
     els.handOffset = document.getElementById('hand-offset');
-
-    els.digitalMonth = document.getElementById('digit-month');
-    els.digitalDay = document.getElementById('digit-day');
-    els.digitalHour = document.getElementById('digit-hour');
-    els.digitalMinute = document.getElementById('digit-minute');
-    els.digitalSecond = document.getElementById('digit-second');
-    els.digitalOffset = document.getElementById('digit-offset');
-
+    els.digitMonth = document.getElementById('digit-month');
+    els.digitDay = document.getElementById('digit-day');
+    els.digitHour = document.getElementById('digit-hour');
+    els.digitMinute = document.getElementById('digit-minute');
+    els.digitSecond = document.getElementById('digit-second');
+    els.digitOffset = document.getElementById('digit-offset');
     els.toggleLabelTime = document.getElementById('toggle-label-time');
 
-    els.toggleTime.checked = isDstExpected(datetime);
+    els.handMonth.addEventListener('touchstart', focusMonth);
+    els.handMonth.addEventListener('mouseenter', focusMonth);
+    els.handMonth.addEventListener('touchend', blurMonth);
+    els.handMonth.addEventListener('mouseleave', blurMonth);
 
-    els.toggleLabelTime.addEventListener('click', () => {
+    els.digitMonth.addEventListener('touchstart', focusMonth);
+    els.digitMonth.addEventListener('mouseenter', focusMonth);
+    els.digitMonth.addEventListener('touchend', blurMonth);
+    els.digitMonth.addEventListener('mouseleave', blurMonth);
+
+    els.handDay.addEventListener('touchstart', focusDay);
+    els.handDay.addEventListener('mouseenter', focusDay);
+    els.handDay.addEventListener('touchend', blurDay);
+    els.handDay.addEventListener('mouseleave', blurDay);
+
+    els.digitDay.addEventListener('touchstart', focusDay);
+    els.digitDay.addEventListener('mouseenter', focusDay);
+    els.digitDay.addEventListener('touchend', blurDay);
+    els.digitDay.addEventListener('mouseleave', blurDay);
+
+    els.handHour.addEventListener('touchstart', focusHour);
+    els.handHour.addEventListener('mouseenter', focusHour);
+    els.handHour.addEventListener('touchend', blurHour);
+    els.handHour.addEventListener('mouseleave', blurHour);
+
+    els.digitHour.addEventListener('touchstart', focusHour);
+    els.digitHour.addEventListener('mouseenter', focusHour);
+    els.digitHour.addEventListener('touchend', blurHour);
+    els.digitHour.addEventListener('mouseleave', blurHour);
+
+    els.handMinute.addEventListener('touchstart', focusMinute);
+    els.handMinute.addEventListener('mouseenter', focusMinute);
+    els.handMinute.addEventListener('touchend', blurMinute);
+    els.handMinute.addEventListener('mouseleave', blurMinute);
+
+    els.digitMinute.addEventListener('touchstart', focusMinute);
+    els.digitMinute.addEventListener('mouseenter', focusMinute);
+    els.digitMinute.addEventListener('touchend', blurMinute);
+    els.digitMinute.addEventListener('mouseleave', blurMinute);
+
+    els.handSecond.addEventListener('touchstart', focusSecond);
+    els.handSecond.addEventListener('mouseenter', focusSecond);
+    els.handSecond.addEventListener('touchend', blurSecond);
+    els.handSecond.addEventListener('mouseleave', blurSecond);
+
+    els.digitSecond.addEventListener('touchstart', focusSecond);
+    els.digitSecond.addEventListener('mouseenter', focusSecond);
+    els.digitSecond.addEventListener('touchend', blurSecond);
+    els.digitSecond.addEventListener('mouseleave', blurSecond);
+
+    els.toggleLabelTime.addEventListener('click', () => { // Trigger re-calculations.
         prevSetDay = 0;
         prevSetHour = 0;
         prevSetMinute = 0;
     })
+
+    els.toggleTime.checked = isDstExpected(datetime);
 
     drawPipMonth();
     drawPipDay(datetime);
     drawPipHour();
     drawPipMinute();
 
-    // setClock(datetime);
+    setClock(datetime);
     setInterval(setClock, 40); // Arbitray rate that looks good enough onscreen.
 
 });

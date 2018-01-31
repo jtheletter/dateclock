@@ -30,6 +30,10 @@ body {
     font-family: 'Source Code Pro', monospace;
     font-size: 0;
     text-align: center;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 input {
     margin: 0;
@@ -231,6 +235,7 @@ input {
 }
 .digit {
     color: #333;
+    padding: 0 0 0.25vw;
     transition: color 0.25s;
 }
 #toggle-theme:checked ~ * .digit {
@@ -265,6 +270,24 @@ input {
 }
 #toggle-theme:checked ~ * .digit-second {
     color: #aaa;
+}
+.focal {
+    cursor: pointer;
+    outline-color: rgba(204, 204, 204, 0);
+    outline-offset: 0.5vw;
+    outline-style: double;
+    outline-width: 0;
+    transition: outline-width 0.125s;
+}
+.focal.focus {
+    outline-color: rgba(204, 204, 204, 1);
+    outline-width: 1vw;
+}
+#toggle-theme:checked ~ * .focal {
+    outline-color: rgba(119, 119, 119, 0);
+}
+#toggle-theme:checked ~ * .focal.focus {
+    outline-color: rgba(119, 119, 119, 1);
 }
 .sep-hori {
     display: block;
@@ -383,6 +406,13 @@ input {
     }
     .pip-minute {
         font-size: 1.5vh;
+    }
+    .digit {
+        padding: 0 0 0.25vh;
+    }
+    .focal.focus {
+        outline-offset: 0.5vh;
+        outline-width: 0.6vh;
     }
     .toggle-label {
         font-size: 2.6vh;
