@@ -1,6 +1,5 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 1hr Info screen: Scroll to top on close.
 // 1hr Update favicon, OG image.
 // 1hr Cookie settings.
 // 8hr Add lunar calculations. Or hide month button.
@@ -187,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let datetime = new Date();
-    datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
+    // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
 
     let numberOfDayPips = getDaysInMonth(datetime);
     let hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
@@ -199,6 +198,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let els = {};
 
     els.toggleTime = document.getElementById('toggle-time');
+
+    els.supertitleMonth = document.getElementById('supertitle-month');
+    els.supertitleDay = document.getElementById('supertitle-day');
+    els.supertitleHour = document.getElementById('supertitle-hour');
+    els.supertitleMinute = document.getElementById('supertitle-minute');
+    els.supertitleSecond = document.getElementById('supertitle-second');
+    els.utcOffset = document.getElementById('utc-offset');
     els.pipMonth = document.getElementById('pip-month');
     els.pipDay = document.getElementById('pip-day');
     els.pipHour = document.getElementById('pip-hour');
@@ -208,18 +214,14 @@ document.addEventListener('DOMContentLoaded', function () {
     els.handHour = document.getElementById('hand-hour');
     els.handMinute = document.getElementById('hand-minute');
     els.handSecond = document.getElementById('hand-second');
-    els.supertitleMonth = document.getElementById('supertitle-month');
-    els.supertitleDay = document.getElementById('supertitle-day');
-    els.supertitleHour = document.getElementById('supertitle-hour');
-    els.supertitleMinute = document.getElementById('supertitle-minute');
-    els.supertitleSecond = document.getElementById('supertitle-second');
     els.digitMonth = document.getElementById('digit-month');
     els.digitDay = document.getElementById('digit-day');
     els.digitHour = document.getElementById('digit-hour');
     els.digitMinute = document.getElementById('digit-minute');
     els.digitSecond = document.getElementById('digit-second');
-    els.utcOffset = document.getElementById('utc-offset');
     els.toggleLabelTime = document.getElementById('toggle-label-time');
+    els.panel = document.getElementById('panel');
+    els.toggleLabelPanel = document.getElementById('toggle-label-panel');
 
     els.handMonth.addEventListener('touchstart', focusMonth);
     els.handMonth.addEventListener('mouseenter', focusMonth);
@@ -275,7 +277,11 @@ document.addEventListener('DOMContentLoaded', function () {
         prevSetDay = 0;
         prevSetHour = 0;
         prevSetMinute = 0;
-    })
+    });
+
+    els.toggleLabelPanel.addEventListener('click', () => {
+        els.panel.scrollTo(0, 0);
+    });
 
     els.toggleTime.checked = isDstExpected(datetime);
 
