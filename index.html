@@ -44,10 +44,17 @@
         <input checked id="toggle-time" type="checkbox">
         <input checked id="toggle-orientation" type="checkbox">
         <input checked id="toggle-theme" type="checkbox">
+        <input id="toggle-panel" type="checkbox">
 
         <div class="bg"></div>
 
         <div class="dial">
+            <p class="supertitle" id="supertitle-month">Month</p>
+            <p class="supertitle" id="supertitle-day">Day</p>
+            <p class="supertitle" id="supertitle-hour">Hour</p>
+            <p class="supertitle" id="supertitle-minute">Minute</p>
+            <p class="supertitle" id="supertitle-second">Second</p>
+
             <p class="brand">LUNISOLAR<br>CALENDAR&#x2004;CLOCK</p>
             <p class="copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
             <p class="utc-offset" id="utc-offset">UTC&#xb1;0.0</span>h</p>
@@ -67,22 +74,34 @@
             <div class="hand focal hand-hour" id="hand-hour"></div>
             <div class="hand focal hand-minute" id="hand-minute"></div>
             <div class="hand focal hand-second" id="hand-second"></div>
-
-            <p class="supertitle" id="supertitle-month">Month</p>
-            <p class="supertitle" id="supertitle-day">Day</p>
-            <p class="supertitle" id="supertitle-hour">Hour</p>
-            <p class="supertitle" id="supertitle-minute">Minute</p>
-            <p class="supertitle" id="supertitle-second">Second</p>
         </div>
 
         <p class="display-digital"><span class="digit focal digit-month" id="digit-month">00</span><span class="digit">&#x2010;</span><span class="digit focal digit-day" id="digit-day">00</span><span class="digit">&#x2002;</span><span class="digit focal digit-hour" id="digit-hour">00</span><span class="digit">&#x3a;</span><span class="digit focal digit-minute" id="digit-minute">00</span><span class="digit">&#x3a;</span><span class="digit focal digit-second" id="digit-second">00</span></p>
 
         <div class="sep-hori"></div>
 
-        <label class="toggle-label" id="toggle-label-month" for="toggle-month" title="Toggle Month"><span>Gregorian</span><span>Lunar</span></label>
-        <label class="toggle-label" id="toggle-label-time" for="toggle-time" title="Toggle Time"><span>DST</span><span>Standard</span></label>
-        <label class="toggle-label" id="toggle-label-orientation" for="toggle-orientation" title="Toggle Orientation"><span>Clock</span><span>Sundial</span></label>
-        <label class="toggle-label" id="toggle-label-theme" for="toggle-theme" title="Toggle Theme"><span>Light</span><span>Dark</span></label>
+        <label class="toggle-label-setting" id="toggle-label-month" for="toggle-month" title="Toggle Month (feature to come)"><span>Gregorian</span><span>Lunar</span></label>
+        <label class="toggle-label-setting" id="toggle-label-time" for="toggle-time" title="Toggle Time"><span>DST</span><span>Standard</span></label>
+        <label class="toggle-label-setting" id="toggle-label-orientation" for="toggle-orientation" title="Toggle Orientation"><span>Clock</span><span>Sundial</span></label>
+        <label class="toggle-label-setting" id="toggle-label-theme" for="toggle-theme" title="Toggle Theme"><span>Light</span><span>Dark</span></label>
+
+        <div class="panel">
+            <h1>LUNISOLAR CALENDAR CLOCK</h1>
+            <p>An holistic view of time&#x2019;s cyclic progres&#xad;sion.</p>
+            <p>Touch hands and digits to show names.</p>
+            <p>Touch toggles to change month, time, ori&#xad;en&#xad;ta&#xad;tion, and theme.</p>
+            <p>All dials&#x2019; initial units are aligned:</p>
+            <ul>
+                <li>The first second of a minute is zero.</li>
+                <li>The first minute of an hour is zero.</li>
+                <li>The first hour of a day is zero.</li>
+                <li>The first day of a month is one.</li>
+                <li>The first month of a year is one.</li>
+            </ul>
+            <p class="copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
+        </div>
+
+        <label class="toggle-label-panel" id="toggle-label-panel" for="toggle-panel" title="View Info"><span></span></label>
 
     </body>
 

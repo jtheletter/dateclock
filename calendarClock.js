@@ -1,9 +1,9 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 3hr Info screen.
+// 1hr Info screen: Scroll to top on close.
 // 1hr Update favicon, OG image.
 // 1hr Cookie settings.
-// 8hr Add lunar calculations.
+// 8hr Add lunar calculations. Or hide month button.
 // 2hr Audit performance.
 // 2hr Troubleshoot older iOS.
 
@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function drawPipDay (datetime = new Date()) { // Draw 1 thru 28, 29, 30, or 31.
         let daysInMonth = getDaysInMonth(datetime);
         let i, el, degs;
+        els.pipDay.innerHTML = '';
         for (i = 1; i <= daysInMonth; i++) {
             el = i % 7 - 1 === 0 ? document.createElement('strong') : document.createElement('span');
             el.textContent = i;

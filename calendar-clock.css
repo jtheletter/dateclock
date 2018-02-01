@@ -183,7 +183,7 @@ input {
     left: 46.75%; /* 50% - width / 2 */
     top: 25.5%;
     transform-origin: 50% 83.1%; /* 50% eyeball% */
-    transform: rotate(0deg);
+    transform: rotate(0);
     width: 6.5%;
 }
 #toggle-theme:checked ~ * .hand-month {
@@ -195,7 +195,7 @@ input {
     left: 47.75%;
     top: 15.6%;
     transform-origin: 50% 87.2%;
-    transform: rotate(0deg);
+    transform: rotate(0);
     width: 4.5%;
 }
 #toggle-theme:checked ~ * .hand-day {
@@ -207,7 +207,7 @@ input {
     left: 48.75%;
     top: 9%;
     transform-origin: 50% 89%;
-    transform: rotate(0deg);
+    transform: rotate(0);
     width: 2.5%;
 }
 #toggle-theme:checked ~ * .hand-hour {
@@ -219,7 +219,7 @@ input {
     left: 49.5%;
     top: 4%;
     transform-origin: 50% 90.3%;
-    transform: rotate(0deg);
+    transform: rotate(0);
     width: 1%;
 }
 #toggle-theme:checked ~ * .hand-minute {
@@ -231,7 +231,7 @@ input {
     left: 49.875%;
     top: 1.4%;
     transform-origin: 50% 90.7%;
-    transform: rotate(0deg);
+    transform: rotate(0);
     width: 0.5%;
 }
 #toggle-theme:checked ~ * .hand-second {
@@ -249,6 +249,7 @@ input {
     top: -1%;
     transition: background-color 0.25s, color 0.25s, opacity 0.25s;
     width: 26.5%;
+    z-index: 1;
 }
 #toggle-theme:checked ~ * .supertitle {
     background-color: #ccc;
@@ -328,7 +329,7 @@ input {
 .sep-hori {
     display: block;
 }
-.toggle-label {
+.toggle-label-setting {
     background-color: #000;
     color: #fff;
     cursor: pointer;
@@ -341,7 +342,7 @@ input {
     transition: background-color 0.25s, color 0.25s;
     width: 22.5vw;
 }
-.toggle-label::before {
+.toggle-label-setting::before {
     background-color: #333;
     content: '';
     height: calc(50% - 1vw);
@@ -351,7 +352,7 @@ input {
     transform: translateY(calc(100% + 1vw));
     transition: background-color 0.25s, transform 0.25s;
 }
-.toggle-label span {
+.toggle-label-setting span {
     bottom: auto;
     height: 50%;
     left: 0;
@@ -360,16 +361,16 @@ input {
     right: 0;
     top: 0;
 }
-.toggle-label span:last-child {
+.toggle-label-setting span:last-child {
     bottom: 0;
     line-height: 10vw;
     top: auto;
 }
-#toggle-theme:checked ~ .toggle-label {
+#toggle-theme:checked ~ .toggle-label-setting {
     background-color: #fff;
     color: #000;
 }
-#toggle-theme:checked ~ .toggle-label::before {
+#toggle-theme:checked ~ .toggle-label-setting::before {
     background-color: #ccc;
 }
 #toggle-month:checked ~ #toggle-label-month::before {
@@ -414,6 +415,113 @@ input {
 #toggle-label-month::before {
     display: none;
 }
+.panel {
+    background-color: rgba(34, 34, 34, 0.95);
+    bottom: 0;
+    color: #fff;
+    font-size: 5vw;
+    font-weight: 300;
+    height: 100%;
+    left: 0;
+    line-height: 1.33;
+    overflow: scroll;
+    padding: 16vw;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    transform: translateX(-100%);
+    transition: background-color 0.25s, color 0.25s, transform 0.25s;
+    width: 100%;
+    z-index: 50;
+}
+#toggle-panel:checked ~ .panel {
+    transform: translateX(0);
+}
+#toggle-theme:checked ~ .panel {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #000;
+}
+.panel > * {
+    margin: 5vw 0;
+}
+.panel > *:first-child {
+    margin-top: 0;
+}
+.panel > *:last-child {
+    margin-bottom: 0;
+}
+.panel .copyright {
+    font-size: 75%;
+    position: static;
+}
+.panel h1 {
+    font-size: 120%;
+    font-weight: 700;
+}
+.panel ul {
+    margin-top: -1.25vw;
+}
+.panel li {
+    list-style-position: inside;
+    list-style-type: disc;
+    margin: 2.5vw 0;
+    padding-left: 7vw;
+    text-indent: -7vw;
+}
+.toggle-label-panel {
+    background-color: #000;
+    cursor: pointer;
+    height: 13.1vw;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: background-color 0.25s;
+    width: 13.1vw;
+    z-index: 100;
+}
+.toggle-label-panel:active {
+    background-color: #333;
+}
+#toggle-theme:checked ~ .toggle-label-panel {
+    background-color: #aaa;
+}
+#toggle-theme:checked ~ .toggle-label-panel:active {
+    background-color: #eee;
+}
+.toggle-label-panel::before,
+.toggle-label-panel span,
+.toggle-label-panel::after {
+    background-color: #fff;
+    content: '';
+    height: 5%;
+    left: 12.5%;
+    position: absolute;
+    transition: background-color 0.25s, transform 0.25s;
+    width: 75%;
+}
+.toggle-label-panel::before {
+    top: 27.5%;
+}
+.toggle-label-panel span {
+    top: 47.5%;
+}
+.toggle-label-panel::after {
+    top: 67.5%;
+}
+#toggle-theme:checked ~ .toggle-label-panel::before,
+#toggle-theme:checked ~ .toggle-label-panel span,
+#toggle-theme:checked ~ .toggle-label-panel::after {
+    background-color: #000;
+}
+#toggle-panel:checked ~ .toggle-label-panel::before {
+    transform: translate(0%, 400%) rotate(45deg);
+}
+#toggle-panel:checked ~ .toggle-label-panel span {
+    transform: translateX(-120%);
+}
+#toggle-panel:checked ~ .toggle-label-panel::after {
+    transform: translate(0%, -400%) rotate(-45deg);
+}
 @media screen and (min-aspect-ratio: 3/4) {
     .dial, .display-analog {
         height: 70vh;
@@ -455,22 +563,22 @@ input {
         outline-offset: 0.5vh;
         outline-width: 0.6vh;
     }
-    .toggle-label {
+    .toggle-label-setting {
         font-size: 2.6vh;
         height: 16.3vh;
         margin: 1.5vh 0.75vh;
         width: 16.3vh;
     }
-    .toggle-label::before {
+    .toggle-label-setting::before {
         height: calc(50% - 0.5vh);
         left: 0.5vh;
         right: 0.5vh;
         transform: translateY(calc(100% + 0.5vh));
     }
-    .toggle-label span {
+    .toggle-label-setting span {
         line-height: 8.5vh;
     }
-    .toggle-label span:last-child {
+    .toggle-label-setting span:last-child {
         line-height: 8vh;
     }
     #toggle-month:checked ~ #toggle-label-month::before {
@@ -484,6 +592,23 @@ input {
     }
     #toggle-theme:checked ~ #toggle-label-theme::before {
         transform: translateY(0.5vh);
+    }
+    .toggle-label-panel {
+        height: 7vh;
+        width: 7vh;
+    }
+    .panel {
+        font-size: 2.25vh;
+        padding: 9vh;
+    }
+    .panel > * {
+        margin: 2.5vh 0;
+    }
+    .panel ul {
+        margin-top: -0.625vh;
+    }
+    .panel li {
+        margin: 1.25vh 0;
     }
 }
 @media screen and (min-aspect-ratio: 4/3) {
@@ -513,7 +638,7 @@ input {
     .supertitle {
         font-size: 5vh;
     }
-    .toggle-label {
+    .toggle-label-setting {
         height: 21.75vh;
         margin: 2.5vh;
         position: absolute;
@@ -521,19 +646,19 @@ input {
         width: 21.75vh;
         z-index: 1;
     }
-    .toggle-label {
+    .toggle-label-setting {
         font-size: 3.2vh;
     }
-    .toggle-label::before {
+    .toggle-label-setting::before {
         height: calc(50% - 1vh);
         left: 1vh;
         right: 1vh;
         transform: translateY(calc(100% + 1vh));
     }
-    .toggle-label span {
+    .toggle-label-setting span {
         line-height: 11.5vh;
     }
-    .toggle-label span:last-child {
+    .toggle-label-setting span:last-child {
         line-height: 10vh;
     }
     #toggle-month:checked ~ #toggle-label-month::before {
