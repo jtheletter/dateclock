@@ -1,6 +1,5 @@
 // Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
 
-// 1hr Update favicon, OG image.
 // 1hr Cookie settings.
 // 8hr Add lunar calculations. Or hide month button.
 // 2hr Audit performance.
