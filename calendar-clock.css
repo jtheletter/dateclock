@@ -1,3 +1,6 @@
+@charset 'UTF-8';
+/* csslint adjoining-classes: false, font-sizes: false, ids: false, qualified-headings: false; */
+
 @font-face {
     font-family: 'Source Code Pro';
     font-style: normal;
@@ -22,7 +25,7 @@
          url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
     unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
-* {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 body {
@@ -76,15 +79,15 @@ input {
     width: 100%;
 }
 .brand {
+    font-size: 3.3vw;
     font-weight: 700;
     line-height: 1.125;
-    font-size: 3.3vw;
     top: 31.25%;
 }
 .copyright {
-    top: 39.5%;
     font-size: 2vw;
     font-weight: 300;
+    top: 39.5%;
 }
 .utc-offset {
     bottom: 33.5%;
@@ -92,8 +95,8 @@ input {
     font-weight: 600;
 }
 .display-analog {
-    color: #fff;
     border-radius: 50%;
+    color: #fff;
     height: 97vw;
     margin: 2vw auto;
     position: relative;
@@ -162,7 +165,8 @@ input {
     top: 1.5%;
     width: 48.5%;
 }
-.pip > * {
+.pip > span,
+.pip > strong {
     font-weight: 300;
     height: 100%;
     left: -15%;
@@ -182,8 +186,8 @@ input {
     height: 29.5%; /* 55% - top */
     left: 46.75%; /* 50% - width / 2 */
     top: 25.5%;
-    transform-origin: 50% 83.1%; /* 50% eyeball% */
     transform: rotate(0);
+    transform-origin: 50% 83.1%; /* 50% eyeball% */
     width: 6.5%;
 }
 #toggle-theme:checked ~ * .hand-month {
@@ -194,8 +198,8 @@ input {
     height: 39.4%;
     left: 47.75%;
     top: 15.6%;
-    transform-origin: 50% 87.2%;
     transform: rotate(0);
+    transform-origin: 50% 87.2%;
     width: 4.5%;
 }
 #toggle-theme:checked ~ * .hand-day {
@@ -206,8 +210,8 @@ input {
     height: 46%;
     left: 48.75%;
     top: 9%;
-    transform-origin: 50% 89%;
     transform: rotate(0);
+    transform-origin: 50% 89%;
     width: 2.5%;
 }
 #toggle-theme:checked ~ * .hand-hour {
@@ -218,8 +222,8 @@ input {
     height: 51%;
     left: 49.5%;
     top: 4%;
-    transform-origin: 50% 90.3%;
     transform: rotate(0);
+    transform-origin: 50% 90.3%;
     width: 1%;
 }
 #toggle-theme:checked ~ * .hand-minute {
@@ -230,8 +234,8 @@ input {
     height: 53.6%;
     left: 49.875%;
     top: 1.4%;
-    transform-origin: 50% 90.7%;
     transform: rotate(0);
+    transform-origin: 50% 90.7%;
     width: 0.5%;
 }
 #toggle-theme:checked ~ * .hand-second {
@@ -416,6 +420,7 @@ input {
     display: none;
 }
 .panel {
+    background-color: rgb(34, 34, 34);
     background-color: rgba(34, 34, 34, 0.95);
     bottom: 0;
     color: #fff;
@@ -438,6 +443,7 @@ input {
     transform: translateX(0);
 }
 #toggle-theme:checked ~ .panel {
+    background-color: rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0.95);
     color: #000;
 }
