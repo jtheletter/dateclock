@@ -1,4 +1,4 @@
-// Lunisolar Calendar-Clock. (c) JP 2009 (concept). (c) 2018 (code, in progress).
+// Lunisolar Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
 
 // 1hr Day didn’t update after midnight, see screenshots, on airplane mode.
 // 1hr Start outlines “on”, turn off after pageload.
