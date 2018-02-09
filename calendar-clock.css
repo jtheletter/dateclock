@@ -469,10 +469,10 @@ input {
 }
 .panel li {
     list-style-position: inside;
-    list-style-type: disc;
+    list-style-type: circle;
     margin: 2.5vw 0;
-    padding-left: 7vw;
-    text-indent: -7vw;
+    padding-left: 5.5vw;
+    text-indent: -5vw;
 }
 .toggle-label-panel {
     background-color: #000;
@@ -615,6 +615,8 @@ input {
     }
     .panel li {
         margin: 1.25vh 0;
+        padding-left: 3.5vh;
+        text-indent: -3.125vh;
     }
 }
 @media screen and (min-aspect-ratio: 4/3) {
