@@ -8,7 +8,7 @@ Originally sketched in 2009:
 
 Soon thereafter I created a print version in Illustrator: http://calendardial.info/
 
-Motion version is in progress here.
+Motion version is developed here.
 
 (c) JP 2009 (concept).
 (c) JP 2018 (code).

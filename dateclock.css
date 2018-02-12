@@ -1,5 +1,11 @@
 @charset 'UTF-8';
-/* csslint adjoining-classes: false, font-sizes: false, ids: false, qualified-headings: false; */
+/*
+    csslint adjoining-classes: false,
+    font-sizes: false,
+    ids: false,
+    qualified-headings: false,
+    unique-headings: false,
+*/
 
 @font-face {
     font-family: 'Source Code Pro';
@@ -25,7 +31,7 @@
          url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
     unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
-*, *::before, *::after {
+*, *::before, *::after { /* csslint allow: universal-selector */
     box-sizing: border-box;
 }
 body {
@@ -190,7 +196,7 @@ input {
     transform-origin: 50% 83.1%; /* 50% eyeball% */
     width: 6.5%;
 }
-#toggle-theme:checked ~ * .hand-month {
+#toggle-theme:checked ~ .display-analog > .hand-month {
     background-color: #222;
 }
 .hand-day {
@@ -202,7 +208,7 @@ input {
     transform-origin: 50% 87.2%;
     width: 4.5%;
 }
-#toggle-theme:checked ~ * .hand-day {
+#toggle-theme:checked ~ .display-analog > .hand-day {
     background-color: #444;
 }
 .hand-hour {
@@ -214,7 +220,7 @@ input {
     transform-origin: 50% 89%;
     width: 2.5%;
 }
-#toggle-theme:checked ~ * .hand-hour {
+#toggle-theme:checked ~ .display-analog > .hand-hour {
     background-color: #666;
 }
 .hand-minute {
@@ -226,7 +232,7 @@ input {
     transform-origin: 50% 90.3%;
     width: 1%;
 }
-#toggle-theme:checked ~ * .hand-minute {
+#toggle-theme:checked ~ .display-analog > .hand-minute {
     background-color: #888;
 }
 .hand-second {
@@ -238,7 +244,7 @@ input {
     transform-origin: 50% 90.7%;
     width: 0.5%;
 }
-#toggle-theme:checked ~ * .hand-second {
+#toggle-theme:checked ~ .display-analog > .hand-second {
     background-color: #aaa;
 }
 .supertitle {
@@ -255,7 +261,7 @@ input {
     width: 26.5%;
     z-index: 1;
 }
-#toggle-theme:checked ~ * .supertitle {
+#toggle-theme:checked ~ .dial > .supertitle {
     background-color: #ccc;
     color: #000;
 }
@@ -279,37 +285,37 @@ input {
     display: inline-block;
     transition: color 0.25s;
 }
-#toggle-theme:checked ~ * .digit {
+#toggle-theme:checked ~ .display-digital > .digit {
     color: #ccc;
 }
 .digit-month {
     color: #ddd;
 }
-#toggle-theme:checked ~ * .digit-month {
+#toggle-theme:checked ~ .display-digital > .digit-month {
     color: #222;
 }
 .digit-day {
     color: #bbb;
 }
-#toggle-theme:checked ~ * .digit-day {
+#toggle-theme:checked ~ .display-digital > .digit-day {
     color: #444;
 }
 .digit-hour {
     color: #999;
 }
-#toggle-theme:checked ~ * .digit-hour {
+#toggle-theme:checked ~ .display-digital > .digit-hour {
     color: #666;
 }
 .digit-minute {
     color: #777;
 }
-#toggle-theme:checked ~ * .digit-minute {
+#toggle-theme:checked ~ .display-digital > .digit-minute {
     color: #888;
 }
 .digit-second {
     color: #555;
 }
-#toggle-theme:checked ~ * .digit-second {
+#toggle-theme:checked ~ .display-digital > .digit-second {
     color: #aaa;
 }
 .focal {
@@ -324,14 +330,17 @@ input {
     outline-color: rgba(204, 204, 204, 1);
     outline-width: 1vw;
 }
-#toggle-theme:checked ~ * .focal {
+#toggle-theme:checked ~ * > .focal {
     outline-color: rgba(119, 119, 119, 0);
 }
-#toggle-theme:checked ~ * .focal.focus {
+#toggle-theme:checked ~ * > .focal.focus {
     outline-color: rgba(119, 119, 119, 1);
 }
 .sep-hori {
     display: block;
+}
+.toggle-label-setting-wrap {
+    position: relative;
 }
 .toggle-label-setting {
     background-color: #000;
@@ -370,54 +379,48 @@ input {
     line-height: 10vw;
     top: auto;
 }
-#toggle-theme:checked ~ .toggle-label-setting {
+#toggle-theme:checked ~ .toggle-label-setting-wrap > .toggle-label-setting {
     background-color: #fff;
     color: #000;
 }
-#toggle-theme:checked ~ .toggle-label-setting::before {
+#toggle-theme:checked ~ .toggle-label-setting-wrap > .toggle-label-setting::before {
     background-color: #ccc;
 }
-#toggle-month:checked ~ #toggle-label-month::before {
+#toggle-month:checked ~ .toggle-label-setting-wrap > #toggle-label-month::before {
     transform: translateY(1vw);
 }
-#toggle-time:checked ~ #toggle-label-time::before {
+#toggle-time:checked ~ .toggle-label-setting-wrap > #toggle-label-time::before {
     transform: translateY(1vw);
 }
-#toggle-orientation:checked ~ #toggle-label-orientation::before {
+#toggle-orientation:checked ~ .toggle-label-setting-wrap > #toggle-label-orientation::before {
     transform: translateY(1vw);
 }
-#toggle-theme:checked ~ #toggle-label-theme::before {
+#toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-theme::before {
     transform: translateY(1vw);
 }
-#toggle-month:active ~ #toggle-label-month {
+#toggle-month:active ~ .toggle-label-setting-wrap > #toggle-label-month {
     background-color: #111;
 }
-#toggle-time:active ~ #toggle-label-time {
+#toggle-time:active ~ .toggle-label-setting-wrap > #toggle-label-time {
     background-color: #111;
 }
-#toggle-orientation:active ~ #toggle-label-orientation {
+#toggle-orientation:active ~ .toggle-label-setting-wrap > #toggle-label-orientation {
     background-color: #111;
 }
-#toggle-theme:active ~ #toggle-label-theme {
+#toggle-theme:active ~ .toggle-label-setting-wrap > #toggle-label-theme {
     background-color: #111;
 }
-#toggle-month:active ~ #toggle-theme:checked ~ #toggle-label-month {
+#toggle-month:active ~ #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-month {
     background-color: #eee;
 }
-#toggle-time:active ~ #toggle-theme:checked ~ #toggle-label-time {
+#toggle-time:active ~ #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-time {
     background-color: #eee;
 }
-#toggle-orientation:active ~ #toggle-theme:checked ~ #toggle-label-orientation {
+#toggle-orientation:active ~ #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-orientation {
     background-color: #eee;
 }
-#toggle-theme:active ~ #toggle-theme:checked ~ #toggle-label-theme {
+#toggle-theme:active ~ #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-theme {
     background-color: #eee;
-}
-#toggle-label-month {
-    cursor: not-allowed;
-}
-#toggle-label-month::before {
-    display: none;
 }
 .panel {
     background-color: rgb(34, 34, 34);
@@ -447,27 +450,23 @@ input {
     background-color: rgba(255, 255, 255, 0.95);
     color: #000;
 }
-.panel > * {
+.panel > h1, .panel > p, .panel > ul {
     margin: 5vw 0;
 }
-.panel > *:first-child {
-    margin-top: 0;
-}
-.panel > *:last-child {
-    margin-bottom: 0;
-}
-.panel .copyright {
+.panel > .copyright {
     font-size: 75%;
+    margin-bottom: 0;
     position: static;
 }
-.panel h1 {
+.panel > h1 {
     font-size: 120%;
     font-weight: 700;
+    margin-top: 0;
 }
-.panel ul {
+.panel > ul {
     margin-top: -1.25vw;
 }
-.panel li {
+.panel > ul > li {
     list-style-position: inside;
     list-style-type: circle;
     margin: 2.5vw 0;
@@ -587,16 +586,16 @@ input {
     .toggle-label-setting span:last-child {
         line-height: 8vh;
     }
-    #toggle-month:checked ~ #toggle-label-month::before {
+    #toggle-month:checked ~ .toggle-label-setting-wrap > #toggle-label-month::before {
         transform: translateY(0.5vh);
     }
-    #toggle-time:checked ~ #toggle-label-time::before {
+    #toggle-time:checked ~ .toggle-label-setting-wrap > #toggle-label-time::before {
         transform: translateY(0.5vh);
     }
-    #toggle-orientation:checked ~ #toggle-label-orientation::before {
+    #toggle-orientation:checked ~ .toggle-label-setting-wrap > #toggle-label-orientation::before {
         transform: translateY(0.5vh);
     }
-    #toggle-theme:checked ~ #toggle-label-theme::before {
+    #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-theme::before {
         transform: translateY(0.5vh);
     }
     .toggle-label-panel {
@@ -607,13 +606,13 @@ input {
         font-size: 2.25vh;
         padding: 9vh;
     }
-    .panel > * {
+    .panel > h1, .panel > p, .panel > ul {
         margin: 2.5vh 0;
     }
-    .panel ul {
+    .panel > ul {
         margin-top: -0.625vh;
     }
-    .panel li {
+    .panel > ul > li {
         margin: 1.25vh 0;
         padding-left: 3.5vh;
         text-indent: -3.125vh;
@@ -646,10 +645,15 @@ input {
     .supertitle {
         font-size: 5vh;
     }
+    .toggle-label-setting-wrap {
+        position: absolute;
+        right: 2.5vh;
+        top: 2.5vh;
+        width: 21.75vh;
+    }
     .toggle-label-setting {
         height: 21.75vh;
-        margin: 2.5vh;
-        position: absolute;
+        margin: 0 0 2.5vh 0;
         right: 0;
         width: 21.75vh;
         z-index: 1;
@@ -669,28 +673,16 @@ input {
     .toggle-label-setting span:last-child {
         line-height: 10vh;
     }
-    #toggle-month:checked ~ #toggle-label-month::before {
+    #toggle-month:checked ~ .toggle-label-setting-wrap > #toggle-label-month::before {
         transform: translateY(1vh);
     }
-    #toggle-time:checked ~ #toggle-label-time::before {
+    #toggle-time:checked ~ .toggle-label-setting-wrap > #toggle-label-time::before {
         transform: translateY(1vh);
     }
-    #toggle-orientation:checked ~ #toggle-label-orientation::before {
+    #toggle-orientation:checked ~ .toggle-label-setting-wrap > #toggle-label-orientation::before {
         transform: translateY(1vh);
     }
-    #toggle-theme:checked ~ #toggle-label-theme::before {
+    #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-theme::before {
         transform: translateY(1vh);
-    }
-    #toggle-label-month {
-        top: 0;
-    }
-    #toggle-label-time {
-        top: 24.25vh;
-    }
-    #toggle-label-orientation {
-        top: 48.5vh;
-    }
-    #toggle-label-theme {
-        top: 72.75vh;
     }
 }

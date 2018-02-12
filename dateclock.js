@@ -4,7 +4,7 @@
 // 1hr Start outlines “on”, turn off after pageload.
 // 2hr Cookie settings.
 // 2hr Troubleshoot older iOS.
-// 8hr Add lunar calculations. Or hide month button.
+// 8hr Add lunar calculations.
 // 2hr Audit performance. Minify. Reactify.
 
 document.addEventListener('DOMContentLoaded', function () {
