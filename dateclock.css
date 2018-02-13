@@ -86,15 +86,15 @@ input {
     width: 100%;
 }
 .brand {
-    font-size: 3.3vw;
+    font-size: 4.125vw;
     font-weight: 700;
     line-height: 1.125;
-    top: 31.25%;
+    top: 32.5%;
 }
 .copyright {
-    font-size: 2vw;
+    font-size: 2.33vw;
     font-weight: 300;
-    top: 39.5%;
+    top: 38.5%;
 }
 .utc-offset {
     bottom: 33.5%;
@@ -120,10 +120,10 @@ input {
 .display-digital {
     background-color: #000;
     display: inline-block;
-    font-size: 7.6vw;
+    font-size: 6.7vw;
     font-weight: 300;
     margin: 0 auto;
-    padding: 1vw 6vw 0.9vw;
+    padding: 2vw 7.5vw 1.25vw;
     transition: background-color 0.25s;
 }
 #toggle-theme:checked ~ .display-digital {
@@ -454,13 +454,8 @@ input {
 .panel > h1, .panel > p, .panel > ul {
     margin: 5vw 0;
 }
-.panel > .copyright {
-    font-size: 75%;
-    margin-bottom: 0;
-    position: static;
-}
 .panel > h1 {
-    font-size: 120%;
+    font-size: 133%;
     font-weight: 700;
     margin-top: 0;
 }
@@ -473,6 +468,11 @@ input {
     margin: 2.5vw 0;
     padding-left: 5.5vw;
     text-indent: -5vw;
+}
+.panel > .copyright {
+    font-size: 75%;
+    margin-bottom: 0;
+    position: static;
 }
 .toggle-label-panel {
     background-color: #000;
@@ -535,17 +535,18 @@ input {
         width: 70vh;
     }
     .brand {
-        font-size: 2.4vh;
+        font-size: 3vh;
     }
     .copyright {
-        font-size: 1vh;
+        font-size: 1.125vh;
+        top: 39%;
     }
     .utc-offset {
         font-size: 2.4vh;
     }
     .display-digital {
-        font-size: 5.6vh;
-        padding: 0.7vh 4.4vh 0.5vh;
+        font-size: 5.125vh;
+        padding: 0.75vh 4.5vh 0.67vh;
     }
     .pip-month {
         font-size: 4.4vh;
@@ -626,10 +627,17 @@ input {
         width: 85vh;
     }
     .brand {
-        font-size: 2.8vh;
+        font-size: 3.5vh;
     }
     .copyright {
-        font-size: 1.1vh;
+        font-size: 1.25vh;
+    }
+    .utc-offset {
+        font-size: 2.67vh;
+    }
+    .display-digital {
+        font-size: 5.2vh;
+        padding: 0.9vh 4.5vh 0.67vh;
     }
     .pip-month {
         font-size: 5.5vh;
