@@ -3,11 +3,11 @@
     <head>
 
         <meta charset="UTF-8">
-        <title>Lunisolar Date Clock</title>
+        <title>Date Clock</title>
 
         <meta name="viewport" content="initial-scale=1.0">
         <meta name="description" content="Analog layering of date and time.">
-        <meta name="keywords" content="lunisolar, lunasolar, lunarsolar, lunar solar, calendar clock, alternative calendar, alternative clock, analog calendar, analog clock, animated calendar, horologe, horological, horology, horologist, what time is it, what is time, natural time, cyclic time, holistic time, date time, datetime, date clock, dateclock second, minute, hour, day, month, dst, daylight saving time, daylight savings time, daylight shifting time, daylight shifted time, daylight shift time, dst, standard time, st, gregorian month, lunar month, JP, J P, J.P, J.P.">
+        <meta name="keywords" content="Analog layering of date and time, An holistic view of cyclic time, lunisolar, lunasolar, lunarsolar, lunar solar, calendar clock, alternative calendar, alternative clock, analog calendar, analog clock, animated calendar, horologe, horological, horology, horologist, what time is it, what is time, natural time, cyclic time, holistic time, date time, datetime, date clock, dateclock second, minute, hour, day, month, dst, daylight saving time, daylight savings time, daylight shifting time, daylight shifted time, daylight shift time, dst, standard time, st, gregorian month, lunar month, JP, J P, J.P, J.P.">
         <meta name="theme-color" content="#777">
         <meta name="robots" content="index, follow">
 
@@ -48,15 +48,13 @@
 
         <script src="dateclock.js"></script>
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45587209-3"></script>
         <script>
-            /* jshint ignore:start */
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            ga('create','UA-45587209-3','auto');
-            ga('send','pageview');
-            /* jshint ignore:end */
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-45587209-3');
         </script>
 
     </head>
@@ -120,7 +118,7 @@
                 <li>Origin at top vs bottom.</li>
                 <li>Colors.</li>
             </ul>
-            <p>Origins are aligned:</p>
+            <p>Each dial is centrally aligned on its origin:</p>
             <ul>
                 <li>First second of a minute is zero.</li>
                 <li>First minute of an hour is zero.</li>

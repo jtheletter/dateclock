@@ -1,12 +1,12 @@
 @charset 'UTF-8';
 /*
-    csslint adjoining-classes: false,
+    csslint
+    adjoining-classes: false,
     font-sizes: false,
     ids: false,
     qualified-headings: false,
     unique-headings: false,
 */
-
 @font-face {
     font-family: 'Source Code Pro';
     font-style: normal;
@@ -39,6 +39,7 @@ body {
     font-family: 'Source Code Pro', monospace;
     font-size: 0;
     text-align: center;
+    -o-user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
