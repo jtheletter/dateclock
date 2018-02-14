@@ -297,16 +297,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Save user prefs to local storage.
     els.toggleMonth.addEventListener('change', () => {
-        localStorage.setItem('month', els.toggleMonth.checked);
+        try {
+            localStorage.setItem('month', els.toggleMonth.checked);
+        } catch (err) {
+            console.error(err);
+        }
     });
     els.toggleTime.addEventListener('change', () => {
-        localStorage.setItem('time', els.toggleTime.checked);
+        try {
+            localStorage.setItem('time', els.toggleTime.checked);
+        } catch (err) {
+            console.error(err);
+        }
     });
     els.toggleOrientation.addEventListener('change', () => {
-        localStorage.setItem('orientation', els.toggleOrientation.checked);
+        try {
+            localStorage.setItem('orientation', els.toggleOrientation.checked);
+        } catch (err) {
+            console.error(err);
+        }
     });
     els.toggleTheme.addEventListener('change', () => {
-        localStorage.setItem('theme', els.toggleTheme.checked);
+        try {
+            localStorage.setItem('theme', els.toggleTheme.checked);
+        } catch (err) {
+            console.error(err);
+        }
     });
 
     // Scroll panel to top on open or close.
