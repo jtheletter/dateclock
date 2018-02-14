@@ -1,6 +1,5 @@
 // Lunisolar Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
 
-// 2hr Day didn’t update after midnight, see screenshots, on airplane mode.
 // 8hr Audit performance. Minify. Reactify.
 // 2hr Troubleshoot older iOS.
 // 8hr Add lunar calculations.
@@ -134,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (daysInMonth !== numberOfDayPips) { // Update pips for days of month, if total days changes.
             drawPipDay(datetime);
         }
+        setOffset(datetime); // Update offset.
     }
     function setDay (datetime = new Date()) {
         let day = datetime.getDate();
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let degs = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
         rotate(els.handDay, degs);
         els.digitDay.textContent = day < 10 ? `0${day}` : day;
-        prevSetDay = datetime;
+        setMonth(datetime); // Update month.
     }
     function setHour (datetime = new Date()) {
         let hour = datetime.getHours();
@@ -150,12 +150,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let degs = (hour + minute / 60) / 24 * 360;
         rotate(els.handHour, degs);
         els.digitHour.textContent = hour < 10 ? `0${hour}` : hour;
-        if (minute === 0 || datetime - prevSetDay > 1000 * 60 * 60) { // Update day, month, & offset each hour.
-            setDay(datetime);
-            setMonth(datetime);
-            setOffset(datetime);
-        }
-        prevSetHour = datetime;
+        setDay(datetime); // Update day.
+        prevSetHourTime = datetime;
     }
     function setMinute (datetime = new Date()) {
         let minute = datetime.getMinutes();
@@ -163,12 +159,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let degs = (minute + second / 60) / 60 * 360;
         rotate(els.handMinute, degs);
         els.digitMinute.textContent = minute < 10 ? `0${minute}` : minute;
-        if (second === 0 || datetime - prevSetHour > 1000 * 60) { // Update hour each minute.
+        if (second === 0 || datetime - prevSetHourTime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
             setHour(datetime);
         }
-        prevSetMinute = datetime;
+        prevSetMinuteTime = datetime;
     }
-    function setClock (datetime = new Date()) { // Set seconds. Set larger units as needed.
+    function setSecond (datetime = new Date()) { // Set seconds. Set larger units as needed.
         if (isDstExpected(datetime) && !els.toggleTime.checked) {
             datetime = new Date(datetime.valueOf() - hoursInDst * 60 * 60 * 1000);
         } else if (!isDstExpected(datetime) && els.toggleTime.checked) {
@@ -179,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let degs = (second + millisecond / 1000) / 60 * 360;
         rotate(els.handSecond, degs);
         els.digitSecond.textContent = second < 10 ? `0${second}` : second;
-        if (millisecond === 0 || datetime - prevSetMinute > 1000) { // Update minute each second.
+        if (millisecond === 0 || datetime - prevSetMinuteTime > 1000) { // Update minute on whole seconds or after one second.
             setMinute(datetime);
         }
     }
@@ -203,9 +199,8 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error(err);
     }
 
-    let prevSetDay = 0;
-    let prevSetHour = 0;
-    let prevSetMinute = 0;
+    let prevSetHourTime = 0;
+    let prevSetMinuteTime = 0;
 
     let els = {};
 
@@ -290,9 +285,8 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitSecond.addEventListener('mouseleave', blurSecond);
 
     els.toggleLabelTime.addEventListener('click', () => { // Trigger re-calculations.
-        prevSetDay = 0;
-        prevSetHour = 0;
-        prevSetMinute = 0;
+        prevSetHourTime = 0;
+        prevSetMinuteTime = 0;
     });
 
     // Save user prefs to local storage.
@@ -351,8 +345,8 @@ document.addEventListener('DOMContentLoaded', function () {
     drawPipHour();
     drawPipMinute();
 
-    setClock(datetime);
-    setInterval(setClock, 40); // Arbitray rate that looks good enough onscreen.
+    setSecond(datetime);
+    setInterval(setSecond, 40); // Arbitray rate that looks good enough onscreen.
 
     // Demo highlights for new user.
     if (userPrefMonth === null && userPrefTime === null && userPrefOrientation === null && userPrefTheme === null) {
