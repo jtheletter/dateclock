@@ -354,4 +354,18 @@ document.addEventListener('DOMContentLoaded', function () {
     setClock(datetime);
     setInterval(setClock, 40); // Arbitray rate that looks good enough onscreen.
 
+    // Demo highlights for new user.
+    if (userPrefMonth === null && userPrefTime === null && userPrefOrientation === null && userPrefTheme === null) {
+        setTimeout(focusMonth, 0);
+        setTimeout(blurMonth, 1000);
+        setTimeout(focusDay, 1000);
+        setTimeout(blurDay, 2000);
+        setTimeout(focusHour, 2000);
+        setTimeout(blurHour, 3000);
+        setTimeout(focusMinute, 3000);
+        setTimeout(blurMinute, 4000);
+        setTimeout(focusSecond, 4000);
+        setTimeout(blurSecond, 5000);
+    }
+
 });
