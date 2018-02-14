@@ -325,7 +325,7 @@ input {
     outline-offset: 0.5vw;
     outline-style: double;
     outline-width: 0;
-    transition: outline-width 0.125s;
+    transition: outline-width 0.25s;
 }
 .focal.focus {
     outline-color: rgba(204, 204, 204, 1);

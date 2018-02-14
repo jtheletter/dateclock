@@ -1,10 +1,8 @@
 // Lunisolar Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
 
-// 1hr Incr width of space b/t day & hr.
-// 2hr Cookie settings.
+// 2hr Day didn’t update after midnight, see screenshots, on airplane mode.
+// 8hr Audit performance. Minify. Reactify.
 // 2hr Troubleshoot older iOS.
-// 2hr Audit performance. Minify. Reactify.
-// 1hr Day didn’t update after midnight, see screenshots, on airplane mode.
 // 8hr Add lunar calculations.
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -192,13 +190,29 @@ document.addEventListener('DOMContentLoaded', function () {
     let numberOfDayPips = getDaysInMonth(datetime);
     let hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
 
+    let userPrefMonth = null;
+    let userPrefTime = null;
+    let userPrefOrientation = null;
+    let userPrefTheme = null;
+    try {
+        userPrefMonth = localStorage.getItem('month') === 'true' ? true : localStorage.getItem('month') === 'false' ? false : null;
+        userPrefTime = localStorage.getItem('time') === 'true' ? true : localStorage.getItem('time') === 'false' ? false : null;
+        userPrefOrientation = localStorage.getItem('orientation') === 'true' ? true : localStorage.getItem('orientation') === 'false' ? false : null;
+        userPrefTheme = localStorage.getItem('theme') === 'true' ? true : localStorage.getItem('theme') === 'false' ? false : null;
+    } catch (err) { // Local storage blocked by user.
+        console.error(err);
+    }
+
     let prevSetDay = 0;
     let prevSetHour = 0;
     let prevSetMinute = 0;
 
     let els = {};
 
+    els.toggleMonth = document.getElementById('toggle-month');
     els.toggleTime = document.getElementById('toggle-time');
+    els.toggleOrientation = document.getElementById('toggle-orientation');
+    els.toggleTheme = document.getElementById('toggle-theme');
 
     els.supertitleMonth = document.getElementById('supertitle-month');
     els.supertitleDay = document.getElementById('supertitle-day');
@@ -220,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitHour = document.getElementById('digit-hour');
     els.digitMinute = document.getElementById('digit-minute');
     els.digitSecond = document.getElementById('digit-second');
+
     els.toggleLabelTime = document.getElementById('toggle-label-time');
     els.panel = document.getElementById('panel');
     els.toggleLabelPanel = document.getElementById('toggle-label-panel');
@@ -280,11 +295,40 @@ document.addEventListener('DOMContentLoaded', function () {
         prevSetMinute = 0;
     });
 
+    // Save user prefs to local storage.
+    els.toggleMonth.addEventListener('change', () => {
+        localStorage.setItem('month', els.toggleMonth.checked);
+    });
+    els.toggleTime.addEventListener('change', () => {
+        localStorage.setItem('time', els.toggleTime.checked);
+    });
+    els.toggleOrientation.addEventListener('change', () => {
+        localStorage.setItem('orientation', els.toggleOrientation.checked);
+    });
+    els.toggleTheme.addEventListener('change', () => {
+        localStorage.setItem('theme', els.toggleTheme.checked);
+    });
+
+    // Scroll panel to top on open or close.
     els.toggleLabelPanel.addEventListener('click', () => {
         els.panel.scrollTo(0, 0);
     });
 
-    els.toggleTime.checked = isDstExpected(datetime);
+    // Set el prefs to saved user prefs if stored.
+    if (userPrefMonth !== null) {
+        els.toggleMonth.checked = userPrefMonth;
+    }
+    if (userPrefTime !== null) {
+        els.toggleTime.checked = userPrefTime;
+    } else {
+        els.toggleTime.checked = isDstExpected(datetime); // Use local DST expectation if no user pref stored.
+    }
+    if (userPrefOrientation !== null) {
+        els.toggleOrientation.checked = userPrefOrientation;
+    }
+    if (userPrefTheme !== null) {
+        els.toggleTheme.checked = userPrefTheme;
+    }
 
     drawPipMonth();
     drawPipDay(datetime);
