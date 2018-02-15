@@ -2,8 +2,6 @@
 
 // Update offset on dst toggle.
 
-// Disable demo on focus, not buttons. Remove event listener when moot.
-
 // PageSpeed - https://developers.google.com/speed/pagespeed/insights/
 // SEO - https://support.google.com/webmasters/answer/7451184
 // Sitemap - https://support.google.com/webmasters/answer/156184
@@ -18,12 +16,23 @@
 // Add lunar calculations.
 
 document.addEventListener('DOMContentLoaded', function () {
-    function focusMonth (evt) {
+    function updateHighlightFlag () {
+        if (userHasHighlighted) {
+            return;
+        }
+        userHasHighlighted = true;
+        try {
+            localStorage.setItem('userHasHighlighted', true);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    function focusMonth () {
         els.handMonth.classList.add('focus');
         els.supertitleMonth.classList.add('focus');
         els.digitMonth.classList.add('focus');
     }
-    function blurMonth (evt) {
+    function blurMonth () {
         els.handMonth.classList.remove('focus');
         els.supertitleMonth.classList.remove('focus');
         els.digitMonth.classList.remove('focus');
@@ -200,11 +209,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var numberOfDayPips = getDaysInMonth(datetime);
     var hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
 
+    var userHasHighlighted = null;
     var userPrefMonth = null;
     var userPrefTime = null;
     var userPrefOrientation = null;
     var userPrefTheme = null;
     try {
+        userHasHighlighted = localStorage.getItem('userHasHighlighted') === 'true' ? true : localStorage.getItem('userHasHighlighted') === 'false' ? false : null;
         userPrefMonth = localStorage.getItem('month') === 'true' ? true : localStorage.getItem('month') === 'false' ? false : null;
         userPrefTime = localStorage.getItem('time') === 'true' ? true : localStorage.getItem('time') === 'false' ? false : null;
         userPrefOrientation = localStorage.getItem('orientation') === 'true' ? true : localStorage.getItem('orientation') === 'false' ? false : null;
@@ -250,60 +261,81 @@ document.addEventListener('DOMContentLoaded', function () {
 
     els.handMonth.addEventListener('touchstart', focusMonth);
     els.handMonth.addEventListener('mouseenter', focusMonth);
+    els.handMonth.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.handMonth.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.handMonth.addEventListener('touchend', blurMonth);
     els.handMonth.addEventListener('mouseleave', blurMonth);
 
     els.digitMonth.addEventListener('touchstart', focusMonth);
     els.digitMonth.addEventListener('mouseenter', focusMonth);
+    els.digitMonth.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.digitMonth.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.digitMonth.addEventListener('touchend', blurMonth);
     els.digitMonth.addEventListener('mouseleave', blurMonth);
 
     els.handDay.addEventListener('touchstart', focusDay);
     els.handDay.addEventListener('mouseenter', focusDay);
+    els.handDay.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.handDay.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.handDay.addEventListener('touchend', blurDay);
     els.handDay.addEventListener('mouseleave', blurDay);
 
     els.digitDay.addEventListener('touchstart', focusDay);
     els.digitDay.addEventListener('mouseenter', focusDay);
+    els.digitDay.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.digitDay.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.digitDay.addEventListener('touchend', blurDay);
     els.digitDay.addEventListener('mouseleave', blurDay);
 
     els.handHour.addEventListener('touchstart', focusHour);
     els.handHour.addEventListener('mouseenter', focusHour);
+    els.handHour.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.handHour.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.handHour.addEventListener('touchend', blurHour);
     els.handHour.addEventListener('mouseleave', blurHour);
 
     els.digitHour.addEventListener('touchstart', focusHour);
     els.digitHour.addEventListener('mouseenter', focusHour);
+    els.digitHour.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.digitHour.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.digitHour.addEventListener('touchend', blurHour);
     els.digitHour.addEventListener('mouseleave', blurHour);
 
     els.handMinute.addEventListener('touchstart', focusMinute);
     els.handMinute.addEventListener('mouseenter', focusMinute);
+    els.handMinute.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.handMinute.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.handMinute.addEventListener('touchend', blurMinute);
     els.handMinute.addEventListener('mouseleave', blurMinute);
 
     els.digitMinute.addEventListener('touchstart', focusMinute);
     els.digitMinute.addEventListener('mouseenter', focusMinute);
+    els.digitMinute.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.digitMinute.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.digitMinute.addEventListener('touchend', blurMinute);
     els.digitMinute.addEventListener('mouseleave', blurMinute);
 
     els.handSecond.addEventListener('touchstart', focusSecond);
     els.handSecond.addEventListener('mouseenter', focusSecond);
+    els.handSecond.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.handSecond.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.handSecond.addEventListener('touchend', blurSecond);
     els.handSecond.addEventListener('mouseleave', blurSecond);
 
     els.digitSecond.addEventListener('touchstart', focusSecond);
     els.digitSecond.addEventListener('mouseenter', focusSecond);
+    els.digitSecond.addEventListener('touchstart', updateHighlightFlag, { once: true });
+    els.digitSecond.addEventListener('mouseenter', updateHighlightFlag, { once: true });
     els.digitSecond.addEventListener('touchend', blurSecond);
     els.digitSecond.addEventListener('mouseleave', blurSecond);
 
-    els.toggleLabelTime.addEventListener('click', function () { // Trigger re-calculations.
+    // Trigger datetime re-calculations when user toggles DST/ST.
+    els.toggleLabelTime.addEventListener('click', function () {
         prevSetHourTime = 0;
         prevSetMinuteTime = 0;
     });
 
-    // Save user prefs to local storage.
+    // Save user prefs for all toggles to local storage.
     els.toggleMonth.addEventListener('change', function () {
         try {
             localStorage.setItem('month', els.toggleMonth.checked);
@@ -363,16 +395,16 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(setSecond, 40); // Arbitray rate that looks good enough onscreen.
 
     // Demo highlights for new user.
-    if (userPrefMonth === null && userPrefTime === null && userPrefOrientation === null && userPrefTheme === null) {
-        setTimeout(focusMonth, 0);
+    if (!userHasHighlighted) {
+        setTimeout(function () { if (!userHasHighlighted) { focusMonth(); } }, 0);
         setTimeout(blurMonth, 1000);
-        setTimeout(focusDay, 1000);
+        setTimeout(function () { if (!userHasHighlighted) { focusDay(); } }, 1000);
         setTimeout(blurDay, 2000);
-        setTimeout(focusHour, 2000);
+        setTimeout(function () { if (!userHasHighlighted) { focusHour(); } }, 2000);
         setTimeout(blurHour, 3000);
-        setTimeout(focusMinute, 3000);
+        setTimeout(function () { if (!userHasHighlighted) { focusMinute(); } }, 3000);
         setTimeout(blurMinute, 4000);
-        setTimeout(focusSecond, 4000);
+        setTimeout(function () { if (!userHasHighlighted) { focusSecond(); } }, 4000);
         setTimeout(blurSecond, 5000);
     }
 
