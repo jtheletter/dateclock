@@ -1,17 +1,20 @@
 {
+    "author": "JP",
     "background_color": "#777777",
+    "categories": [
+        "education",
+        "entertainment",
+        "lifestyle",
+        "productivity",
+        "utilities"
+    ],
     "description": "Analog layering of date and time.",
     "dir": "ltr",
     "display": "standalone",
     "icons": [
         {
-            "src":"favicomatic/favicon-196x196.png",
-            "sizes": "196x196",
-            "type": "image/png"
-        },
-        {
-            "src":"favicomatic/favicon-96x96.png",
-            "sizes": "96x96",
+            "src":"favicomatic/favicon-16x16.png",
+            "sizes": "16x16",
             "type": "image/png"
         },
         {
@@ -20,18 +23,66 @@
             "type": "image/png"
         },
         {
-            "src":"favicomatic/favicon-16x16.png",
-            "sizes": "16x16",
+            "src":"favicomatic/favicon-96x96.png",
+            "sizes": "96x96",
             "type": "image/png"
         },
         {
             "src":"favicomatic/favicon-128.png",
             "sizes": "128x128",
             "type": "image/png"
+        },
+        {
+            "src":"favicomatic/favicon-196x196.png",
+            "sizes": "196x196",
+            "type": "image/png"
         }
     ],
     "lang": "en-US",
     "name": "Date Clock",
+    "orientation": "any",
+    "screenshots": [
+        {
+            "src": "screenshots/dateclock-dark.png",
+            "sizes": "960x984",
+            "type": "image/png"
+        },
+        {
+            "src": "screenshots/dateclock-highlight.png",
+            "sizes": "960x984",
+            "type": "image/png"
+        },
+        {
+            "src": "screenshots/dateclock-info-dark.png",
+            "sizes": "960x984",
+            "type": "image/png"
+        },
+        {
+            "src": "screenshots/dateclock-info.png",
+            "sizes": "960x984",
+            "type": "image/png"
+        },
+        {
+            "src": "screenshots/dateclock-sundial.png",
+            "sizes": "960x984",
+            "type": "image/png"
+        },
+        {
+            "src": "screenshots/dateclock-wide-dark.png",
+            "sizes": "1920x984",
+            "type": "image/png"
+        },
+        {
+            "src": "screenshots/dateclock-wide.png",
+            "sizes": "1920x984",
+            "type": "image/png"
+        },
+        {
+            "src": "screenshots/dateclock.png",
+            "sizes": "960x984",
+            "type": "image/png"
+        }
+    ],
     "short_name": "Date Clock",
     "start_url": "/index.html",
     "theme_color": "#777777"
