@@ -48,13 +48,13 @@
         <meta name="author" content="JP">
         <link rel="canonical" href="http://dateclock.net/">
         <meta property="og:description" content="Analog layers of date and time. An holistic horologe of cyclic progression.">
-        <meta property="og:image" content="http://dateclock.net/dateclock.png?v=2">
+        <meta property="og:image" content="http://dateclock.net/dateclock-preview.png">
         <meta property="og:title" content="Date Clock">
         <meta property="og:type" content="website">
         <meta property="og:url" content="http://dateclock.net/">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:description" content="Analog layers of date and time. An holistic horologe of cyclic progression.">
-        <meta name="twitter:image" content="http://dateclock.net/dateclock.png?v=2">
+        <meta name="twitter:image" content="http://dateclock.net/dateclock-preview.png">
         <meta name="twitter:title" content="Date Clock">
 
         <!-- Analytics. -->
@@ -76,6 +76,30 @@
         <input id="toggle-panel" type="checkbox">
 
         <div class="bg"></div>
+
+        <div class="panel" id="panel">
+            <h1>DATE&#xa0;CLOCK</h1>
+            <p>Analog layers of date and time. An holistic horologe of cyclic progression.</p>
+            <p>Touch hands or digits to show names.</p>
+            <p>Toggle:</p>
+            <ul>
+                <!-- <li>Gregorian vs lunar months.</li> -->
+                <li>Daylight Shifting (&#x201c;Saving&#x201d;) vs Standard&#xa0;Time.</li>
+                <li>Origin at top vs bottom.</li>
+                <li>Colors.</li>
+            </ul>
+            <p>Each dial is centrally aligned on its origin:</p>
+            <ul>
+                <li>First second of a minute is zero.</li>
+                <li>First minute of an hour is zero.</li>
+                <li>First hour of a day is zero.</li>
+                <li>First day of a month is one.</li>
+                <li>First month of a year is one.</li>
+            </ul>
+            <p class="copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
+        </div>
+
+        <label class="toggle-label-panel" id="toggle-label-panel" for="toggle-panel" title="View Info"><span></span></label>
 
         <div class="dial">
             <p class="supertitle" id="supertitle-month">Month</p>
@@ -115,30 +139,6 @@
             <label class="toggle-label-setting" id="toggle-label-orientation" for="toggle-orientation" title="Toggle Orientation"><span>Clock</span><span>Sundial</span></label>
             <label class="toggle-label-setting" id="toggle-label-theme" for="toggle-theme" title="Toggle Theme"><span>Light</span><span>Dark</span></label>
         </div>
-
-        <div class="panel" id="panel">
-            <h1>DATE&#xa0;CLOCK</h1>
-            <p>An holistic view of cyclic time.</p>
-            <p>Touch hands or digits to show names.</p>
-            <p>Toggle:</p>
-            <ul>
-                <!-- <li>Gregorian vs lunar months.</li> -->
-                <li>Daylight Shifting (&#x201c;Saving&#x201d;) vs Standard&#xa0;Time.</li>
-                <li>Origin at top vs bottom.</li>
-                <li>Colors.</li>
-            </ul>
-            <p>Each dial is centrally aligned on its origin:</p>
-            <ul>
-                <li>First second of a minute is zero.</li>
-                <li>First minute of an hour is zero.</li>
-                <li>First hour of a day is zero.</li>
-                <li>First day of a month is one.</li>
-                <li>First month of a year is one.</li>
-            </ul>
-            <p class="copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
-        </div>
-
-        <label class="toggle-label-panel" id="toggle-label-panel" for="toggle-panel" title="View Info"><span></span></label>
 
     </body>
 </html>

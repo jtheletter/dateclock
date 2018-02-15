@@ -1,4 +1,5 @@
 @charset 'UTF-8';
+/* Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code). */
 /*
     csslint
     adjoining-classes: false,
@@ -63,6 +64,111 @@ input {
 }
 #toggle-theme:checked ~ .bg {
     background-color: #ddd;
+}
+.panel {
+    background-color: rgb(34, 34, 34);
+    background-color: rgba(34, 34, 34, 0.95);
+    bottom: 0;
+    color: #fff;
+    font-size: 5vw;
+    font-weight: 300;
+    height: 100%;
+    left: 0;
+    line-height: 1.33;
+    overflow: scroll;
+    padding: 16vw;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    transform: translateX(-100%);
+    transition: background-color 0.25s, color 0.25s, transform 0.25s;
+    width: 100%;
+    z-index: 50;
+}
+#toggle-panel:checked ~ .panel {
+    transform: translateX(0);
+}
+#toggle-theme:checked ~ .panel {
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #000;
+}
+.panel > h1, .panel > p, .panel > ul {
+    margin: 5vw 0;
+}
+.panel > h1 {
+    font-size: 133%;
+    font-weight: 700;
+    margin-top: 0;
+}
+.panel > ul {
+    margin-top: -1.25vw;
+}
+.panel > ul > li {
+    list-style-position: inside;
+    list-style-type: circle;
+    margin: 2.5vw 0;
+    padding-left: 5.5vw;
+    text-indent: -5vw;
+}
+.panel > .copyright {
+    font-size: 75%;
+    margin-bottom: 0;
+    position: static;
+}
+.toggle-label-panel {
+    background-color: #000;
+    cursor: pointer;
+    height: 13.1vw;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: background-color 0.25s;
+    width: 13.1vw;
+    z-index: 100;
+}
+.toggle-label-panel:active {
+    background-color: #333;
+}
+#toggle-theme:checked ~ .toggle-label-panel {
+    background-color: #aaa;
+}
+#toggle-theme:checked ~ .toggle-label-panel:active {
+    background-color: #eee;
+}
+.toggle-label-panel::before,
+.toggle-label-panel span,
+.toggle-label-panel::after {
+    background-color: #fff;
+    content: '';
+    height: 5%;
+    left: 12.5%;
+    position: absolute;
+    transition: background-color 0.25s, transform 0.25s;
+    width: 75%;
+}
+.toggle-label-panel::before {
+    top: 27.5%;
+}
+.toggle-label-panel span {
+    top: 47.5%;
+}
+.toggle-label-panel::after {
+    top: 67.5%;
+}
+#toggle-theme:checked ~ .toggle-label-panel::before,
+#toggle-theme:checked ~ .toggle-label-panel span,
+#toggle-theme:checked ~ .toggle-label-panel::after {
+    background-color: #000;
+}
+#toggle-panel:checked ~ .toggle-label-panel::before {
+    transform: translate(0%, 400%) rotate(45deg);
+}
+#toggle-panel:checked ~ .toggle-label-panel span {
+    transform: translateX(-120%);
+}
+#toggle-panel:checked ~ .toggle-label-panel::after {
+    transform: translate(0%, -400%) rotate(-45deg);
 }
 .dial {
     background-color: #000;
@@ -437,112 +543,26 @@ input {
 #toggle-theme:active ~ #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-theme {
     background-color: #eee;
 }
-.panel {
-    background-color: rgb(34, 34, 34);
-    background-color: rgba(34, 34, 34, 0.95);
-    bottom: 0;
-    color: #fff;
-    font-size: 5vw;
-    font-weight: 300;
-    height: 100%;
-    left: 0;
-    line-height: 1.33;
-    overflow: scroll;
-    padding: 16vw;
-    position: absolute;
-    text-align: left;
-    top: 0;
-    transform: translateX(-100%);
-    transition: background-color 0.25s, color 0.25s, transform 0.25s;
-    width: 100%;
-    z-index: 50;
-}
-#toggle-panel:checked ~ .panel {
-    transform: translateX(0);
-}
-#toggle-theme:checked ~ .panel {
-    background-color: rgb(255, 255, 255);
-    background-color: rgba(255, 255, 255, 0.95);
-    color: #000;
-}
-.panel > h1, .panel > p, .panel > ul {
-    margin: 5vw 0;
-}
-.panel > h1 {
-    font-size: 133%;
-    font-weight: 700;
-    margin-top: 0;
-}
-.panel > ul {
-    margin-top: -1.25vw;
-}
-.panel > ul > li {
-    list-style-position: inside;
-    list-style-type: circle;
-    margin: 2.5vw 0;
-    padding-left: 5.5vw;
-    text-indent: -5vw;
-}
-.panel > .copyright {
-    font-size: 75%;
-    margin-bottom: 0;
-    position: static;
-}
-.toggle-label-panel {
-    background-color: #000;
-    cursor: pointer;
-    height: 13.1vw;
-    left: 0;
-    position: fixed;
-    top: 0;
-    transition: background-color 0.25s;
-    width: 13.1vw;
-    z-index: 100;
-}
-.toggle-label-panel:active {
-    background-color: #333;
-}
-#toggle-theme:checked ~ .toggle-label-panel {
-    background-color: #aaa;
-}
-#toggle-theme:checked ~ .toggle-label-panel:active {
-    background-color: #eee;
-}
-.toggle-label-panel::before,
-.toggle-label-panel span,
-.toggle-label-panel::after {
-    background-color: #fff;
-    content: '';
-    height: 5%;
-    left: 12.5%;
-    position: absolute;
-    transition: background-color 0.25s, transform 0.25s;
-    width: 75%;
-}
-.toggle-label-panel::before {
-    top: 27.5%;
-}
-.toggle-label-panel span {
-    top: 47.5%;
-}
-.toggle-label-panel::after {
-    top: 67.5%;
-}
-#toggle-theme:checked ~ .toggle-label-panel::before,
-#toggle-theme:checked ~ .toggle-label-panel span,
-#toggle-theme:checked ~ .toggle-label-panel::after {
-    background-color: #000;
-}
-#toggle-panel:checked ~ .toggle-label-panel::before {
-    transform: translate(0%, 400%) rotate(45deg);
-}
-#toggle-panel:checked ~ .toggle-label-panel span {
-    transform: translateX(-120%);
-}
-#toggle-panel:checked ~ .toggle-label-panel::after {
-    transform: translate(0%, -400%) rotate(-45deg);
-}
 @media screen and (min-aspect-ratio: 3/4) {
+    .panel {
+        font-size: 2.25vh;
+        padding: 9vh;
+    }
+    .panel > h1, .panel > p, .panel > ul {
+        margin: 2.5vh 0;
+    }
+    .panel > ul {
+        margin-top: -0.625vh;
+    }
+    .panel > ul > li {
+        margin: 1.25vh 0;
+        padding-left: 3.5vh;
+        text-indent: -3.125vh;
+    }
+    .toggle-label-panel {
+        height: 7vh;
+        width: 7vh;
+    }
     .dial, .display-analog {
         height: 70vh;
         margin: 1.5vh auto;
@@ -613,25 +633,6 @@ input {
     }
     #toggle-theme:checked ~ .toggle-label-setting-wrap > #toggle-label-theme::before {
         transform: translateY(0.5vh);
-    }
-    .toggle-label-panel {
-        height: 7vh;
-        width: 7vh;
-    }
-    .panel {
-        font-size: 2.25vh;
-        padding: 9vh;
-    }
-    .panel > h1, .panel > p, .panel > ul {
-        margin: 2.5vh 0;
-    }
-    .panel > ul {
-        margin-top: -0.625vh;
-    }
-    .panel > ul > li {
-        margin: 1.25vh 0;
-        padding-left: 3.5vh;
-        text-indent: -3.125vh;
     }
 }
 @media screen and (min-aspect-ratio: 4/3) {

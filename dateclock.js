@@ -1,17 +1,20 @@
-// Lunisolar Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
+// Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
+
+// Update offset on dst toggle.
 
 // Align widths of digi disp & buttons.
 // Vertically center content in portrait.
-// Disable demo on focus, not buttons.
-// Move panel higher in dom for google.
+// Disable demo on focus, not buttons. Remove event listener when moot.
 
 // PageSpeed - https://developers.google.com/speed/pagespeed/insights/
 // SEO - https://support.google.com/webmasters/answer/7451184
 // Sitemap - https://support.google.com/webmasters/answer/156184
 
+// Add email.
+
 // Minify.
 
-// Reactify?
+// Reactify? - Save time units to state. Periodically check if current unit differs from saved unit. Only touch dom if differ.
 // Sassify?
 
 // Add lunar calculations.
