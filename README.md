@@ -1,10 +1,10 @@
-# Lunisolar Date Clock
+# Date Clock
 
-Analog layering of date and time.
+Analog layers of date and time. An holistic horologe of cyclic progression.
 
 Originally sketched in 2009:
 
-<img src="images/dateclock-sketch-1.jpg" width="122px" height="128px" title="click to view larger" alt="thumbnail"> &#xa0; <img src="images/dateclock-sketch-2.jpg" width="92px" height="128px" title="click to view larger" alt="thumbnail">
+<img src="sketch1.jpg" width="122px" height="128px" title="click to view larger" alt="thumbnail"> &#xa0; <img src="sketch2.jpg" width="92px" height="128px" title="click to view larger" alt="thumbnail">
 
 Soon thereafter I created a print version in Illustrator: http://calendardial.info/
 

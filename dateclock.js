@@ -1,9 +1,19 @@
 // Lunisolar Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
 
-// Support ES5.
+// Align widths of digi disp & buttons.
+// Vertically center content in portrait.
+// Disable demo on focus, not buttons.
+// Move panel higher in dom for google.
+
+// PageSpeed - https://developers.google.com/speed/pagespeed/insights/
+// SEO - https://support.google.com/webmasters/answer/7451184
+// Sitemap - https://support.google.com/webmasters/answer/156184
+
 // Minify.
-// Reactify.
+
+// Reactify?
 // Sassify?
+
 // Add lunar calculations.
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -58,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         els.digitSecond.classList.remove('focus');
     }
     function drawPipMonth () { // Draw 1 thru 12.
-        let i, el, degs;
+        var i, el, degs;
         for (i = 1; i <= 12; i++) {
             el = i % 3 - 1 === 0 ? document.createElement('strong') : document.createElement('span');
             el.textContent = i;
@@ -67,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
             els.pipMonth.appendChild(el);
         }
     }
-    function drawPipDay (datetime = new Date()) { // Draw 1 thru 28, 29, 30, or 31.
-        let daysInMonth = getDaysInMonth(datetime);
-        let i, el, degs;
+    function drawPipDay (datetime) { // Draw 1 thru 28, 29, 30, or 31.
+        var daysInMonth = getDaysInMonth(datetime);
+        var i, el, degs;
         els.pipDay.innerHTML = '';
         for (i = 1; i <= daysInMonth; i++) {
             el = i % 7 - 1 === 0 ? document.createElement('strong') : document.createElement('span');
@@ -81,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         numberOfDayPips = daysInMonth;
     }
     function drawPipHour () { // Draw 0 thru 23.
-        let i, el, degs;
+        var i, el, degs;
         for (i = 0; i < 24; i++) {
             el = i % 3 === 0 ? document.createElement('strong') : document.createElement('span');
             el.textContent = i;
@@ -91,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     function drawPipMinute () { // Draw 0 thru 59.
-        let i, el, degs;
+        var i, el, degs;
         for (i = 0; i < 60; i++) {
             el = i % 5 === 0 ? document.createElement('strong') : document.createElement('span');
             el.textContent = i;
@@ -106,17 +116,17 @@ document.addEventListener('DOMContentLoaded', function () {
     function getDaysInMonth (datetime) {
         return new Date(datetime.getFullYear(), datetime.getMonth() + 1, 0).getDate();
     }
-    function getHoursInDst (datetime = new Date()) {
-        let januaryOffsetHours = new Date(datetime.getFullYear(), 0, 1).getTimezoneOffset() / 60;
-        let julyOffsetHours = new Date(datetime.getFullYear(), 6, 1).getTimezoneOffset() / 60;
+    function getHoursInDst (datetime) {
+        var januaryOffsetHours = new Date(datetime.getFullYear(), 0, 1).getTimezoneOffset() / 60;
+        var julyOffsetHours = new Date(datetime.getFullYear(), 6, 1).getTimezoneOffset() / 60;
         return Math.abs(januaryOffsetHours - julyOffsetHours);
     }
-    function isDstExpected (datetime = new Date()) {
-        let currentOffsetHours = datetime.getTimezoneOffset() / 60; // 8
+    function isDstExpected (datetime) {
+        var currentOffsetHours = datetime.getTimezoneOffset() / 60; // 8
         return hoursInDst - currentOffsetHours === 0;
     }
-    function setOffset (datetime = new Date()) {
-        let offset = new Date().getTimezoneOffset() / 60;
+    function setOffset (datetime) {
+        var offset = new Date().getTimezoneOffset() / 60;
         if (offset > 0) {
             els.utcOffset.textContent = `UTC\u002d${offset}h`; // hyphen-minus sign
         } else if (offset < 0) {
@@ -125,11 +135,11 @@ document.addEventListener('DOMContentLoaded', function () {
             els.utcOffset.textContent = `UTC\u00b1${offset}h`; // plus-minus sign
         }
     }
-    function setMonth (datetime = new Date()) {
-        let month = datetime.getMonth() + 1; // Add one month for natural counting.
-        let day = datetime.getDate();
-        let daysInMonth = getDaysInMonth(datetime);
-        let degs = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
+    function setMonth (datetime) {
+        var month = datetime.getMonth() + 1; // Add one month for natural counting.
+        var day = datetime.getDate();
+        var daysInMonth = getDaysInMonth(datetime);
+        var degs = (month - 1 + (day - 1) / daysInMonth) / 12 * 360; // Subtract one month (and day) for zero indexing.
         rotate(els.handMonth, degs);
         els.digitMonth.textContent = month < 10 ? `0${month}` : month;
         if (daysInMonth !== numberOfDayPips) { // Update pips for days of month, if total days changes.
@@ -137,28 +147,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         setOffset(datetime); // Update offset.
     }
-    function setDay (datetime = new Date()) {
-        let day = datetime.getDate();
-        let hour = datetime.getHours();
-        let daysInMonth = getDaysInMonth(datetime);
-        let degs = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
+    function setDay (datetime) {
+        var day = datetime.getDate();
+        var hour = datetime.getHours();
+        var daysInMonth = getDaysInMonth(datetime);
+        var degs = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
         rotate(els.handDay, degs);
         els.digitDay.textContent = day < 10 ? `0${day}` : day;
         setMonth(datetime); // Update month.
     }
-    function setHour (datetime = new Date()) {
-        let hour = datetime.getHours();
-        let minute = datetime.getMinutes();
-        let degs = (hour + minute / 60) / 24 * 360;
+    function setHour (datetime) {
+        var hour = datetime.getHours();
+        var minute = datetime.getMinutes();
+        var degs = (hour + minute / 60) / 24 * 360;
         rotate(els.handHour, degs);
         els.digitHour.textContent = hour < 10 ? `0${hour}` : hour;
         setDay(datetime); // Update day.
         prevSetHourTime = datetime;
     }
-    function setMinute (datetime = new Date()) {
-        let minute = datetime.getMinutes();
-        let second = datetime.getSeconds();
-        let degs = (minute + second / 60) / 60 * 360;
+    function setMinute (datetime) {
+        var minute = datetime.getMinutes();
+        var second = datetime.getSeconds();
+        var degs = (minute + second / 60) / 60 * 360;
         rotate(els.handMinute, degs);
         els.digitMinute.textContent = minute < 10 ? `0${minute}` : minute;
         if (second === 0 || datetime - prevSetHourTime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
@@ -166,15 +176,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         prevSetMinuteTime = datetime;
     }
-    function setSecond (datetime = new Date()) { // Set seconds. Set larger units as needed.
+    function setSecond (datetime) { // Set seconds. Set larger units as needed.
+        datetime = datetime || new Date(); // Interval invocations use new Date object.
         if (isDstExpected(datetime) && !els.toggleTime.checked) {
             datetime = new Date(datetime.valueOf() - hoursInDst * 60 * 60 * 1000);
         } else if (!isDstExpected(datetime) && els.toggleTime.checked) {
             datetime = new Date(datetime.valueOf() + hoursInDst * 60 * 60 * 1000);
         }
-        let second = datetime.getSeconds();
-        let millisecond = datetime.getMilliseconds();
-        let degs = (second + millisecond / 1000) / 60 * 360;
+        var second = datetime.getSeconds();
+        var millisecond = datetime.getMilliseconds();
+        var degs = (second + millisecond / 1000) / 60 * 360;
         rotate(els.handSecond, degs);
         els.digitSecond.textContent = second < 10 ? `0${second}` : second;
         if (millisecond === 0 || datetime - prevSetMinuteTime > 1000) { // Update minute on whole seconds or after one second.
@@ -182,16 +193,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    let datetime = new Date();
+    var datetime = new Date();
     // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
 
-    let numberOfDayPips = getDaysInMonth(datetime);
-    let hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
+    var numberOfDayPips = getDaysInMonth(datetime);
+    var hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
 
-    let userPrefMonth = null;
-    let userPrefTime = null;
-    let userPrefOrientation = null;
-    let userPrefTheme = null;
+    var userPrefMonth = null;
+    var userPrefTime = null;
+    var userPrefOrientation = null;
+    var userPrefTheme = null;
     try {
         userPrefMonth = localStorage.getItem('month') === 'true' ? true : localStorage.getItem('month') === 'false' ? false : null;
         userPrefTime = localStorage.getItem('time') === 'true' ? true : localStorage.getItem('time') === 'false' ? false : null;
@@ -201,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error(err);
     }
 
-    let prevSetHourTime = 0;
-    let prevSetMinuteTime = 0;
+    var prevSetHourTime = 0;
+    var prevSetMinuteTime = 0;
 
-    let els = {};
+    var els = {};
 
     els.toggleMonth = document.getElementById('toggle-month');
     els.toggleTime = document.getElementById('toggle-time');
@@ -286,34 +297,34 @@ document.addEventListener('DOMContentLoaded', function () {
     els.digitSecond.addEventListener('touchend', blurSecond);
     els.digitSecond.addEventListener('mouseleave', blurSecond);
 
-    els.toggleLabelTime.addEventListener('click', () => { // Trigger re-calculations.
+    els.toggleLabelTime.addEventListener('click', function () { // Trigger re-calculations.
         prevSetHourTime = 0;
         prevSetMinuteTime = 0;
     });
 
     // Save user prefs to local storage.
-    els.toggleMonth.addEventListener('change', () => {
+    els.toggleMonth.addEventListener('change', function () {
         try {
             localStorage.setItem('month', els.toggleMonth.checked);
         } catch (err) {
             console.error(err);
         }
     });
-    els.toggleTime.addEventListener('change', () => {
+    els.toggleTime.addEventListener('change', function () {
         try {
             localStorage.setItem('time', els.toggleTime.checked);
         } catch (err) {
             console.error(err);
         }
     });
-    els.toggleOrientation.addEventListener('change', () => {
+    els.toggleOrientation.addEventListener('change', function () {
         try {
             localStorage.setItem('orientation', els.toggleOrientation.checked);
         } catch (err) {
             console.error(err);
         }
     });
-    els.toggleTheme.addEventListener('change', () => {
+    els.toggleTheme.addEventListener('change', function () {
         try {
             localStorage.setItem('theme', els.toggleTheme.checked);
         } catch (err) {
@@ -322,8 +333,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Scroll panel to top on open or close.
-    els.toggleLabelPanel.addEventListener('click', () => {
-        els.panel.scrollTo(0, 0);
+    els.toggleLabelPanel.addEventListener('click', function () {
+        els.panel.scrollTop = 0;
     });
 
     // Set el prefs to saved user prefs if stored.
