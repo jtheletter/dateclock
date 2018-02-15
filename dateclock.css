@@ -52,6 +52,15 @@ input {
     position: fixed;
     z-index: -10;
 }
+.wrap {
+    bottom: 0;
+    height: 140vw;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 .bg {
     background-color: #222;
     bottom: 0;
@@ -77,7 +86,7 @@ input {
     line-height: 1.33;
     overflow: scroll;
     padding: 16vw;
-    position: absolute;
+    position: fixed;
     text-align: left;
     top: 0;
     transform: translateX(-100%);
@@ -229,7 +238,7 @@ input {
     font-size: 6.7vw;
     font-weight: 300;
     margin: 0 auto;
-    padding: 3vw 7.5vw;
+    padding: 3vw 8.25vw;
     transition: background-color 0.25s;
 }
 #toggle-theme:checked ~ .display-digital {
@@ -544,6 +553,9 @@ input {
     background-color: #eee;
 }
 @media screen and (min-aspect-ratio: 3/4) {
+    .wrap {
+        height: 100vh;
+    }
     .panel {
         font-size: 2.25vh;
         padding: 9vh;
@@ -580,7 +592,7 @@ input {
     }
     .display-digital {
         font-size: 5.125vh;
-        padding: 0.75vh 4.5vh 0.67vh;
+        padding: 0.75vh 4.4vh 0.67vh;
     }
     .pip-month {
         font-size: 4.4vh;
@@ -652,7 +664,7 @@ input {
     }
     .display-digital {
         font-size: 5.2vh;
-        padding: 0.9vh 4.5vh 0.67vh;
+        padding: 0.9vh 4.4vh 0.67vh;
     }
     .pip-month {
         font-size: 5.5vh;

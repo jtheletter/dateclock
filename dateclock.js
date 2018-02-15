@@ -2,8 +2,6 @@
 
 // Update offset on dst toggle.
 
-// Align widths of digi disp & buttons.
-// Vertically center content in portrait.
 // Disable demo on focus, not buttons. Remove event listener when moot.
 
 // PageSpeed - https://developers.google.com/speed/pagespeed/insights/
