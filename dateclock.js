@@ -1,8 +1,10 @@
 // Lunisolar Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
 
-// 8hr Audit performance. Minify. Reactify.
-// 2hr Troubleshoot older iOS.
-// 8hr Add lunar calculations.
+// Support ES5.
+// Minify.
+// Reactify.
+// Sassify?
+// Add lunar calculations.
 
 document.addEventListener('DOMContentLoaded', function () {
     function focusMonth (evt) {
@@ -98,10 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
             els.pipMinute.appendChild(el);
         }
     }
-    function rotate(el, degs) {
+    function rotate (el, degs) {
         el.style.transform = `rotate(${degs}deg)`;
     }
-    function getDaysInMonth(datetime) {
+    function getDaysInMonth (datetime) {
         return new Date(datetime.getFullYear(), datetime.getMonth() + 1, 0).getDate();
     }
     function getHoursInDst (datetime = new Date()) {

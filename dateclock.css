@@ -123,7 +123,7 @@ input {
     font-size: 6.7vw;
     font-weight: 300;
     margin: 0 auto;
-    padding: 2vw 7.5vw 1.25vw;
+    padding: 3vw 7.5vw;
     transition: background-color 0.25s;
 }
 #toggle-theme:checked ~ .display-digital {
@@ -282,18 +282,20 @@ input {
     width: 19.5%;
 }
 .digit {
-    color: #333;
     display: inline-block;
     transition: color 0.25s;
-}
-#toggle-theme:checked ~ .display-digital > .digit {
-    color: #ccc;
 }
 .digit-month {
     color: #ddd;
 }
 #toggle-theme:checked ~ .display-digital > .digit-month {
     color: #222;
+}
+.digit-hyphen {
+    color: #999;
+}
+#toggle-theme:checked ~ .display-digital > .digit-hyphen {
+    color: #666;
 }
 .digit-day {
     color: #bbb;
@@ -307,11 +309,23 @@ input {
 #toggle-theme:checked ~ .display-digital > .digit-hour {
     color: #666;
 }
+.digit-colon-1 {
+    color: #555;
+}
+#toggle-theme:checked ~ .display-digital > .digit-colon-1 {
+    color: #aaa;
+}
 .digit-minute {
     color: #777;
 }
 #toggle-theme:checked ~ .display-digital > .digit-minute {
     color: #888;
+}
+.digit-colon-2 {
+    color: #333;
+}
+#toggle-theme:checked ~ .display-digital > .digit-colon-2 {
+    color: #ccc;
 }
 .digit-second {
     color: #555;

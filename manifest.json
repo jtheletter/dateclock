@@ -1,0 +1,38 @@
+{
+    "background_color": "#777777",
+    "description": "Analog layering of date and time.",
+    "dir": "ltr",
+    "display": "standalone",
+    "icons": [
+        {
+            "src":"favicomatic/favicon-196x196.png",
+            "sizes": "196x196",
+            "type": "image/png"
+        },
+        {
+            "src":"favicomatic/favicon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src":"favicomatic/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src":"favicomatic/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src":"favicomatic/favicon-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ],
+    "lang": "en-US",
+    "name": "Date Clock",
+    "short_name": "Date Clock",
+    "start_url": "/index.html",
+    "theme_color": "#777777"
+}
