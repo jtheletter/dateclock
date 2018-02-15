@@ -1,12 +1,8 @@
 // Date Clock. (c) JP 2009 (concept). (c) JP 2018 (code).
 
-// Update offset on dst toggle.
-
 // PageSpeed - https://developers.google.com/speed/pagespeed/insights/
 // SEO - https://support.google.com/webmasters/answer/7451184
 // Sitemap - https://support.google.com/webmasters/answer/156184
-
-// Add email.
 
 // Minify.
 
@@ -136,7 +132,12 @@ document.addEventListener('DOMContentLoaded', function () {
         return hoursInDst - currentOffsetHours === 0;
     }
     function setOffset (datetime) {
-        var offset = new Date().getTimezoneOffset() / 60;
+        var offset = datetime.getTimezoneOffset() / 60;
+        if (isDstExpected(datetime) && !els.toggleTime.checked) { // If DST is expected, but user does not want it...
+            offset += hoursInDst;
+        } else if (!isDstExpected(datetime) && els.toggleTime.checked) { // If DST is not expected, but user wants it...
+            offset -= hoursInDst;
+        }
         if (offset > 0) {
             els.utcOffset.textContent = `UTC\u002d${offset}h`; // hyphen-minus sign
         } else if (offset < 0) {
@@ -173,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
         rotate(els.handHour, degs);
         els.digitHour.textContent = hour < 10 ? `0${hour}` : hour;
         setDay(datetime); // Update day.
-        prevSetHourTime = datetime;
+        prevSetHourDatetime = datetime;
     }
     function setMinute (datetime) {
         var minute = datetime.getMinutes();
@@ -181,16 +182,16 @@ document.addEventListener('DOMContentLoaded', function () {
         var degs = (minute + second / 60) / 60 * 360;
         rotate(els.handMinute, degs);
         els.digitMinute.textContent = minute < 10 ? `0${minute}` : minute;
-        if (second === 0 || datetime - prevSetHourTime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
+        if (second === 0 || datetime - prevSetHourDatetime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
             setHour(datetime);
         }
-        prevSetMinuteTime = datetime;
+        prevSetMinuteDatetime = datetime;
     }
     function setSecond (datetime) { // Set seconds. Set larger units as needed.
-        datetime = datetime || new Date(); // Interval invocations use new Date object.
-        if (isDstExpected(datetime) && !els.toggleTime.checked) {
+        datetime = datetime || new Date(); // Invocations by setInterval use new Date objects.
+        if (isDstExpected(datetime) && !els.toggleTime.checked) { // If DST is expected, but user does not want it...
             datetime = new Date(datetime.valueOf() - hoursInDst * 60 * 60 * 1000);
-        } else if (!isDstExpected(datetime) && els.toggleTime.checked) {
+        } else if (!isDstExpected(datetime) && els.toggleTime.checked) { // If DST is not expected, but user wants it...
             datetime = new Date(datetime.valueOf() + hoursInDst * 60 * 60 * 1000);
         }
         var second = datetime.getSeconds();
@@ -198,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var degs = (second + millisecond / 1000) / 60 * 360;
         rotate(els.handSecond, degs);
         els.digitSecond.textContent = second < 10 ? `0${second}` : second;
-        if (millisecond === 0 || datetime - prevSetMinuteTime > 1000) { // Update minute on whole seconds or after one second.
+        if (millisecond === 0 || datetime - prevSetMinuteDatetime > 1000) { // Update minute on whole seconds or after one second.
             setMinute(datetime);
         }
     }
@@ -224,8 +225,8 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error(err);
     }
 
-    var prevSetHourTime = 0;
-    var prevSetMinuteTime = 0;
+    var prevSetHourDatetime = 0;
+    var prevSetMinuteDatetime = 0;
 
     var els = {};
 
@@ -331,8 +332,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Trigger datetime re-calculations when user toggles DST/ST.
     els.toggleLabelTime.addEventListener('click', function () {
-        prevSetHourTime = 0;
-        prevSetMinuteTime = 0;
+        prevSetHourDatetime = 0;
+        prevSetMinuteDatetime = 0;
     });
 
     // Save user prefs for all toggles to local storage.
