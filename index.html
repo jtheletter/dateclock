@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Base requirements. -->
         <meta charset="UTF-8">
         <title>Date Clock</title>
 
-        <!-- Elements affecting initial appearance. -->
+        <!-- Base appearance. -->
         <meta name="viewport" content="initial-scale=1.0">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,26 +35,46 @@
         <meta name="msapplication-wide310x150logo" content="favicomatic/mstile-310x150.png" />
         <meta name="msapplication-square310x310logo" content="favicomatic/mstile-310x310.png" />
 
-        <!-- Styles & scripts. -->
-        <link rel="stylesheet" type="text/css" href="reset.css">
-        <link rel="stylesheet" type="text/css" href="dateclock.css">
-        <script src="dateclock.js"></script>
-
-        <!-- SEO & sharing. -->
+        <!-- SEO & share. -->
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Analog layers of date and time. An holistic horologe of cyclic progression.">
+        <meta name="description" content="Analog layers of date and time. An holistic horologe of cyclic progression. Touch hands or digits to show names. Toggle months, time, orientation, and theme. Each dial is centrally aligned on its origin.">
         <meta name="keywords" content="lunisolar, lunasolar, lunarsolar, lunar solar, calendar clock, alternative calendar, alternative clock, analog calendar, analog clock, animated calendar, horologe, horological, horology, horologist, what time is it, what is time, natural time, cyclic time, holistic time, date time, datetime, date clock, dateclock second, minute, hour, day, month, dst, daylight saving time, daylight savings time, daylight shifting time, daylight shifted time, daylight shift time, dst, standard time, st, gregorian month, lunar month">
         <meta name="author" content="JP">
         <link rel="canonical" href="http://dateclock.net/">
-        <meta property="og:description" content="Analog layers of date and time. An holistic horologe of cyclic progression.">
-        <meta property="og:image" content="http://dateclock.net/dateclock-preview.png">
-        <meta property="og:title" content="Date Clock">
         <meta property="og:type" content="website">
+        <meta property="og:title" content="Date Clock">
+        <meta property="og:description" content="Analog layers of date and time. An holistic horologe of cyclic progression. Touch hands or digits to show names. Toggle months, time, orientation, and theme. Each dial is centrally aligned on its origin.">
+        <meta property="og:image" content="http://dateclock.net/dateclock-preview.png">
         <meta property="og:url" content="http://dateclock.net/">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:description" content="Analog layers of date and time. An holistic horologe of cyclic progression.">
-        <meta name="twitter:image" content="http://dateclock.net/dateclock-preview.png">
         <meta name="twitter:title" content="Date Clock">
+        <meta name="twitter:description" content="Analog layers of date and time. An holistic horologe of cyclic progression. Toggle months, time, orientation, and theme.">
+        <meta name="twitter:image" content="http://dateclock.net/dateclock-preview.png">
+        <script type="application/ld+json">
+            { /* TODO: Remove this if no effect seen (2018-02-16). */
+                "@context": "http://schema.org",
+                "@type": "Product",
+                "name": "Date Clock",
+                "description": "Analog layers of date and time. An holistic horologe of cyclic progression. Touch hands or digits to show names. Toggle months, time, orientation, and theme. Each dial is centrally aligned on its origin.",
+                "url": "http://dateclock.net",
+                "logo": "http://dateclock.net/dateclock-logo.png",
+                "image": [
+                    "http://dateclock.net/screenshots/dateclock-dark.png",
+                    "http://dateclock.net/screenshots/dateclock-highlight.png",
+                    "http://dateclock.net/screenshots/dateclock-info-dark.png",
+                    "http://dateclock.net/screenshots/dateclock-info.png",
+                    "http://dateclock.net/screenshots/dateclock-sundial.png",
+                    "http://dateclock.net/screenshots/dateclock-wide-dark.png",
+                    "http://dateclock.net/screenshots/dateclock-wide.png",
+                    "http://dateclock.net/screenshots/dateclock.png"
+                ]
+            }
+        </script>
+
+        <!-- Styles & scripts. -->
+        <link rel="stylesheet" type="text/css" href="reset.css">
+        <link rel="stylesheet" type="text/css" href="dateclock.css">
+        <script async src="dateclock.js"></script>
 
         <!-- Analytics. -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45587209-3"></script>
@@ -98,6 +117,7 @@
                     <li>First month of a year is one.</li>
                 </ul>
                 <p class="copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
+                <p style="display:none;"><a href="sketches/index.html" title="View sketches.">Sketches</a></p>
             </div>
 
             <label class="toggle-label-panel" id="toggle-label-panel" for="toggle-panel" title="View Info"><span></span></label>
@@ -135,7 +155,7 @@
             <div class="sep-hori"></div>
 
             <div class="toggle-label-setting-wrap">
-                <!-- <label class="toggle-label-setting" id="toggle-label-month" for="toggle-month" title="Toggle Month (feature to come)"><span>Gregorian</span><span>Lunar</span></label> -->
+                <!-- <label class="toggle-label-setting" id="toggle-label-month" for="toggle-month" title="Toggle Month"><span>Gregorian</span><span>Lunar</span></label> -->
                 <label class="toggle-label-setting" id="toggle-label-time" for="toggle-time" title="Toggle Time"><span>DST</span><span>Standard</span></label>
                 <label class="toggle-label-setting" id="toggle-label-orientation" for="toggle-orientation" title="Toggle Orientation"><span>Clock</span><span>Sundial</span></label>
                 <label class="toggle-label-setting" id="toggle-label-theme" for="toggle-theme" title="Toggle Theme"><span>Light</span><span>Dark</span></label>

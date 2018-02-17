@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <url>
+        <loc>http://dateclock.net/</loc>
+        <image:image>
+            <image:loc>http://dateclock.net/dateclock-logo.png"</image:loc>
+            <image:title>Date Clock logo</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/dateclock-preview.png"</image:loc>
+            <image:title>Date Clock preview</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock-dark.png"</image:loc>
+            <image:title>Date Clock screenshot (dark theme)</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock-highlight.png"</image:loc>
+            <image:title>Date Clock screenshot (highlighting)</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock-info-dark.png"</image:loc>
+            <image:title>Date Clock screenshot (info panel, dark theme)</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock-info.png"</image:loc>
+            <image:title>Date Clock screenshot (info panel)</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock-sundial.png"</image:loc>
+            <image:title>Date Clock screenshot (sundial orientation)</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock-wide-dark.png"</image:loc>
+            <image:title>Date Clock screenshot (wide screen, dark theme)</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock-wide.png"</image:loc>
+            <image:title>Date Clock screenshot (wide screen)</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/screenshots/dateclock.png</image:loc>
+            <image:title>Date Clock screenshot</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/sketches/dateclock-sketch-1.jpg</image:loc>
+            <image:title>Date Clock sketch 1</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>http://dateclock.net/sketches/dateclock-sketch-2.jpg</image:loc>
+            <image:title>Date Clock sketch 1</image:title>
+        </image:image>
+    </url>
+</urlset>
