@@ -1,12 +1,8 @@
 // Date Clock. (c) JP 2009 (concept), 2018 (code).
 
-// Minify? https://developers.google.com/speed/docs/insights/MinifyResources
-// Reactify? Save time units to state. Periodically check if current unit differs from saved unit. Only touch dom if differ.
-// Sassify?
-// Add lunar calculations.
-
 (function () {
 
+    // Wait for DOM.
     if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
         dateclock();
     } else {
@@ -15,6 +11,7 @@
 
     function dateclock () {
 
+        // Define functions.
         function updateHighlightFlag () {
             if (userHasHighlighted) {
                 return;
@@ -206,9 +203,148 @@
                 setMinute(datetime);
             }
         }
+        function getElements () {
+            els.toggleMonth = document.getElementById('toggle-month');
+            els.toggleTime = document.getElementById('toggle-time');
+            els.toggleOrientation = document.getElementById('toggle-orientation');
+            els.toggleTheme = document.getElementById('toggle-theme');
+            els.fg = document.getElementById('fg');
+            els.panel = document.getElementById('panel');
+            els.supertitleMonth = document.getElementById('supertitle-month');
+            els.supertitleDay = document.getElementById('supertitle-day');
+            els.supertitleHour = document.getElementById('supertitle-hour');
+            els.supertitleMinute = document.getElementById('supertitle-minute');
+            els.supertitleSecond = document.getElementById('supertitle-second');
+            els.utcOffset = document.getElementById('utc-offset');
+            els.pipMonth = document.getElementById('pip-month');
+            els.pipDay = document.getElementById('pip-day');
+            els.pipHour = document.getElementById('pip-hour');
+            els.pipMinute = document.getElementById('pip-minute');
+            els.handMonth = document.getElementById('hand-month');
+            els.handDay = document.getElementById('hand-day');
+            els.handHour = document.getElementById('hand-hour');
+            els.handMinute = document.getElementById('hand-minute');
+            els.handSecond = document.getElementById('hand-second');
+            els.digitMonth = document.getElementById('digit-month');
+            els.digitDay = document.getElementById('digit-day');
+            els.digitHour = document.getElementById('digit-hour');
+            els.digitMinute = document.getElementById('digit-minute');
+            els.digitSecond = document.getElementById('digit-second');
+            els.toggleLabelTime = document.getElementById('toggle-label-time');
+            els.toggleLabelPanel = document.getElementById('toggle-label-panel');
+        }
+        function addEventListeners () {
+
+            // Add highlight listeners.
+            els.handMonth.addEventListener('touchstart', focusMonth);
+            els.handMonth.addEventListener('mouseenter', focusMonth);
+            els.handMonth.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.handMonth.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.handMonth.addEventListener('touchend', blurMonth);
+            els.handMonth.addEventListener('mouseleave', blurMonth);
+            els.digitMonth.addEventListener('touchstart', focusMonth);
+            els.digitMonth.addEventListener('mouseenter', focusMonth);
+            els.digitMonth.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.digitMonth.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.digitMonth.addEventListener('touchend', blurMonth);
+            els.digitMonth.addEventListener('mouseleave', blurMonth);
+            els.handDay.addEventListener('touchstart', focusDay);
+            els.handDay.addEventListener('mouseenter', focusDay);
+            els.handDay.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.handDay.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.handDay.addEventListener('touchend', blurDay);
+            els.handDay.addEventListener('mouseleave', blurDay);
+            els.digitDay.addEventListener('touchstart', focusDay);
+            els.digitDay.addEventListener('mouseenter', focusDay);
+            els.digitDay.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.digitDay.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.digitDay.addEventListener('touchend', blurDay);
+            els.digitDay.addEventListener('mouseleave', blurDay);
+            els.handHour.addEventListener('touchstart', focusHour);
+            els.handHour.addEventListener('mouseenter', focusHour);
+            els.handHour.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.handHour.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.handHour.addEventListener('touchend', blurHour);
+            els.handHour.addEventListener('mouseleave', blurHour);
+            els.digitHour.addEventListener('touchstart', focusHour);
+            els.digitHour.addEventListener('mouseenter', focusHour);
+            els.digitHour.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.digitHour.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.digitHour.addEventListener('touchend', blurHour);
+            els.digitHour.addEventListener('mouseleave', blurHour);
+            els.handMinute.addEventListener('touchstart', focusMinute);
+            els.handMinute.addEventListener('mouseenter', focusMinute);
+            els.handMinute.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.handMinute.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.handMinute.addEventListener('touchend', blurMinute);
+            els.handMinute.addEventListener('mouseleave', blurMinute);
+            els.digitMinute.addEventListener('touchstart', focusMinute);
+            els.digitMinute.addEventListener('mouseenter', focusMinute);
+            els.digitMinute.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.digitMinute.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.digitMinute.addEventListener('touchend', blurMinute);
+            els.digitMinute.addEventListener('mouseleave', blurMinute);
+            els.handSecond.addEventListener('touchstart', focusSecond);
+            els.handSecond.addEventListener('mouseenter', focusSecond);
+            els.handSecond.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.handSecond.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.handSecond.addEventListener('touchend', blurSecond);
+            els.handSecond.addEventListener('mouseleave', blurSecond);
+            els.digitSecond.addEventListener('touchstart', focusSecond);
+            els.digitSecond.addEventListener('mouseenter', focusSecond);
+            els.digitSecond.addEventListener('touchstart', updateHighlightFlag, { once: true });
+            els.digitSecond.addEventListener('mouseenter', updateHighlightFlag, { once: true });
+            els.digitSecond.addEventListener('touchend', blurSecond);
+            els.digitSecond.addEventListener('mouseleave', blurSecond);
+
+            // Trigger datetime re-calculations when user toggles DST/ST.
+            els.toggleLabelTime.addEventListener('click', function () {
+                prevSetHourDatetime = 0;
+                prevSetMinuteDatetime = 0;
+            });
+
+            // Save user prefs for all toggles to local storage.
+            els.toggleMonth.addEventListener('change', function () {
+                try {
+                    localStorage.setItem('month', els.toggleMonth.checked);
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+            els.toggleTime.addEventListener('change', function () {
+                try {
+                    localStorage.setItem('time', els.toggleTime.checked);
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+            els.toggleOrientation.addEventListener('change', function () {
+                try {
+                    localStorage.setItem('orientation', els.toggleOrientation.checked);
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+            els.toggleTheme.addEventListener('change', function () {
+                try {
+                    localStorage.setItem('theme', els.toggleTheme.checked);
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+
+            // Scroll panel to top on open or close.
+            els.toggleLabelPanel.addEventListener('click', function () {
+                els.panel.scrollTop = 0;
+            });
+        }
+        // End function defs.
 
         var datetime = new Date();
         // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
+
+        var prevSetHourDatetime = 0;
+        var prevSetMinuteDatetime = 0;
 
         var numberOfDayPips = getDaysInMonth(datetime);
         var hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
@@ -218,6 +354,17 @@
         var userPrefTime = null;
         var userPrefOrientation = null;
         var userPrefTheme = null;
+
+        var els = {};
+        getElements();
+        addEventListeners();
+
+        drawPipMonth();
+        drawPipDay(datetime);
+        drawPipHour();
+        drawPipMinute();
+
+        // Get user prefs from local storage.
         try {
             userHasHighlighted = localStorage.getItem('userHasHighlighted') === 'true' ? true : localStorage.getItem('userHasHighlighted') === 'false' ? false : null;
             userPrefMonth = localStorage.getItem('month') === 'true' ? true : localStorage.getItem('month') === 'false' ? false : null;
@@ -228,155 +375,11 @@
             console.error(err);
         }
 
-        var prevSetHourDatetime = 0;
-        var prevSetMinuteDatetime = 0;
-
-        var els = {};
-
-        els.toggleMonth = document.getElementById('toggle-month');
-        els.toggleTime = document.getElementById('toggle-time');
-        els.toggleOrientation = document.getElementById('toggle-orientation');
-        els.toggleTheme = document.getElementById('toggle-theme');
-
-        els.supertitleMonth = document.getElementById('supertitle-month');
-        els.supertitleDay = document.getElementById('supertitle-day');
-        els.supertitleHour = document.getElementById('supertitle-hour');
-        els.supertitleMinute = document.getElementById('supertitle-minute');
-        els.supertitleSecond = document.getElementById('supertitle-second');
-        els.utcOffset = document.getElementById('utc-offset');
-        els.pipMonth = document.getElementById('pip-month');
-        els.pipDay = document.getElementById('pip-day');
-        els.pipHour = document.getElementById('pip-hour');
-        els.pipMinute = document.getElementById('pip-minute');
-        els.handMonth = document.getElementById('hand-month');
-        els.handDay = document.getElementById('hand-day');
-        els.handHour = document.getElementById('hand-hour');
-        els.handMinute = document.getElementById('hand-minute');
-        els.handSecond = document.getElementById('hand-second');
-        els.digitMonth = document.getElementById('digit-month');
-        els.digitDay = document.getElementById('digit-day');
-        els.digitHour = document.getElementById('digit-hour');
-        els.digitMinute = document.getElementById('digit-minute');
-        els.digitSecond = document.getElementById('digit-second');
-
-        els.toggleLabelTime = document.getElementById('toggle-label-time');
-        els.panel = document.getElementById('panel');
-        els.toggleLabelPanel = document.getElementById('toggle-label-panel');
-
-        els.handMonth.addEventListener('touchstart', focusMonth);
-        els.handMonth.addEventListener('mouseenter', focusMonth);
-        els.handMonth.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.handMonth.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.handMonth.addEventListener('touchend', blurMonth);
-        els.handMonth.addEventListener('mouseleave', blurMonth);
-
-        els.digitMonth.addEventListener('touchstart', focusMonth);
-        els.digitMonth.addEventListener('mouseenter', focusMonth);
-        els.digitMonth.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.digitMonth.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.digitMonth.addEventListener('touchend', blurMonth);
-        els.digitMonth.addEventListener('mouseleave', blurMonth);
-
-        els.handDay.addEventListener('touchstart', focusDay);
-        els.handDay.addEventListener('mouseenter', focusDay);
-        els.handDay.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.handDay.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.handDay.addEventListener('touchend', blurDay);
-        els.handDay.addEventListener('mouseleave', blurDay);
-
-        els.digitDay.addEventListener('touchstart', focusDay);
-        els.digitDay.addEventListener('mouseenter', focusDay);
-        els.digitDay.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.digitDay.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.digitDay.addEventListener('touchend', blurDay);
-        els.digitDay.addEventListener('mouseleave', blurDay);
-
-        els.handHour.addEventListener('touchstart', focusHour);
-        els.handHour.addEventListener('mouseenter', focusHour);
-        els.handHour.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.handHour.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.handHour.addEventListener('touchend', blurHour);
-        els.handHour.addEventListener('mouseleave', blurHour);
-
-        els.digitHour.addEventListener('touchstart', focusHour);
-        els.digitHour.addEventListener('mouseenter', focusHour);
-        els.digitHour.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.digitHour.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.digitHour.addEventListener('touchend', blurHour);
-        els.digitHour.addEventListener('mouseleave', blurHour);
-
-        els.handMinute.addEventListener('touchstart', focusMinute);
-        els.handMinute.addEventListener('mouseenter', focusMinute);
-        els.handMinute.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.handMinute.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.handMinute.addEventListener('touchend', blurMinute);
-        els.handMinute.addEventListener('mouseleave', blurMinute);
-
-        els.digitMinute.addEventListener('touchstart', focusMinute);
-        els.digitMinute.addEventListener('mouseenter', focusMinute);
-        els.digitMinute.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.digitMinute.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.digitMinute.addEventListener('touchend', blurMinute);
-        els.digitMinute.addEventListener('mouseleave', blurMinute);
-
-        els.handSecond.addEventListener('touchstart', focusSecond);
-        els.handSecond.addEventListener('mouseenter', focusSecond);
-        els.handSecond.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.handSecond.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.handSecond.addEventListener('touchend', blurSecond);
-        els.handSecond.addEventListener('mouseleave', blurSecond);
-
-        els.digitSecond.addEventListener('touchstart', focusSecond);
-        els.digitSecond.addEventListener('mouseenter', focusSecond);
-        els.digitSecond.addEventListener('touchstart', updateHighlightFlag, { once: true });
-        els.digitSecond.addEventListener('mouseenter', updateHighlightFlag, { once: true });
-        els.digitSecond.addEventListener('touchend', blurSecond);
-        els.digitSecond.addEventListener('mouseleave', blurSecond);
-
-        // Trigger datetime re-calculations when user toggles DST/ST.
-        els.toggleLabelTime.addEventListener('click', function () {
-            prevSetHourDatetime = 0;
-            prevSetMinuteDatetime = 0;
-        });
-
-        // Save user prefs for all toggles to local storage.
-        els.toggleMonth.addEventListener('change', function () {
-            try {
-                localStorage.setItem('month', els.toggleMonth.checked);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-        els.toggleTime.addEventListener('change', function () {
-            try {
-                localStorage.setItem('time', els.toggleTime.checked);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-        els.toggleOrientation.addEventListener('change', function () {
-            try {
-                localStorage.setItem('orientation', els.toggleOrientation.checked);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-        els.toggleTheme.addEventListener('change', function () {
-            try {
-                localStorage.setItem('theme', els.toggleTheme.checked);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        // Scroll panel to top on open or close.
-        els.toggleLabelPanel.addEventListener('click', function () {
-            els.panel.scrollTop = 0;
-        });
-
-        // Set el prefs to saved user prefs if stored.
+        // Set el prefs to saved user prefs.
         if (userPrefMonth !== null) {
             els.toggleMonth.checked = userPrefMonth;
+        } else {
+            els.toggleMonth.checked = true;
         }
         if (userPrefTime !== null) {
             els.toggleTime.checked = userPrefTime;
@@ -385,31 +388,31 @@
         }
         if (userPrefOrientation !== null) {
             els.toggleOrientation.checked = userPrefOrientation;
+        } else {
+            els.toggleOrientation.checked = true;
         }
         if (userPrefTheme !== null) {
             els.toggleTheme.checked = userPrefTheme;
+        } else {
+            els.toggleTheme.checked = true;
         }
 
-        drawPipMonth();
-        drawPipDay(datetime);
-        drawPipHour();
-        drawPipMinute();
-
         setSecond(datetime);
+        fg.classList.remove('closed');
         setInterval(setSecond, 40); // Arbitray rate that looks good enough onscreen.
 
         // Demo highlights for new user.
         if (!userHasHighlighted) {
-            setTimeout(function () { if (!userHasHighlighted) { focusMonth(); } }, 0);
-            setTimeout(blurMonth, 1000);
-            setTimeout(function () { if (!userHasHighlighted) { focusDay(); } }, 1000);
-            setTimeout(blurDay, 2000);
-            setTimeout(function () { if (!userHasHighlighted) { focusHour(); } }, 2000);
-            setTimeout(blurHour, 3000);
-            setTimeout(function () { if (!userHasHighlighted) { focusMinute(); } }, 3000);
-            setTimeout(blurMinute, 4000);
-            setTimeout(function () { if (!userHasHighlighted) { focusSecond(); } }, 4000);
-            setTimeout(blurSecond, 5000);
+            setTimeout(function () { if (!userHasHighlighted) { focusMonth(); } }, 1000);
+            setTimeout(blurMonth, 2000);
+            setTimeout(function () { if (!userHasHighlighted) { focusDay(); } }, 2000);
+            setTimeout(blurDay, 3000);
+            setTimeout(function () { if (!userHasHighlighted) { focusHour(); } }, 3000);
+            setTimeout(blurHour, 4000);
+            setTimeout(function () { if (!userHasHighlighted) { focusMinute(); } }, 4000);
+            setTimeout(blurMinute, 5000);
+            setTimeout(function () { if (!userHasHighlighted) { focusSecond(); } }, 5000);
+            setTimeout(blurSecond, 6000);
         }
 
     }

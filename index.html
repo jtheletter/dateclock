@@ -89,35 +89,36 @@
     <body>
         <div class="wrap">
 
-            <input checked id="toggle-month" type="checkbox">
-            <input checked id="toggle-time" type="checkbox">
-            <input checked id="toggle-orientation" type="checkbox">
-            <input checked id="toggle-theme" type="checkbox">
             <input id="toggle-panel" type="checkbox">
+            <input id="toggle-month" type="checkbox">
+            <input id="toggle-time" type="checkbox">
+            <input id="toggle-orientation" type="checkbox">
+            <input id="toggle-theme" type="checkbox">
 
             <div class="bg"></div>
+            <div class="fg closed" id="fg"></div>
 
             <div class="panel" id="panel">
-                <h1>DATE&#xa0;CLOCK</h1>
-                <p>Analog layers of date and time. An holistic horologe of cyclic progression.</p>
-                <p>Touch hands or digits to show names.</p>
-                <p>Toggle:</p>
-                <ul>
-                    <!-- <li>Gregorian vs lunar months.</li> -->
-                    <li>Daylight Shifting (&#x201c;Saving&#x201d;) vs Standard&#xa0;Time.</li>
-                    <li>Origin at top vs bottom.</li>
-                    <li>Colors.</li>
+                <h1 class="panel-brand">DATE&#xa0;CLOCK</h1>
+                <p class="panel-p">Analog layers of date and time. An holistic horologe of cyclic progression.</p>
+                <p class="panel-p">Touch hands or digits to show names.</p>
+                <p class="panel-p">Toggle:</p>
+                <ul class="panel-ul">
+                    <!-- <li class="panel-li">Gregorian vs lunar months.</li> -->
+                    <li class="panel-li">Daylight Shifting (&#x201c;Saving&#x201d;) vs Standard&#xa0;Time.</li>
+                    <li class="panel-li">Origin at top vs bottom.</li>
+                    <li class="panel-li">Colors.</li>
                 </ul>
-                <p>Each dial is centrally aligned on its origin:</p>
-                <ul>
-                    <li>First second of a minute is zero.</li>
-                    <li>First minute of an hour is zero.</li>
-                    <li>First hour of a day is zero.</li>
-                    <li>First day of a month is one.</li>
-                    <li>First month of a year is one.</li>
+                <p class="panel-p">Each dial is centrally aligned on its origin:</p>
+                <ul class="panel-ul">
+                    <li class="panel-li">First second of a minute is zero.</li>
+                    <li class="panel-li">First minute of an hour is zero.</li>
+                    <li class="panel-li">First hour of a day is zero.</li>
+                    <li class="panel-li">First day of a month is one.</li>
+                    <li class="panel-li">First month of a year is one.</li>
                 </ul>
-                <p class="copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
-                <p style="display:none;"><a href="sketches/index.html" title="View sketches.">Sketches</a></p>
+                <small class="panel-copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</small>
+                <nav style="display:none;"><a href="sketches/index.html" title="View sketches.">Sketches</a></nav>
             </div>
 
             <label class="toggle-label-panel" id="toggle-label-panel" for="toggle-panel" title="View Info"><span></span></label>
@@ -129,8 +130,8 @@
                 <p class="supertitle" id="supertitle-minute">Minute</p>
                 <p class="supertitle" id="supertitle-second">Second</p>
 
-                <p class="brand">DATE&#x2004;CLOCK</p>
-                <p class="copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
+                <h1 class="dial-brand">DATE&#x2004;CLOCK</h1>
+                <small class="dial-copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</small>
                 <p class="utc-offset" id="utc-offset">UTC&#xb1;0.0h</p>
             </div>
 

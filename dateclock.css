@@ -61,15 +61,32 @@ input {
     right: 0;
     top: 0;
 }
-.bg {
-    background-color: #222;
+.bg,
+.fg {
     bottom: 0;
     left: 0;
     position: fixed;
     right: 0;
     top: 0;
+}
+.bg {
+    background-color: #222;
     transition: background-color 0.25s;
     z-index: -1;
+}
+.fg {
+    background-color: #777;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.75s, z-index 1s;
+    z-index: -10;
+}
+.fg.closed {
+    opacity: 1;
+    z-index: 30;
+}
+.fg.closed ~ .display-analog {
+    transform: rotate(90deg);
 }
 #toggle-theme:checked ~ .bg {
     background-color: #ddd;
@@ -85,6 +102,10 @@ input {
     left: 0;
     line-height: 1.33;
     overflow: scroll;
+    -ms-overflow-scrolling: touch;
+    -moz-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch; /* csslint allow: known-properties */
     padding: 16vw;
     position: fixed;
     text-align: left;
@@ -92,7 +113,7 @@ input {
     transform: translateX(-100%);
     transition: background-color 0.25s, color 0.25s, transform 0.25s;
     width: 100%;
-    z-index: 50;
+    z-index: 10;
 }
 #toggle-panel:checked ~ .panel {
     transform: translateX(0);
@@ -102,28 +123,29 @@ input {
     background-color: rgba(255, 255, 255, 0.95);
     color: #000;
 }
-.panel > h1, .panel > p, .panel > ul {
+.panel-brand,
+.panel-p,
+.panel-ul {
     margin: 5vw 0;
 }
-.panel > h1 {
+.panel-brand {
     font-size: 133%;
     font-weight: 700;
     margin-top: 0;
 }
-.panel > ul {
+.panel-ul {
     margin-top: -1.25vw;
 }
-.panel > ul > li {
+.panel-li {
     list-style-position: inside;
     list-style-type: circle;
     margin: 2.5vw 0;
     padding-left: 5.5vw;
     text-indent: -5vw;
 }
-.panel > .copyright {
+.panel-copyright {
     font-size: 75%;
-    margin-bottom: 0;
-    position: static;
+    margin: 5vw 0 0;
 }
 .toggle-label-panel {
     background-color: #000;
@@ -134,7 +156,7 @@ input {
     top: 0;
     transition: background-color 0.25s;
     width: 13.1vw;
-    z-index: 100;
+    z-index: 20;
 }
 .toggle-label-panel:active {
     background-color: #333;
@@ -196,17 +218,21 @@ input {
     background-color: #fff;
     color: #111;
 }
-.brand, .copyright, .utc-offset {
+.dial-brand,
+.dial-copyright,
+.utc-offset {
+    left: 0;
     position: absolute;
+    right: 0;
     width: 100%;
 }
-.brand {
+.dial-brand {
     font-size: 4.125vw;
     font-weight: 700;
     line-height: 1.125;
     top: 32.5%;
 }
-.copyright {
+.dial-copyright {
     font-size: 2.33vw;
     font-weight: 300;
     top: 38.5%;
@@ -560,13 +586,16 @@ input {
         font-size: 2.25vh;
         padding: 9vh;
     }
-    .panel > h1, .panel > p, .panel > ul {
+    .panel-brand,
+    .panel-p,
+    .panel-ul,
+    .panel-copyright {
         margin: 2.5vh 0;
     }
-    .panel > ul {
+    .panel-ul {
         margin-top: -0.625vh;
     }
-    .panel > ul > li {
+    .panel-li {
         margin: 1.25vh 0;
         padding-left: 3.5vh;
         text-indent: -3.125vh;
@@ -575,15 +604,16 @@ input {
         height: 7vh;
         width: 7vh;
     }
-    .dial, .display-analog {
+    .dial,
+    .display-analog {
         height: 70vh;
         margin: 1.5vh auto;
         width: 70vh;
     }
-    .brand {
+    .dial-brand {
         font-size: 3vh;
     }
-    .copyright {
+    .dial-copyright {
         font-size: 1.125vh;
         top: 39%;
     }
@@ -648,15 +678,16 @@ input {
     }
 }
 @media screen and (min-aspect-ratio: 4/3) {
-    .dial, .display-analog {
+    .dial,
+    .display-analog {
         height: 85vh;
         margin: 2.5vh auto;
         width: 85vh;
     }
-    .brand {
+    .dial-brand {
         font-size: 3.5vh;
     }
-    .copyright {
+    .dial-copyright {
         font-size: 1.25vh;
     }
     .utc-offset {
