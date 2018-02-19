@@ -11,6 +11,10 @@
             <image:title>Date Clock preview</image:title>
         </image:image>
         <image:image>
+            <image:loc>http://dateclock.net/dateclock-dark-preview.png"</image:loc>
+            <image:title>Date Clock preview (dark theme)</image:title>
+        </image:image>
+        <image:image>
             <image:loc>http://dateclock.net/screenshots/dateclock-dark.png"</image:loc>
             <image:title>Date Clock screenshot (dark theme)</image:title>
         </image:image>
