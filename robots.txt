@@ -1,1 +1,1 @@
-Sitemap: http://dateclock.net/sitemap.xml
+Sitemap: https://dateclock.net/sitemap.xml
