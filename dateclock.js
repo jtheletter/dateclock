@@ -232,6 +232,8 @@
             els.digitSecond = document.getElementById('digit-second');
             els.toggleLabelTime = document.getElementById('toggle-label-time');
             els.toggleLabelPanel = document.getElementById('toggle-label-panel');
+            els.iosPrompt = document.getElementById('ios-prompt');
+            els.iosPromptClose = document.getElementById('ios-prompt-close');
         }
         function addEventListeners () {
 
@@ -337,6 +339,18 @@
             els.toggleLabelPanel.addEventListener('click', function () {
                 els.panel.scrollTop = 0;
             });
+
+            // Close iOS prompt, remove focus, save flag.
+            els.iosPromptClose.addEventListener('click', function () {
+                els.iosPrompt.classList.remove('open');
+                els.iosPromptClose.blur();
+                userHasClosedIosPrompt = true;
+                try {
+                    localStorage.setItem('userHasClosedIosPrompt', true);
+                } catch (err) {
+                    console.error(err);
+                }
+            });
         }
         // End function defs.
 
@@ -349,6 +363,7 @@
         var numberOfDayPips = getDaysInMonth(datetime);
         var hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
 
+        var userHasClosedIosPrompt = null;
         var userHasHighlighted = null;
         var userPrefMonth = null;
         var userPrefTime = null;
@@ -366,6 +381,7 @@
 
         // Get user prefs from local storage.
         try {
+            userHasClosedIosPrompt = localStorage.getItem('userHasClosedIosPrompt') === 'true' ? true : localStorage.getItem('userHasClosedIosPrompt') === 'false' ? false : null;
             userHasHighlighted = localStorage.getItem('userHasHighlighted') === 'true' ? true : localStorage.getItem('userHasHighlighted') === 'false' ? false : null;
             userPrefMonth = localStorage.getItem('month') === 'true' ? true : localStorage.getItem('month') === 'false' ? false : null;
             userPrefTime = localStorage.getItem('time') === 'true' ? true : localStorage.getItem('time') === 'false' ? false : null;
@@ -424,6 +440,16 @@
             });
         } else {
             console.error('ServiceWorker not found in navigator:', navigator);
+        }
+
+        // Show iOS Add-to-Home-Screen prompt.
+        if (!userHasClosedIosPrompt && navigator.userAgent.indexOf('Safari') !== -1 && ['iPhone', 'iPad', 'iPod'].includes(navigator.platform) && !navigator.standalone) {
+            setTimeout(function () {
+                els.iosPrompt.classList.add('open');
+            }, 20000);
+            setTimeout(function () {
+                els.iosPrompt.classList.remove('open');
+            }, 40000);
         }
 
     }
