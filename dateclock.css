@@ -143,9 +143,40 @@ input {
     padding-left: 5.5vw;
     text-indent: -5vw;
 }
-.panel-copyright {
+.panel-copyright,
+.panel-email {
     font-size: 75%;
-    margin: 5vw 0 0;
+}
+.panel-email {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.panel-email > a {
+    color: #fff;
+    position: relative;
+    text-decoration: none;
+}
+.panel-email > a::after {
+    background-color: #fff;
+    bottom: 0;
+    content: '';
+    height: 0.1em;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    transition: opacity 0.25s;
+}
+.panel-email > a:hover::after,
+.panel-email > a:focus::after,
+.panel-email > a:active::after {
+    opacity: 1;
+}
+#toggle-theme:checked ~ .panel > .panel-email > a {
+    color: #000;
+}
+#toggle-theme:checked ~ .panel > .panel-email > a::after {
+    background-color: #000;
 }
 .toggle-label-panel {
     background-color: #000;

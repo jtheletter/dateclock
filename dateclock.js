@@ -414,7 +414,7 @@
         }
 
         setSecond(datetime);
-        fg.classList.remove('closed');
+        els.fg.classList.remove('closed');
         setInterval(setSecond, 40); // Arbitray rate that looks good enough onscreen.
 
         // Demo highlights for new user.
