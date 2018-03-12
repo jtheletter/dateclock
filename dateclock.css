@@ -1,38 +1,36 @@
 @charset 'UTF-8';
 /* Date Clock. (c) JP 2009 (concept), 2018 (code). */
-/*
-    csslint
-    adjoining-classes: false,
-    font-sizes: false,
-    ids: false,
-    qualified-headings: false,
-    unique-headings: false,
-*/
+/* stylelint-disable no-descending-specificity */
 @font-face {
     font-family: 'Source Code Pro';
     font-style: normal;
     font-weight: 300;
-    src: url('fonts/sourcecodepro-light-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-light-webfont.woff') format('woff');
+    src:
+        url('fonts/sourcecodepro-light-webfont.woff2') format('woff2'),
+        url('fonts/sourcecodepro-light-webfont.woff') format('woff');
     unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
 @font-face {
     font-family: 'Source Code Pro';
     font-style: normal;
     font-weight: 600;
-    src: url('fonts/sourcecodepro-semibold-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-semibold-webfont.woff') format('woff');
+    src:
+        url('fonts/sourcecodepro-semibold-webfont.woff2') format('woff2'),
+        url('fonts/sourcecodepro-semibold-webfont.woff') format('woff');
     unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
 @font-face {
     font-family: 'Source Code Pro';
     font-style: normal;
     font-weight: 700;
-    src: url('fonts/sourcecodepro-bold-webfont.woff2') format('woff2'),
-         url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
+    src:
+        url('fonts/sourcecodepro-bold-webfont.woff2') format('woff2'),
+        url('fonts/sourcecodepro-bold-webfont.woff') format('woff');
     unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
 }
-*, *::before, *::after { /* csslint allow: universal-selector */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 body {
@@ -54,9 +52,9 @@ input {
 }
 .wrap {
     bottom: 0;
-    height: 140vw;
     left: 0;
     margin: auto;
+    height: 140vw;
     position: absolute;
     right: 0;
     top: 0;
@@ -105,7 +103,7 @@ input {
     -ms-overflow-scrolling: touch;
     -moz-overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch; /* csslint allow: known-properties */
+    overflow-scrolling: touch;
     padding: 16vw;
     position: fixed;
     text-align: left;
@@ -143,8 +141,7 @@ input {
     padding-left: 5.5vw;
     text-indent: -5vw;
 }
-.panel-copyright,
-.panel-email {
+.panel-copyright {
     font-size: 75%;
 }
 .panel-email {
@@ -354,7 +351,7 @@ input {
     width: 30%;
 }
 .pip > strong {
-    font-weight: 700
+    font-weight: 700;
 }
 .hand {
     position: absolute;
@@ -640,7 +637,8 @@ input {
     line-height: 40px;
     padding-right: 10px;
 }
-.ios-share, .ios-a2hs {
+.ios-share,
+.ios-a2hs {
     background-position: 0 0;
     background-repeat: no-repeat;
     display: inline-block;
@@ -804,14 +802,12 @@ input {
         width: 21.75vh;
     }
     .toggle-label-setting {
+        font-size: 3.2vh;
         height: 21.75vh;
         margin: 0 0 2.5vh 0;
         right: 0;
         width: 21.75vh;
         z-index: 1;
-    }
-    .toggle-label-setting {
-        font-size: 3.2vh;
     }
     .toggle-label-setting::before {
         height: calc(50% - 1vh);
