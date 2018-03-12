@@ -292,10 +292,10 @@ input {
 .display-digital {
     background-color: #000;
     display: inline-block;
-    font-size: 6.7vw;
+    font-size: 7vw;
     font-weight: 300;
     margin: 0 auto;
-    padding: 3vw 8.25vw;
+    padding: 1.25vw 6.75vw;
     transition: background-color 0.25s;
 }
 #toggle-theme:checked ~ .display-digital {

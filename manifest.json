@@ -1,109 +1,21 @@
 {
-    "author": "JP",
-    "background_color": "#777777",
-    "categories": [
-        "education",
-        "entertainment",
-        "lifestyle",
-        "productivity",
-        "utilities"
-    ],
-    "description": "Analog layers of date and time. An holistic horologe of cyclic progression. Touch hands or digits to show names. Toggle months, time, orientation, and theme. Each dial is centrally aligned on its origin.",
-    "dir": "ltr",
-    "display": "standalone",
+    "name": "Date Clock",
+    "short_name": "Date Clock",
     "icons": [
         {
-            "src":"icons/dateclock-icon-48x48.png",
-            "sizes": "48x48",
-            "type": "image/png"
-        },
-        {
-            "src":"icons/dateclock-icon-96x96.png",
-            "sizes": "96x96",
-            "type": "image/png"
-        },
-        {
-            "src":"icons/dateclock-icon-128x128.png",
-            "sizes": "128x128",
-            "type": "image/png"
-        },
-        {
-            "src":"icons/dateclock-icon-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
-            "src":"icons/dateclock-icon-152x152.png",
-            "sizes": "152x152",
-            "type": "image/png"
-        },
-        {
-            "src":"icons/dateclock-icon-192x192.png",
+            "src": "/android-chrome-192x192.png?v=kPxzkAPK08",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src":"icons/dateclock-icon-256x256.png",
-            "sizes": "256x256",
-            "type": "image/png"
-        },
-        {
-            "src":"icons/dateclock-icon-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
-        },
-        {
-            "src":"icons/dateclock-icon-512x512.png",
+            "src": "/android-chrome-512x512.png?v=kPxzkAPK08",
             "sizes": "512x512",
             "type": "image/png"
         }
     ],
-    "lang": "en-US",
-    "name": "Date Clock",
-    "orientation": "any",
-    "screenshots": [
-        {
-            "src": "screenshots/dateclock-dark.png",
-            "sizes": "960x984",
-            "type": "image/png"
-        },
-        {
-            "src": "screenshots/dateclock-highlight.png",
-            "sizes": "960x984",
-            "type": "image/png"
-        },
-        {
-            "src": "screenshots/dateclock-info-dark.png",
-            "sizes": "960x984",
-            "type": "image/png"
-        },
-        {
-            "src": "screenshots/dateclock-info.png",
-            "sizes": "960x984",
-            "type": "image/png"
-        },
-        {
-            "src": "screenshots/dateclock-sundial.png",
-            "sizes": "960x984",
-            "type": "image/png"
-        },
-        {
-            "src": "screenshots/dateclock-wide-dark.png",
-            "sizes": "1920x984",
-            "type": "image/png"
-        },
-        {
-            "src": "screenshots/dateclock-wide.png",
-            "sizes": "1920x984",
-            "type": "image/png"
-        },
-        {
-            "src": "screenshots/dateclock.png",
-            "sizes": "960x984",
-            "type": "image/png"
-        }
-    ],
-    "short_name": "Date Clock",
-    "start_url": "/index.html",
-    "theme_color": "#777777"
+    "theme_color": "#777777",
+    "background_color": "#777777",
+    "start_url": "https://dateclock.net/",
+    "display": "fullscreen",
+    "orientation": "any"
 }

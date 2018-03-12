@@ -123,30 +123,33 @@
             return new Date(datetime.getFullYear(), datetime.getMonth() + 1, 0).getDate();
         }
         function getHoursInDst (datetime) {
-            var januaryOffsetHours = new Date(datetime.getFullYear(), 0, 1).getTimezoneOffset() / 60;
-            var julyOffsetHours = new Date(datetime.getFullYear(), 6, 1).getTimezoneOffset() / 60;
+            var januaryOffsetHours = new Date(datetime.getFullYear(), 0, 1).getTimezoneOffset() * -1 / 60;
+            var julyOffsetHours = new Date(datetime.getFullYear(), 6, 1).getTimezoneOffset() * -1 / 60;
             return Math.abs(januaryOffsetHours - julyOffsetHours);
         }
-        function isDstExpected (datetime) {
-            var currentOffsetHours = datetime.getTimezoneOffset() / 60; // 8
-            return hoursInDst - currentOffsetHours === 0;
+        function doesLocaleObserveDstOnDate (datetime) {
+            var januaryOffsetHours = new Date(datetime.getFullYear(), 0, 1).getTimezoneOffset() * -1 / 60; // -8 Los Angeles (ST). +1 Berlin (ST). +11 Sydney (DST). -3 Santiago (DST).
+            var julyOffsetHours = new Date(datetime.getFullYear(), 6, 1).getTimezoneOffset() * -1 / 60; // -7 Los Angeles (DST). +2 Berlin (DST). +10 Sydney (ST). -4 Santiago (ST).
+            var standardOffsetHours = Math.min(januaryOffsetHours, julyOffsetHours);
+            var datetimeOffsetHours = datetime.getTimezoneOffset() * -1 / 60;
+            return datetimeOffsetHours !== standardOffsetHours;
         }
-        function setOffset (datetime) {
-            var offset = datetime.getTimezoneOffset() / 60;
-            if (isDstExpected(datetime) && !els.toggleTime.checked) { // If DST is expected, but user does not want it...
-                offset += hoursInDst;
-            } else if (!isDstExpected(datetime) && els.toggleTime.checked) { // If DST is not expected, but user wants it...
-                offset -= hoursInDst;
+        function setClockOffset (datetime) {
+            var offsetHours = datetime.getTimezoneOffset() * -1 / 60;
+            if (doesLocaleObserveDstOnDate(datetime) && !els.toggleTime.checked) { // If locale is observing DST, but user does not want it...
+                offsetHours -= hoursInDst;
+            } else if (!doesLocaleObserveDstOnDate(datetime) && els.toggleTime.checked) { // If locale isn't observing DST, but user wants it...
+                offsetHours += hoursInDst;
             }
-            if (offset > 0) {
-                els.utcOffset.textContent = `UTC\u002d${offset}h`; // hyphen-minus sign
-            } else if (offset < 0) {
-                els.utcOffset.textContent = `UTC\u002b${offset}h`; // plus sign
+            if (offsetHours < 0) {
+                els.utcOffset.textContent = `UTC\u002d${Math.abs(offsetHours)}h`; // hyphen-minus sign
+            } else if (offsetHours > 0) {
+                els.utcOffset.textContent = `UTC\u002b${offsetHours}h`; // plus sign
             } else {
-                els.utcOffset.textContent = `UTC\u00b1${offset}h`; // plus-minus sign
+                els.utcOffset.textContent = `UTC\u00b10h`; // plus-minus sign
             }
         }
-        function setMonth (datetime) {
+        function setClockMonth (datetime) {
             var month = datetime.getMonth() + 1; // Add one month for natural counting.
             var day = datetime.getDate();
             var daysInMonth = getDaysInMonth(datetime);
@@ -156,42 +159,42 @@
             if (daysInMonth !== numberOfDayPips) { // Update pips for days of month, if total days changes.
                 drawPipDay(datetime);
             }
-            setOffset(datetime); // Update offset.
+            setClockOffset(datetime); // Update offset.
         }
-        function setDay (datetime) {
+        function setClockDay (datetime) {
             var day = datetime.getDate();
             var hour = datetime.getHours();
             var daysInMonth = getDaysInMonth(datetime);
             var degs = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
             rotate(els.handDay, degs);
             els.digitDay.textContent = day < 10 ? `0${day}` : day;
-            setMonth(datetime); // Update month.
+            setClockMonth(datetime); // Update month.
         }
-        function setHour (datetime) {
+        function setClockHour (datetime) {
             var hour = datetime.getHours();
             var minute = datetime.getMinutes();
             var degs = (hour + minute / 60) / 24 * 360;
             rotate(els.handHour, degs);
             els.digitHour.textContent = hour < 10 ? `0${hour}` : hour;
-            setDay(datetime); // Update day.
-            prevSetHourDatetime = datetime;
+            setClockDay(datetime); // Update day.
+            prevSetClockHourDatetime = datetime;
         }
-        function setMinute (datetime) {
+        function setClockMinute (datetime) {
             var minute = datetime.getMinutes();
             var second = datetime.getSeconds();
             var degs = (minute + second / 60) / 60 * 360;
             rotate(els.handMinute, degs);
             els.digitMinute.textContent = minute < 10 ? `0${minute}` : minute;
-            if (second === 0 || datetime - prevSetHourDatetime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
-                setHour(datetime);
+            if (second === 0 || datetime - prevSetClockHourDatetime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
+                setClockHour(datetime);
             }
-            prevSetMinuteDatetime = datetime;
+            prevSetClockMinuteDatetime = datetime;
         }
-        function setSecond (datetime) { // Set seconds. Set larger units as needed.
+        function setClockSecond (datetime) { // Set seconds. Set larger units as needed.
             datetime = datetime || new Date(); // Invocations by setInterval use new Date objects.
-            if (isDstExpected(datetime) && !els.toggleTime.checked) { // If DST is expected, but user does not want it...
+            if (doesLocaleObserveDstOnDate(datetime) && !els.toggleTime.checked) { // If local is observing DST, but user does not want it...
                 datetime = new Date(datetime.valueOf() - hoursInDst * 60 * 60 * 1000);
-            } else if (!isDstExpected(datetime) && els.toggleTime.checked) { // If DST is not expected, but user wants it...
+            } else if (!doesLocaleObserveDstOnDate(datetime) && els.toggleTime.checked) { // If local isn't observing DST, but user wants it...
                 datetime = new Date(datetime.valueOf() + hoursInDst * 60 * 60 * 1000);
             }
             var second = datetime.getSeconds();
@@ -199,8 +202,8 @@
             var degs = (second + millisecond / 1000) / 60 * 360;
             rotate(els.handSecond, degs);
             els.digitSecond.textContent = second < 10 ? `0${second}` : second;
-            if (millisecond === 0 || datetime - prevSetMinuteDatetime > 1000) { // Update minute on whole seconds or after one second.
-                setMinute(datetime);
+            if (millisecond === 0 || datetime - prevSetClockMinuteDatetime > 1000) { // Update minute on whole seconds or after one second.
+                setClockMinute(datetime);
             }
         }
         function getElements () {
@@ -301,8 +304,8 @@
 
             // Trigger datetime re-calculations when user toggles DST/ST.
             els.toggleLabelTime.addEventListener('click', function () {
-                prevSetHourDatetime = 0;
-                prevSetMinuteDatetime = 0;
+                prevSetClockHourDatetime = 0;
+                prevSetClockMinuteDatetime = 0;
             });
 
             // Save user prefs for all toggles to local storage.
@@ -357,8 +360,8 @@
         var datetime = new Date();
         // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
 
-        var prevSetHourDatetime = 0;
-        var prevSetMinuteDatetime = 0;
+        var prevSetClockHourDatetime = 0;
+        var prevSetClockMinuteDatetime = 0;
 
         var numberOfDayPips = getDaysInMonth(datetime);
         var hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
@@ -400,7 +403,7 @@
         if (userPrefTime !== null) {
             els.toggleTime.checked = userPrefTime;
         } else {
-            els.toggleTime.checked = isDstExpected(datetime); // Use local DST expectation if no user pref stored.
+            els.toggleTime.checked = doesLocaleObserveDstOnDate(datetime); // Use locale's DST observation if no user pref stored.
         }
         if (userPrefOrientation !== null) {
             els.toggleOrientation.checked = userPrefOrientation;
@@ -413,9 +416,9 @@
             els.toggleTheme.checked = true;
         }
 
-        setSecond(datetime);
+        setClockSecond(datetime);
         els.fg.classList.remove('closed');
-        setInterval(setSecond, 40); // Arbitray rate that looks good enough onscreen.
+        setInterval(setClockSecond, 40); // Arbitray rate that looks good enough onscreen.
 
         // Demo highlights for new user.
         if (!userHasHighlighted) {
