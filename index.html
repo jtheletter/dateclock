@@ -90,7 +90,7 @@
             <input id="toggle-theme" type="checkbox">
 
             <div class="bg"></div>
-            <div class="fg closed" id="fg"></div>
+            <div class="fg upfront" id="fg"></div>
 
             <div class="panel" id="panel">
                 <h1 class="panel-brand">DATE&#xa0;CLOCK</h1>
@@ -112,11 +112,12 @@
                     <li class="panel-li">First month of a year is one.</li>
                 </ul>
                 <p class="panel-p panel-copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
-                <p class="panel-p panel-email"><a href="#email" onclick="this.href = 'mailto:' + this.innerHTML.split('').reverse().join('')" style="unicode-bidi: bidi-override; direction: rtl;" target="_blank" title=".Send an email">moc.liamg@kcolcetad</a>&#x200E;</p>
+                <p class="panel-p panel-email"><a href="#email" onclick="this.href = 'mailto:' + this.innerHTML.split('').reverse().join('')" style="unicode-bidi: bidi-override; direction: rtl;" target="_blank" title="Send Email">moc.liamg@kcolcetad</a>&#x200E;</p>
+                <button class="reset-button" id="reset-button" title="Reset Clock"><small>Reset Clock</small><span></span></button>
                 <nav style="display:none;"><a href="sketches/index.html" title="View sketches.">Sketches</a></nav>
             </div>
 
-            <label class="toggle-label-panel" id="toggle-label-panel" for="toggle-panel" title="View Info"><span></span></label>
+            <label class="toggle-label-panel" id="toggle-label-panel" for="toggle-panel" title="View Info"><small>View Info</small><span></span></label>
 
             <div class="dial">
                 <p class="supertitle" id="supertitle-month">Month</p>

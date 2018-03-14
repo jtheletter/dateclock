@@ -10,7 +10,6 @@
     }
 
     function dateclock () {
-
         // Define functions.
         function updateHighlightFlag () {
             if (userHasHighlighted) {
@@ -134,7 +133,7 @@
             var datetimeOffsetHours = datetime.getTimezoneOffset() * -1 / 60;
             return datetimeOffsetHours !== standardOffsetHours;
         }
-        function setClockOffset (datetime) {
+        function updateClockOffset (datetime) {
             var offsetHours = datetime.getTimezoneOffset() * -1 / 60;
             if (doesLocaleObserveDstOnDate(datetime) && !els.toggleTime.checked) { // If locale is observing DST, but user does not want it...
                 offsetHours -= hoursInDst;
@@ -149,7 +148,7 @@
                 els.utcOffset.textContent = `UTC\u00b10h`; // plus-minus sign
             }
         }
-        function setClockMonth (datetime) {
+        function updateClockMonth (datetime) {
             var month = datetime.getMonth() + 1; // Add one month for natural counting.
             var day = datetime.getDate();
             var daysInMonth = getDaysInMonth(datetime);
@@ -159,38 +158,38 @@
             if (daysInMonth !== numberOfDayPips) { // Update pips for days of month, if total days changes.
                 drawPipDay(datetime);
             }
-            setClockOffset(datetime); // Update offset.
+            updateClockOffset(datetime);
         }
-        function setClockDay (datetime) {
+        function updateClockDay (datetime) {
             var day = datetime.getDate();
             var hour = datetime.getHours();
             var daysInMonth = getDaysInMonth(datetime);
             var degs = (day - 1 + hour / 24) / daysInMonth * 360; // Subtract one day for zero indexing.
             rotate(els.handDay, degs);
             els.digitDay.textContent = day < 10 ? `0${day}` : day;
-            setClockMonth(datetime); // Update month.
+            updateClockMonth(datetime);
         }
-        function setClockHour (datetime) {
+        function updateClockHour (datetime) {
             var hour = datetime.getHours();
             var minute = datetime.getMinutes();
             var degs = (hour + minute / 60) / 24 * 360;
             rotate(els.handHour, degs);
             els.digitHour.textContent = hour < 10 ? `0${hour}` : hour;
-            setClockDay(datetime); // Update day.
-            prevSetClockHourDatetime = datetime;
+            updateClockDay(datetime);
+            prevUpdateClockHourDatetime = datetime;
         }
-        function setClockMinute (datetime) {
+        function updateClockMinute (datetime) {
             var minute = datetime.getMinutes();
             var second = datetime.getSeconds();
             var degs = (minute + second / 60) / 60 * 360;
             rotate(els.handMinute, degs);
             els.digitMinute.textContent = minute < 10 ? `0${minute}` : minute;
-            if (second === 0 || datetime - prevSetClockHourDatetime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
-                setClockHour(datetime);
+            if (second === 0 || datetime - prevUpdateClockHourDatetime > 1000 * 60) { // Update hour (& day, month, offset) on whole minute or after one minute.
+                updateClockHour(datetime);
             }
-            prevSetClockMinuteDatetime = datetime;
+            prevUpdateClockMinuteDatetime = datetime;
         }
-        function setClockSecond (datetime) { // Set seconds. Set larger units as needed.
+        function updateClock (datetime) { // Set seconds. Set larger units as needed.
             datetime = datetime || new Date(); // Invocations by setInterval use new Date objects.
             if (doesLocaleObserveDstOnDate(datetime) && !els.toggleTime.checked) { // If local is observing DST, but user does not want it...
                 datetime = new Date(datetime.valueOf() - hoursInDst * 60 * 60 * 1000);
@@ -202,17 +201,67 @@
             var degs = (second + millisecond / 1000) / 60 * 360;
             rotate(els.handSecond, degs);
             els.digitSecond.textContent = second < 10 ? `0${second}` : second;
-            if (millisecond === 0 || datetime - prevSetClockMinuteDatetime > 1000) { // Update minute on whole seconds or after one second.
-                setClockMinute(datetime);
+            if (millisecond === 0 || datetime - prevUpdateClockMinuteDatetime > 1000) { // Update minute on whole seconds or after one second.
+                updateClockMinute(datetime);
             }
         }
+        function resetClock () {
+            // Clear possible timeouts (demo highlights, iOS A2HS prompt).
+            timeoutIds.forEach(function (id) {
+                window.clearTimeout(id);
+            });
+            timeoutIds = [];
+
+            // Clear interval (clock update).
+            window.clearInterval(intervalId);
+            intervalId = undefined;
+
+            // Ensure no demo highlights.
+            blurMonth();
+            blurDay();
+            blurHour();
+            blurMinute();
+            blurSecond();
+
+            // Ensure iOS prompt is closed.
+            els.iosPrompt.classList.remove('open');
+
+            // Reset panel toggle label's title text.
+            els.toggleLabelPanel.title = 'View Info';
+
+            // Clear saved prefs.
+            try {
+                localStorage.clear();
+            } catch (err) {
+                console.error(err);
+            }
+
+            // Add grey curtain, rotate clock to 90 degrees (neither "clock" nor "sundial" orientation).
+            els.fg.classList.add('upfront');
+
+            // Allow time for above clock rotation before closing panel and resetting toggles.
+            window.setTimeout(function () {
+                els.togglePanel.checked = false;
+                els.toggleMonth.checked = false;
+                els.toggleTime.checked = false;
+                els.toggleOrientation.checked = false;
+                els.toggleTheme.checked = false;
+
+                // Wait for toggles to animate before restarting clock.
+                window.setTimeout(function () {
+                    startClock();
+                }, 250);
+            }, 250);
+        }
         function getElements () {
+            els.togglePanel = document.getElementById('toggle-panel');
             els.toggleMonth = document.getElementById('toggle-month');
             els.toggleTime = document.getElementById('toggle-time');
             els.toggleOrientation = document.getElementById('toggle-orientation');
             els.toggleTheme = document.getElementById('toggle-theme');
             els.fg = document.getElementById('fg');
             els.panel = document.getElementById('panel');
+            els.resetButton = document.getElementById('reset-button');
             els.supertitleMonth = document.getElementById('supertitle-month');
             els.supertitleDay = document.getElementById('supertitle-day');
             els.supertitleHour = document.getElementById('supertitle-hour');
@@ -239,7 +288,6 @@
             els.iosPromptClose = document.getElementById('ios-prompt-close');
         }
         function addEventListeners () {
-
             // Add highlight listeners.
             els.handMonth.addEventListener('touchstart', focusMonth);
             els.handMonth.addEventListener('mouseenter', focusMonth);
@@ -304,8 +352,8 @@
 
             // Trigger datetime re-calculations when user toggles DST/ST.
             els.toggleLabelTime.addEventListener('click', function () {
-                prevSetClockHourDatetime = 0;
-                prevSetClockMinuteDatetime = 0;
+                prevUpdateClockHourDatetime = 0;
+                prevUpdateClockMinuteDatetime = 0;
             });
 
             // Save user prefs for all toggles to local storage.
@@ -341,7 +389,11 @@
             // Scroll panel to top on open or close.
             els.toggleLabelPanel.addEventListener('click', function () {
                 els.panel.scrollTop = 0;
+                els.toggleLabelPanel.title = els.togglePanel.checked ? 'View Info' : 'Close Info';
             });
+
+            // Reset button.
+            els.resetButton.addEventListener('click', resetClock);
 
             // Close iOS prompt, remove focus, save flag.
             els.iosPromptClose.addEventListener('click', function () {
@@ -355,105 +407,129 @@
                 }
             });
         }
-        // End function defs.
+        function demoHighlights () {
+            timeoutIds.push(window.setTimeout(function () { if (!userHasHighlighted) { focusMonth(); } }, 1000));
+            timeoutIds.push(window.setTimeout(blurMonth, 2000));
+            timeoutIds.push(window.setTimeout(function () { if (!userHasHighlighted) { focusDay(); } }, 2000));
+            timeoutIds.push(window.setTimeout(blurDay, 3000));
+            timeoutIds.push(window.setTimeout(function () { if (!userHasHighlighted) { focusHour(); } }, 3000));
+            timeoutIds.push(window.setTimeout(blurHour, 4000));
+            timeoutIds.push(window.setTimeout(function () { if (!userHasHighlighted) { focusMinute(); } }, 4000));
+            timeoutIds.push(window.setTimeout(blurMinute, 5000));
+            timeoutIds.push(window.setTimeout(function () { if (!userHasHighlighted) { focusSecond(); } }, 5000));
+            timeoutIds.push(window.setTimeout(blurSecond, 6000));
+        }
+        function registerServiceWorker () { // Register service worker for Chrome add-to-home-screen.
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful with scope:', registration.scope);
+                }, function (err) {
+                    console.error('ServiceWorker registration failed:', err);
+                });
+            } else {
+                console.error('ServiceWorker not found in navigator:', navigator);
+            }
+        }
+        function startClock () {
+            datetime = new Date();
+            // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
 
-        var datetime = new Date();
-        // datetime = new Date(1970, 10 - 1, 7, 9, 35, 18); // "Factory Display"
+            prevUpdateClockHourDatetime = 0;
+            prevUpdateClockMinuteDatetime = 0;
 
-        var prevSetClockHourDatetime = 0;
-        var prevSetClockMinuteDatetime = 0;
+            numberOfDayPips = getDaysInMonth(datetime);
+            hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
 
-        var numberOfDayPips = getDaysInMonth(datetime);
-        var hoursInDst = getHoursInDst(datetime) || 1; // Default one if no DST for locale.
+            userHasClosedIosPrompt = null;
+            userHasHighlighted = null;
+            userPrefMonth = null;
+            userPrefTime = null;
+            userPrefOrientation = null;
+            userPrefTheme = null;
 
-        var userHasClosedIosPrompt = null;
-        var userHasHighlighted = null;
-        var userPrefMonth = null;
-        var userPrefTime = null;
-        var userPrefOrientation = null;
-        var userPrefTheme = null;
+            els = {};
+            getElements();
+            addEventListeners();
 
+            drawPipMonth();
+            drawPipDay(datetime);
+            drawPipHour();
+            drawPipMinute();
+
+            // Get user prefs from local storage.
+            try {
+                userHasClosedIosPrompt = localStorage.getItem('userHasClosedIosPrompt') === 'true' ? true : localStorage.getItem('userHasClosedIosPrompt') === 'false' ? false : null;
+                userHasHighlighted = localStorage.getItem('userHasHighlighted') === 'true' ? true : localStorage.getItem('userHasHighlighted') === 'false' ? false : null;
+                userPrefMonth = localStorage.getItem('month') === 'true' ? true : localStorage.getItem('month') === 'false' ? false : null;
+                userPrefTime = localStorage.getItem('time') === 'true' ? true : localStorage.getItem('time') === 'false' ? false : null;
+                userPrefOrientation = localStorage.getItem('orientation') === 'true' ? true : localStorage.getItem('orientation') === 'false' ? false : null;
+                userPrefTheme = localStorage.getItem('theme') === 'true' ? true : localStorage.getItem('theme') === 'false' ? false : null;
+            } catch (err) { // Local storage blocked by user.
+                console.error(err);
+            }
+
+            // Set el prefs to saved user prefs.
+            if (userPrefMonth !== null) {
+                els.toggleMonth.checked = userPrefMonth;
+            } else {
+                els.toggleMonth.checked = true;
+            }
+            if (userPrefTime !== null) {
+                els.toggleTime.checked = userPrefTime;
+            } else {
+                els.toggleTime.checked = doesLocaleObserveDstOnDate(datetime); // Use locale's DST observation if no user pref stored.
+            }
+            if (userPrefOrientation !== null) {
+                els.toggleOrientation.checked = userPrefOrientation;
+            } else {
+                els.toggleOrientation.checked = true;
+            }
+            if (userPrefTheme !== null) {
+                els.toggleTheme.checked = userPrefTheme;
+            } else {
+                els.toggleTheme.checked = true;
+            }
+
+            updateClock(datetime);
+            els.fg.classList.remove('upfront');
+            intervalId = window.setInterval(updateClock, 40); // Arbitray rate that looks good enough onscreen.
+
+            // Demo highlights for new user.
+            if (!userHasHighlighted) {
+                demoHighlights();
+            }
+
+            // Show iOS Add-to-Home-Screen prompt.
+            if (!userHasClosedIosPrompt && navigator.userAgent.indexOf('Safari') !== -1 && ['iPhone', 'iPad', 'iPod'].includes(navigator.platform) && !navigator.standalone) {
+                timeoutIds.push(window.setTimeout(function () {
+                    els.iosPrompt.classList.add('open');
+                }, 20000));
+                timeoutIds.push(window.setTimeout(function () {
+                    els.iosPrompt.classList.remove('open');
+                }, 40000));
+            }
+
+            registerServiceWorker();
+        }
+        // End function definitions.
+
+        var datetime;
+        var prevUpdateClockHourDatetime;
+        var prevUpdateClockMinuteDatetime;
+        var numberOfDayPips;
+        var hoursInDst;
+        var userHasClosedIosPrompt;
+        var userHasHighlighted;
+        var userPrefMonth;
+        var userPrefTime;
+        var userPrefOrientation;
+        var userPrefTheme;
+        var intervalId;
+
+        var timeoutIds = [];
         var els = {};
-        getElements();
-        addEventListeners();
 
-        drawPipMonth();
-        drawPipDay(datetime);
-        drawPipHour();
-        drawPipMinute();
-
-        // Get user prefs from local storage.
-        try {
-            userHasClosedIosPrompt = localStorage.getItem('userHasClosedIosPrompt') === 'true' ? true : localStorage.getItem('userHasClosedIosPrompt') === 'false' ? false : null;
-            userHasHighlighted = localStorage.getItem('userHasHighlighted') === 'true' ? true : localStorage.getItem('userHasHighlighted') === 'false' ? false : null;
-            userPrefMonth = localStorage.getItem('month') === 'true' ? true : localStorage.getItem('month') === 'false' ? false : null;
-            userPrefTime = localStorage.getItem('time') === 'true' ? true : localStorage.getItem('time') === 'false' ? false : null;
-            userPrefOrientation = localStorage.getItem('orientation') === 'true' ? true : localStorage.getItem('orientation') === 'false' ? false : null;
-            userPrefTheme = localStorage.getItem('theme') === 'true' ? true : localStorage.getItem('theme') === 'false' ? false : null;
-        } catch (err) { // Local storage blocked by user.
-            console.error(err);
-        }
-
-        // Set el prefs to saved user prefs.
-        if (userPrefMonth !== null) {
-            els.toggleMonth.checked = userPrefMonth;
-        } else {
-            els.toggleMonth.checked = true;
-        }
-        if (userPrefTime !== null) {
-            els.toggleTime.checked = userPrefTime;
-        } else {
-            els.toggleTime.checked = doesLocaleObserveDstOnDate(datetime); // Use locale's DST observation if no user pref stored.
-        }
-        if (userPrefOrientation !== null) {
-            els.toggleOrientation.checked = userPrefOrientation;
-        } else {
-            els.toggleOrientation.checked = true;
-        }
-        if (userPrefTheme !== null) {
-            els.toggleTheme.checked = userPrefTheme;
-        } else {
-            els.toggleTheme.checked = true;
-        }
-
-        setClockSecond(datetime);
-        els.fg.classList.remove('closed');
-        setInterval(setClockSecond, 40); // Arbitray rate that looks good enough onscreen.
-
-        // Demo highlights for new user.
-        if (!userHasHighlighted) {
-            setTimeout(function () { if (!userHasHighlighted) { focusMonth(); } }, 1000);
-            setTimeout(blurMonth, 2000);
-            setTimeout(function () { if (!userHasHighlighted) { focusDay(); } }, 2000);
-            setTimeout(blurDay, 3000);
-            setTimeout(function () { if (!userHasHighlighted) { focusHour(); } }, 3000);
-            setTimeout(blurHour, 4000);
-            setTimeout(function () { if (!userHasHighlighted) { focusMinute(); } }, 4000);
-            setTimeout(blurMinute, 5000);
-            setTimeout(function () { if (!userHasHighlighted) { focusSecond(); } }, 5000);
-            setTimeout(blurSecond, 6000);
-        }
-
-        // Register service worker for Chrome add-to-home-screen.
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').then(function (registration) {
-                console.log('ServiceWorker registration successful with scope:', registration.scope);
-            }, function (err) {
-                console.error('ServiceWorker registration failed:', err);
-            });
-        } else {
-            console.error('ServiceWorker not found in navigator:', navigator);
-        }
-
-        // Show iOS Add-to-Home-Screen prompt.
-        if (!userHasClosedIosPrompt && navigator.userAgent.indexOf('Safari') !== -1 && ['iPhone', 'iPad', 'iPod'].includes(navigator.platform) && !navigator.standalone) {
-            setTimeout(function () {
-                els.iosPrompt.classList.add('open');
-            }, 20000);
-            setTimeout(function () {
-                els.iosPrompt.classList.remove('open');
-            }, 40000);
-        }
+        startClock();
 
     }
 

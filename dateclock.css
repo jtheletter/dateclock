@@ -52,9 +52,9 @@ input {
 }
 .wrap {
     bottom: 0;
+    height: 140vw;
     left: 0;
     margin: auto;
-    height: 140vw;
     position: absolute;
     right: 0;
     top: 0;
@@ -79,11 +79,11 @@ input {
     transition: opacity 0.75s, z-index 1s;
     z-index: -10;
 }
-.fg.closed {
+.fg.upfront {
     opacity: 1;
-    z-index: 30;
+    z-index: 20;
 }
-.fg.closed ~ .display-analog {
+.fg.upfront ~ .display-analog {
     transform: rotate(90deg);
 }
 #toggle-theme:checked ~ .bg {
@@ -111,7 +111,7 @@ input {
     transform: translateX(-100%);
     transition: background-color 0.25s, color 0.25s, transform 0.25s;
     width: 100%;
-    z-index: 10;
+    z-index: 30;
 }
 #toggle-panel:checked ~ .panel {
     transform: translateX(0);
@@ -146,7 +146,6 @@ input {
 }
 .panel-email {
     font-weight: 700;
-    margin-bottom: 0;
 }
 .panel-email > a {
     color: #fff;
@@ -175,6 +174,73 @@ input {
 #toggle-theme:checked ~ .panel > .panel-email > a::after {
     background-color: #000;
 }
+.reset-button {
+    background-color: #000;
+    border: 0;
+    cursor: pointer;
+    font-size: 0;
+    height: 13.1vw;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    transition: background-color 0.25s;
+    width: 13.1vw;
+}
+.reset-button:active {
+    background-color: #333;
+}
+#toggle-theme:checked ~ .panel > .reset-button {
+    background-color: #aaa;
+}
+#toggle-theme:checked ~ .panel > .reset-button:active {
+    background-color: #eee;
+}
+.reset-button span {
+    border-bottom-color: #fff;
+    border-left-color: transparent;
+    border-radius: 50%;
+    border-right-color: #fff;
+    border-style: solid;
+    border-top-color: #fff;
+    border-width: 0.67vw;
+    bottom: 20%;
+    display: inline-block;
+    left: 20%;
+    position: absolute;
+    right: 20%;
+    top: 20%;
+    transform: rotate(0);
+    transition: transform 0.25s;
+}
+.reset-button span::before,
+.reset-button span::after {
+    background-color: #fff;
+    content: '';
+    left: 2.5%;
+    position: absolute;
+}
+.reset-button span::before {
+    height: 30%;
+    top: -7.5%;
+    width: 0.67vw;
+}
+.reset-button span::after {
+    height: 0.67vw;
+    top: 12.5%;
+    width: 30%;
+}
+#toggle-theme:checked ~ .panel > .reset-button span {
+    border-bottom-color: #000;
+    border-right-color: #000;
+    border-top-color: #000;
+}
+#toggle-theme:checked ~ .panel > .reset-button span::before,
+#toggle-theme:checked ~ .panel > .reset-button span::after {
+    background-color: #000;
+}
+.reset-button:active span {
+    transform: rotate(-90deg);
+}
 .toggle-label-panel {
     background-color: #000;
     cursor: pointer;
@@ -184,7 +250,7 @@ input {
     top: 0;
     transition: background-color 0.25s;
     width: 13.1vw;
-    z-index: 20;
+    z-index: 40;
 }
 .toggle-label-panel:active {
     background-color: #333;
@@ -292,7 +358,7 @@ input {
     font-size: 7vw;
     font-weight: 300;
     margin: 0 auto;
-    padding: 1.25vw 6.75vw;
+    padding: 2.19vw 6.75vw;
     transition: background-color 0.25s;
 }
 #toggle-theme:checked ~ .display-digital {
@@ -675,6 +741,9 @@ input {
     .panel-copyright {
         margin: 2.5vh 0;
     }
+    .panel-brand {
+        margin-top: 0;
+    }
     .panel-ul {
         margin-top: -0.625vh;
     }
@@ -683,9 +752,19 @@ input {
         padding-left: 3.5vh;
         text-indent: -3.125vh;
     }
+    .reset-button,
     .toggle-label-panel {
         height: 7vh;
         width: 7vh;
+    }
+    .reset-button span {
+        border-width: 0.33vh;
+    }
+    .reset-button span::before {
+        width: 0.33vh;
+    }
+    .reset-button span::after {
+        height: 0.33vh;
     }
     .dial,
     .display-analog {
