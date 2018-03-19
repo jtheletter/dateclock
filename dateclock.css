@@ -52,7 +52,7 @@ input {
 }
 .wrap {
     bottom: 0;
-    height: 140vw;
+    height: 140.5vw;
     left: 0;
     margin: auto;
     position: absolute;
@@ -355,10 +355,11 @@ input {
 .display-digital {
     background-color: #000;
     display: inline-block;
-    font-size: 7vw;
+    font-size: 9.21vw;
     font-weight: 300;
+    line-height: 0.75;
     margin: 0 auto;
-    padding: 2.19vw 6.75vw;
+    padding: 3vw 9.9vw;
     transition: background-color 0.25s;
 }
 #toggle-theme:checked ~ .display-digital {
@@ -420,6 +421,7 @@ input {
     font-weight: 700;
 }
 .hand {
+    outline-offset: 0.5vw;
     position: absolute;
     transition: background-color 0.25s;
 }
@@ -518,6 +520,7 @@ input {
 }
 .digit {
     display: inline-block;
+    outline-offset: 2vw;
     transition: color 0.25s;
 }
 .digit-month {
@@ -571,7 +574,6 @@ input {
 .focal {
     cursor: pointer;
     outline-color: rgba(204, 204, 204, 0);
-    outline-offset: 0.5vw;
     outline-style: double;
     outline-width: 0;
     transition: outline-width 0.25s;
@@ -782,9 +784,12 @@ input {
     .utc-offset {
         font-size: 2.4vh;
     }
+    .hand {
+        outline-offset: 0.5vh;
+    }
     .display-digital {
-        font-size: 5.125vh;
-        padding: 0.75vh 4.4vh 0.67vh;
+        font-size: 4.96vh;
+        padding: 1.5vh 5.8vh;
     }
     .pip-month {
         font-size: 4.4vh;
@@ -802,10 +807,10 @@ input {
         font-size: 4.5vh;
     }
     .digit {
+        outline-offset: 1vh;
         padding: 0 0 0.25vh;
     }
     .focal.focus {
-        outline-offset: 0.5vh;
         outline-width: 0.6vh;
     }
     .toggle-label-setting {
@@ -854,10 +859,6 @@ input {
     }
     .utc-offset {
         font-size: 2.67vh;
-    }
-    .display-digital {
-        font-size: 5.2vh;
-        padding: 0.9vh 4.4vh 0.67vh;
     }
     .pip-month {
         font-size: 5.5vh;

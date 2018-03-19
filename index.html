@@ -25,8 +25,8 @@
 
         <!-- SEO & share. -->
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Touch hands or digits to show names. Toggle time, orientation, and theme. Each dial is centrally aligned on its origin.">
-        <meta name="keywords" content="lunisolar, lunasolar, lunarsolar, lunar solar, calendar clock, alternative calendar, alternative clock, analog calendar, analog clock, animated calendar, horologe, horological, horology, horologist, what time is it, what is time, natural time, cyclic time, holistic time, date time, datetime, date clock, dateclock second, minute, hour, day, month, dst, daylight saving time, daylight savings time, daylight shifting time, daylight shifted time, daylight shift time, dst, standard time, st, gregorian month, lunar month">
+        <meta name="description" content="Touch hands or digits to show names. Toggle time, orientation, and theme. Each dial is centrally aligned on its origin. Lunar year is defined from the first moon to be full after winter solstice, to the last moon to be full on or before winter solstice.">
+        <meta name="keywords" content="lunisolar, lunasolar, lunarsolar, lunar solar, calendar clock, alternative calendar, alternative clock, analog calendar, analog clock, animated calendar, horologe, horological, horology, horologist, what time is it, what is time, natural time, cyclic time, holistic time, date time, datetime, date clock, dateclock second, minute, hour, day, month, dst, daylight saving time, daylight savings time, daylight shifting time, daylight shifted time, daylight shift time, dst, standard time, st, gregorian month, lunar month, lunation, moon, blue moon, betrayer moon, belewe moon, leap moon, intercalary moon">
         <meta name="author" content="JP">
         <link rel="canonical" href="https://dateclock.net/">
         <meta property="og:type" content="website">
@@ -94,12 +94,12 @@
 
             <div class="panel" id="panel">
                 <h1 class="panel-brand">DATE&#xa0;CLOCK</h1>
-                <p class="panel-p">Analog layers of date and time. An holistic horologe of cyclic progression.</p>
+                <p class="panel-p">Analog layers of date and time. An holistic hor&#xad;o&#xad;loge of cyc&#xad;lic progression.</p>
                 <p class="panel-p">Touch hands or digits to show names.</p>
                 <p class="panel-p">Toggle:</p>
                 <ul class="panel-ul">
-                    <!-- <li class="panel-li">Gregorian vs lunar months.</li> -->
-                    <li class="panel-li">Daylight Shifting (&#x201c;Saving&#x201d;) vs Standard&#xa0;Time.</li>
+                    <li class="panel-li">Gregorian vs lunar months.</li>
+                    <li class="panel-li">Daylight Shifting (&#x201c;Saving&#x201d;) vs Stan&#xad;dard&#xa0;Time.</li>
                     <li class="panel-li">Origin at top vs bottom.</li>
                     <li class="panel-li">Colors.</li>
                 </ul>
@@ -111,8 +111,10 @@
                     <li class="panel-li">First day of a month is one.</li>
                     <li class="panel-li">First month of a year is one.</li>
                 </ul>
+                <p class="panel-p">Lunar year is defined from first moon full af&#xad;ter winter sol&#xad;stice, to last moon full on or before winter solstice.</p>
+                <p class="panel-p">Years with thirteen full moons count the first as zero, so as to leap (tra&#xad;di&#xad;tion&#xad;al blue, belewe, be&#xad;tray&#xad;er moon).</p>
                 <p class="panel-p panel-copyright">&#xa9;&#x200A;2009,&#x2004;2018&#x0020;JP</p>
-                <p class="panel-p panel-email"><a href="#email" onclick="this.href = 'mailto:' + this.innerHTML.split('').reverse().join('')" style="unicode-bidi: bidi-override; direction: rtl;" target="_blank" title="Send Email">moc.liamg@kcolcetad</a>&#x200E;</p>
+                <p class="panel-p panel-email"><a href="#email" onclick="this.href = 'mailto:' + this.innerHTML.split('').reverse().join('')" style="unicode-bidi:bidi-override;direction:rtl;" target="_blank" title="Send Email">moc.liamg@kcolcetad</a>&#x200E;</p>
                 <button class="reset-button" id="reset-button" title="Reset Clock"><small>Reset Clock</small><span></span></button>
                 <nav style="display:none;"><a href="sketches/index.html" title="View sketches.">Sketches</a></nav>
             </div>
@@ -152,7 +154,7 @@
             <div class="sep-hori"></div>
 
             <div class="toggle-label-setting-wrap">
-                <!-- <label class="toggle-label-setting" id="toggle-label-month" for="toggle-month" title="Toggle Month"><span>Gregorian</span><span>Lunar</span></label> -->
+                <label class="toggle-label-setting" id="toggle-label-month" for="toggle-month" title="Toggle Month"><span>Gregorian</span><span>Lunar</span></label>
                 <label class="toggle-label-setting" id="toggle-label-time" for="toggle-time" title="Toggle Time"><span>DST</span><span>Standard</span></label>
                 <label class="toggle-label-setting" id="toggle-label-orientation" for="toggle-orientation" title="Toggle Orientation"><span>Clock</span><span>Sundial</span></label>
                 <label class="toggle-label-setting" id="toggle-label-theme" for="toggle-theme" title="Toggle Theme"><span>Light</span><span>Dark</span></label>
