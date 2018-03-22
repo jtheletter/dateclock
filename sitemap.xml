@@ -31,10 +31,6 @@
             <image:title>Date Clock screenshot (highlighting)</image:title>
         </image:image>
         <image:image>
-            <image:loc>https://dateclock.net/screenshots/dateclock-info-dark.png"</image:loc>
-            <image:title>Date Clock screenshot (info panel, dark theme)</image:title>
-        </image:image>
-        <image:image>
             <image:loc>https://dateclock.net/screenshots/dateclock-info.png"</image:loc>
             <image:title>Date Clock screenshot (info panel)</image:title>
         </image:image>

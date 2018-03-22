@@ -428,11 +428,11 @@ input {
 .hand-month {
     background-color: #ddd;
     height: 29.5%; /* 55% - top */
-    left: 46.75%; /* 50% - width / 2 */
+    left: 47.5%; /* 50% - width / 2 */
     top: 25.5%;
     transform: rotate(0);
     transform-origin: 50% 83.1%; /* 50% eyeball% */
-    width: 6.5%;
+    width: 5%;
 }
 #toggle-theme:checked ~ .display-analog > .hand-month {
     background-color: #222;
@@ -440,11 +440,11 @@ input {
 .hand-day {
     background-color: #bbb;
     height: 39.4%;
-    left: 47.75%;
+    left: 48%;
     top: 15.6%;
     transform: rotate(0);
     transform-origin: 50% 87.2%;
-    width: 4.5%;
+    width: 4%;
 }
 #toggle-theme:checked ~ .display-analog > .hand-day {
     background-color: #444;
@@ -452,11 +452,11 @@ input {
 .hand-hour {
     background-color: #999;
     height: 46%;
-    left: 48.75%;
+    left: 48.5%;
     top: 9%;
     transform: rotate(0);
     transform-origin: 50% 89%;
-    width: 2.5%;
+    width: 3%;
 }
 #toggle-theme:checked ~ .display-analog > .hand-hour {
     background-color: #666;
@@ -464,11 +464,11 @@ input {
 .hand-minute {
     background-color: #777;
     height: 51%;
-    left: 49.5%;
+    left: 49%;
     top: 4%;
     transform: rotate(0);
     transform-origin: 50% 90.3%;
-    width: 1%;
+    width: 2%;
 }
 #toggle-theme:checked ~ .display-analog > .hand-minute {
     background-color: #888;
@@ -476,11 +476,11 @@ input {
 .hand-second {
     background-color: #555;
     height: 53.6%;
-    left: 49.875%;
+    left: 49.5%;
     top: 1.4%;
     transform: rotate(0);
     transform-origin: 50% 90.7%;
-    width: 0.5%;
+    width: 1%;
 }
 #toggle-theme:checked ~ .display-analog > .hand-second {
     background-color: #aaa;
