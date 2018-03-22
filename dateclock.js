@@ -1,6 +1,6 @@
 // Date Clock. (c) JP 2009 (concept), 2018 (code).
 
-(function () {
+var dateclock = (function () {
 
     // Define functions.
     function getDateAdjustedByOffset (date) {
@@ -570,7 +570,6 @@
         timeoutIds = [];
 
         date = new Date();
-        // date = new Date(1970, 10 - 1, 7, 9, 35, 18); // Factory display of hands.
 
         numberOfMonthPips = els.toggleMonth.checked ? 12 : getMoonsInLunarYear(date);
         numberOfDayPips = els.toggleMonth.checked ? getDaysInMonth(date) : getDaysInMoon(date);
@@ -647,6 +646,7 @@
     // End function definitions.
 
     // Define constants.
+    var FACTORY_DISPLAY = new Date(1970, 10 - 1, 7, 9, 35, 18);
     var KNOWN_DEC_SOLSTICE = new Date(Date.UTC(1969, 12 - 1, 22, 0, 44, 2)); // 1969-12-22T00:44:02.000Z
     var KNOWN_NEW_MOON = new Date(Date.UTC(1970, 1 - 1, 7, 20, 35, 0)); // 1970-01-07T20:35:00.000Z
     var AVG_DAYS_PER_LUNAR_MONTH = 29.530588; // In 2000 Gregorian CE.
@@ -681,5 +681,28 @@
         document.addEventListener('DOMContentLoaded', initClock);
     }
 
+    return {
+        reset: resetClock,
+        set: function (date) {
+            if (typeof date === 'undefined') {
+                date = FACTORY_DISPLAY;
+                console.log('No date provided; using factory display.');
+            } else if (typeof date !== 'object' ||
+                date instanceof Date !== true ||
+                isNaN(date.valueOf())
+            ) {
+                console.error('Cannot set invalid date.');
+                return;
+            }
+            this.stop();
+            prevUpdateClockMinute = 0;
+            prevUpdateClockHour = 0;
+            updateClock(date);
+        },
+        stop: function () {
+            window.clearInterval(intervalId);
+            intervalId = undefined;
+        }
+    };
 
 })();
