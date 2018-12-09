@@ -82,21 +82,20 @@ var dateclock = (function () {
         ));
     }
     function getMoonNumber (date) {
-        // Count how many full moons until next Dec solstice, return difference from max.
+        // Calculate standardized lunations between nearest full moon and next December solstice.
         var nextDecSolstice = getNextDecSolstice(date);
-        var testDate;
-        for (var index = 1; index < 13; index++) {
-            testDate = new Date(getFullMoon(date).valueOf() + AVG_MILLISECONDS_PER_LUNAR_MONTH * index);
-            if (testDate > nextDecSolstice) {
-                return 13 - index;
-            }
+        var fullMoon = getFullMoon(date);
+        var diff = (nextDecSolstice.valueOf() - fullMoon.valueOf()) / AVG_MILLISECONDS_PER_LUNAR_MONTH;
+        if (diff <= 0) {
+            return 0; // Leap moon.
         }
-        return 0; // Leap moon.
+        return 13 - Math.ceil(diff);
     }
     function getMoonsInLunarYear (date) {
-        // If Greg year starts with leap moon...lunar year has 13 moons, otherwise 12.
+        // If current moon is leap moon, or if Greg year starts with leap moon...
+        // ...then lunar year has 13 moons, otherwise 12.
         var jan1st = new Date(Date.UTC(date.getUTCFullYear(), 1 - 1, 1, 0, 0, 0));
-        if (getMoonNumber(jan1st) === 0) {
+        if (getMoonNumber(date) === 0 || getMoonNumber(jan1st) === 0) {
             return 13;
         } else {
             return 12;
