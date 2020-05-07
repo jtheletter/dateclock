@@ -1,2 +1,18 @@
+# MacOS Desktop Services Store:
+.DS_Store
+
+# Microsoft Temporary Files:
+~$*.xlsx
+
+# Minified:
+*.min.*
+
+# Raw Art:
+*.afphoto
+*.ai
+*.fla
+*.indd
 *.psd
-_*
+
+# Double-Underscore-Prefixed:
+__*
