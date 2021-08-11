@@ -141,18 +141,15 @@ input {
     padding-left: 5.5vw;
     text-indent: -5vw;
 }
-.panel-copyright {
-    font-size: 75%;
-}
-.panel-email {
+.panel-link {
     font-weight: 700;
 }
-.panel-email > a {
+.panel-link > a {
     color: #fff;
     position: relative;
     text-decoration: none;
 }
-.panel-email > a::after {
+.panel-link > a::after {
     background-color: #fff;
     bottom: 0;
     content: '';
@@ -163,15 +160,15 @@ input {
     right: 0;
     transition: opacity 0.25s;
 }
-.panel-email > a:hover::after,
-.panel-email > a:focus::after,
-.panel-email > a:active::after {
+.panel-link > a:hover::after,
+.panel-link > a:focus::after,
+.panel-link > a:active::after {
     opacity: 1;
 }
-#toggle-theme:checked ~ .panel > .panel-email > a {
+#toggle-theme:checked ~ .panel > .panel-link > a {
     color: #000;
 }
-#toggle-theme:checked ~ .panel > .panel-email > a::after {
+#toggle-theme:checked ~ .panel > .panel-link > a::after {
     background-color: #000;
 }
 .reset-button {
@@ -180,7 +177,7 @@ input {
     cursor: pointer;
     font-size: 0;
     height: 13.1vw;
-    margin: 0;
+    margin: 1vh 0 0;
     padding: 0;
     position: relative;
     transition: background-color 0.25s;
