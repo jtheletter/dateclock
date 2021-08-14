@@ -235,18 +235,26 @@ var dateclock = (function () {
     }
     function updateClockOffset (date) {
         var offsetHours = getOffsetHours(date);
+
         if (doesLocaleObserveDstOnDate(date) && !els.toggleTime.checked) { // If locale is observing DST, but user does not want it...
             offsetHours -= hoursInDst;
         } else if (!doesLocaleObserveDstOnDate(date) && els.toggleTime.checked) { // If locale isn't observing DST, but user wants it...
             offsetHours += hoursInDst;
         }
-        if (offsetHours < 0) {
-            els.utcOffset.textContent = `UTC\u002d${Math.abs(offsetHours)}h`; // hyphen-minus sign
-        } else if (offsetHours > 0) {
-            els.utcOffset.textContent = `UTC\u002b${offsetHours}h`; // plus sign
-        } else {
-            els.utcOffset.textContent = `UTC\u00b10h`; // plus-minus sign
+
+        var offsetText;
+        if (offsetHours === 0) {
+            offsetText = ''; // For UTC.
+        } else if (offsetHours % 1 === 0) {
+            offsetText = offsetHours; // For UTC+1, UTC+2... UTC-1, UTC-2...
+        } else { // For UTC+1:30, UTC-2:15...
+            offsetText = `${Math.trunc(offsetHours)}:${(Math.round(Math.abs(offsetHours) % 1 * 60).toString().padStart(2, '0'))}`;
         }
+        if (offsetHours > 0) {
+            offsetText = '\u002b' + offsetText; // Prepend plus sign.
+        }
+
+        els.utcOffset.textContent = offsetText;
     }
     function updateClockMonth (date) {
         var month, day, daysInMonth, monthsInYear, degs;
