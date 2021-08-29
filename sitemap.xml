@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://dateclock.net/</loc>
+        <loc>https://dateclock.net/sketches/</loc>
         <image:image>
             <image:loc>https://dateclock.net/dateclock-logo-1.png"</image:loc>
             <image:title>Date Clock logo 1</image:title>

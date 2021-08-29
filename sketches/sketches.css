@@ -1,0 +1,76 @@
+@charset 'UTF-8';
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 300;
+    src:
+        url('../fonts/sourcecodepro-light-webfont.woff2') format('woff2'),
+        url('../fonts/sourcecodepro-light-webfont.woff') format('woff');
+    unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 700;
+    src:
+        url('../fonts/sourcecodepro-bold-webfont.woff2') format('woff2'),
+        url('../fonts/sourcecodepro-bold-webfont.woff') format('woff');
+    unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F; /* Basic Latin, Latin-1 Supplement, General Punctuation */
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 300;
+    pointer-events: none;
+    text-align: center;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+a {
+    color: #000;
+    font-weight: 700;
+    pointer-events: auto;
+    position: relative;
+    text-decoration: none;
+}
+a::after {
+    background-color: #000;
+    bottom: 0;
+    content: '';
+    height: 0.1em;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    transition: opacity 0.25s;
+}
+a:hover::after,
+a:focus::after,
+a:active::after {
+    opacity: 1;
+}
+h1 {
+    font-size: 133%;
+    font-weight: 700;
+    margin: 1em 0;
+}
+h2 {
+    margin: 0 0 1em;
+}
+img {
+    display: block;
+    margin: auto;
+}
+.link-wrap {
+    margin: 1em 0 2em;
+}
+.sketch-wrap {
+    display: inline-block;
+}
