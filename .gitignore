@@ -8,6 +8,7 @@
 *.min.*
 
 # Raw Art:
+*.afdesign
 *.afphoto
 *.ai
 *.fla
